@@ -4,7 +4,11 @@
   "description": "A example stack with gulp and angular",
   "main": "index.js",
   "scripts": {
-    "postinstall": "bower install && gulp deploy"
+    "postinstall": "bower install && gulp deploy",
+    "start": "node index"
+  },
+  "engines": {
+    "node": "8.1.4"
   },
   "author": "Alex Chin <alex@alexchin.co.uk>",
   "license": "ISC",

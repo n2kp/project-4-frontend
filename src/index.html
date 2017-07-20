@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html ng-app="finalProject">
+  <head>
+    <meta charset="utf-8">
+    <title>Angular Stack Setup</title>
+    <!-- inject:js -->
+    <!-- endinject -->
+    <!-- inject:css -->
+    <!-- endinject -->
+  </head>
+  <body ng-controller="MainCtrl as main">
+    <ul>
+      <li ng-repeat="user in main.users">
+        <strong>{{ user.username }}</strong>
+        <p><em>{{ user.firstname }} {{ user.lastname }}</em></p>
+      </li>
+    </ul>
+  </body>
+</html>

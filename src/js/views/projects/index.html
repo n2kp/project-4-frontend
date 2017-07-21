@@ -1,0 +1,7 @@
+<h1>Projects Index Page</h1>
+<p><a ui-sref="projectsNew">Project New</a></p>
+
+<div ng-repeat="project in projectsIndex.all">
+  <h1>{{ project }}</h1>
+<button ui-sref="projectsShow({ id: project.id})" >View</button>
+</div>

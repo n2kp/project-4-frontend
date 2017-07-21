@@ -1,5 +1,5 @@
 angular
-  .module('finalProject')
+  .module('justo')
   .controller('MainCtrl', MainCtrl);
 
 MainCtrl.$inject = ['$http', 'API_URL'];
@@ -11,5 +11,5 @@ function MainCtrl($http, API_URL) {
     url: `${API_URL}/users`
   })
   .then((res) => vm.users = res.data);
-  
+
 }

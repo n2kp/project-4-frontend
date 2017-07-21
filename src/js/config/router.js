@@ -18,17 +18,17 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
   })
   .state('projectsNew', {
     url: '/projects/new',
-    templateUrl: 'js/views/projects/new.html'
-    // controller: 'EventsNewCtrl as eventsNew'
+    templateUrl: 'js/views/projects/new.html',
+    controller: 'ProjectNewCtrl as projectssNew'
   })
   .state('projectsShow', {
     url: '/projects/:id',
     templateUrl: 'js/views/projects/show.html',
     controller: 'ProjectShowCtrl as projectsShow'
   })
-  .state('projectEdit', {
+  .state('projectsEdit', {
     url: '/project/:id/edit',
-    templateUrl: 'js/views/project/edit.html',
+    templateUrl: 'js/views/projects/edit.html',
     controller: 'ProjectEditCtrl as projectsEdit'
   });
   // .state('login', {

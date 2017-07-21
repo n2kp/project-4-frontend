@@ -1,7 +1,7 @@
 angular
 .module('justo')
 .controller('ProjectIndexCtrl', ProjectIndexCtrl)
-// .controller('ProjectNewCtrl', ProjectNewCtrl)
+.controller('ProjectNewCtrl', ProjectNewCtrl)
 .controller('ProjectShowCtrl', ProjectShowCtrl)
 .controller('ProjectEditCtrl', ProjectEditCtrl);
 
@@ -11,6 +11,22 @@ function ProjectIndexCtrl (Project) {
   vm.all = Project.query();
 }
 
+
+ProjectNewCtrl.$inject = ['Project', 'User', '$stateParams', '$state'];
+function ProjectNewCtrl (Project, User, $stateParams, $state){
+  const vm = this;
+  vm.project = {};
+  vm.users = User.query();
+
+  function projectsCreate() {
+    Project
+    .save(vm.project)
+    .$promise
+    .then(() =>
+      $state.go('projectsShow', { id: vm.project.id }));
+  }
+  vm.create = projectsCreate;
+}
 
 
 
@@ -23,6 +39,9 @@ function ProjectShowCtrl (Project, User, $stateParams){
   vm.project = Project.get($stateParams);
 
 }
+
+
+
 
 ProjectEditCtrl.$inject = ['Project', 'User', '$stateParams', '$state'];
 function ProjectEditCtrl (Project, User, $stateParams, $state) {

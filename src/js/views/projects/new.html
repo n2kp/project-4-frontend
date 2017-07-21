@@ -42,21 +42,26 @@
 
 <!--BID DEADLINE INPUT  -->
   <label for="tech_stack">Tech Stack</label>
-  <input type="text" id="tech_stack" name="tech_stack" ng-model="projectsNew.project.tech_stack"  required>
+  <input type="text" id="tech_stack" name="tech_stack" ng-model="projectsNew.project.tech_stack" required>
 <!-- BID DEADLINE VALIDATION/MESSAGES -->
 <div ng-messages="projectsNew.projectForm.tech_stack.$error" ng-show="projectsNew.projectForm.$submitted || projectsNew.projectForm.tech_stack.$touched">
-  <div ng-message="required" class="errorMessage">You need to give a date for when the final bids can be submitted</div>
-  <div ng-message="min" class="errorMessage"> The bidding deadline cannot</div>
+  <div ng-message="required" class="errorMessage">Please supply at least one technology that you wish to be used in your project</div>
 </div>
 <!--
 (?:^|(?<= ))(one|common|word|or|another)(?:(?= )|$) -->
 
+<!--BID DEADLINE INPUT  -->
   <label for="budget">Budget</label>
-  <input type="text" id="budget" name="budget" ng-model="projectsNew.project.budget">
+  <input type="text" id="budget" name="budget" ng-model="projectsNew.project.budget" required>
+<!-- BID DEADLINE VALIDATION/MESSAGES -->
+<div ng-messages="projectsNew.projectForm.budget.$error" ng-show="projectsNew.projectForm.$submitted || projectsNew.projectForm.budget.$touched">
+  <div ng-message="required" class="errorMessage">A maximum budget required</div>
+</div>
+
 
   <label for="is_priority">
     <input type="checkbox" id="is_priority" name="is_priority" ng-model="projectsNew.project.is_priority">
-    Is Priority</label>
+    Is Priority</label><span><em>  - If this is selected your project will appear on the priority panel</em></span>
 
     <button>Create</button>
   </form>

@@ -1,1 +1,31 @@
 <h1>New Projo</h1>
+<form ng-submit="projectsNew.create()">
+
+{{ projectsNew.project}}
+
+  <label for="title">Title</label>
+  <input type="text" id="title" name="title" ng-model="projectsNew.project.title">
+
+  <label for="description">Description</label>
+  <input type="textarea" id="description" name="description" ng-model="projectsNew.project.description">
+
+  <label for="project_deadline">Deadline</label>
+  <input type="date" id="project_deadline" name="project_deadline" ng-model="projectsNew.project.project_deadline">
+
+
+  <label for="bid_deadline">Bid Deadline</label>
+  <input type="date" id="bid_deadline" name="bid_deadline" ng-model="projectsNew.project.bid_deadline">
+
+
+  <label for="tech_stack">Tech Stack</label>
+  <input type="text" id="tech_stack" name="tech_stack" ng-model="projectsNew.project.tech_stack">
+
+  <label for="budget">Budget</label>
+  <input type="text" id="budget" name="budget" ng-model="projectsNew.project.budget">
+
+  <label for="is_priority">
+  <input type="checkbox" id="is_priority" name="is_priority" ng-model="projectsNew.project.is_priority">
+  Is Priority</label>
+
+  <button>Create</button>
+</form>

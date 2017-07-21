@@ -8,7 +8,8 @@ function AuthCtrl($auth, $state) {
 
   function register() {
     $auth.signup(vm.user)
-    .then(() => $state.go('login'));
+    .then(() => $state.go('login') );
+
   }
 
   vm.register = register;

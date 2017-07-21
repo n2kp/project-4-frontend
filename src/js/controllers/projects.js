@@ -23,14 +23,10 @@ function ProjectNewCtrl (Project, User, $stateParams, $state){
     .save(vm.project)
     .$promise
     .then(() =>
-      $state.go('projectsShow', { id: vm.project.id }));
+    $state.go('projectsIndex'));
   }
   vm.create = projectsCreate;
 }
-
-
-
-
 
 
 ProjectShowCtrl.$inject = ['Project', 'User', '$stateParams', '$state'];
@@ -39,8 +35,6 @@ function ProjectShowCtrl (Project, User, $stateParams){
   vm.project = Project.get($stateParams);
 
 }
-
-
 
 
 ProjectEditCtrl.$inject = ['Project', 'User', '$stateParams', '$state'];
@@ -63,4 +57,12 @@ function ProjectEditCtrl (Project, User, $stateParams, $state) {
     $state.go('projectsShow', { id: vm.project.id }));
   }
   vm.update = projectUpdate;
+
+  function projectsDelete() {
+    vm.project
+    .$remove()
+    .then(() => $state.go('projectsIndex'));
+  }
+
+  vm.delete = projectsDelete;
 }

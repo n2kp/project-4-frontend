@@ -32,7 +32,7 @@ function MainCtrl($rootScope, $state, API_URL, $auth, $transitions) {
 
   function logout() {
     $auth.logout();
-    $state.go('home');
+    $state.go('/');
   }
 
   vm.logout = logout;

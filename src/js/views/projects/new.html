@@ -5,58 +5,66 @@
   <label for="title">Title</label>
   <input type="text" id="title" name="title" ng-model="projectsNew.project.title" ng-maxlength="30" required>
   <!-- TITLE VALIDATION/MESSAGES -->
-  <div ng-messages="projectsNew.projectForm.title.$error" ng-show="projectsNew.projectForm.$submitted || projectsNew.projectForm.title.$touched">
+  <!-- <div ng-messages="projectsNew.projectForm.title.$error" ng-show="projectsNew.projectForm.$submitted || projectsNew.projectForm.title.$touched">
     <div ng-message="required" class="errorMessage">A title is required to post a project</div>
     <div ng-message="maxlength" class="errorMessage">Cannot exceed 30 characters</div>
-  </div>
+  </div> -->
+
+
 
 
 <!--DESCRIPTION INPUT  -->
   <label for="project_deadline">Description</label>
   <input type="textarea" id="description" name="description" ng-model="projectsNew.project.description" ng-maxlength="250" required>
   <!-- DESCRIPTION VALIDATION/MESSAGES -->
-  <div ng-messages="projectsNew.projectForm.description.$error" ng-show="projectsNew.projectForm.$submitted || projectsNew.projectForm.description.$touched">
+  <!-- <div ng-messages="projectsNew.projectForm.description.$error" ng-show="projectsNew.projectForm.$submitted || projectsNew.projectForm.description.$touched">
     <div ng-message="required" class="errorMessage">A description is required to post a project</div>
     <div ng-message="maxlength" class="errorMessage">Cannot exceed 250 characters</div>
-  </div>
+  </div> -->
+
+
 
 <!--PROJECT DEADLINE INPUT  -->
   <label for="project_deadline">Deadline</label>
   <input type="date" id="project_deadline" name="project_deadline" ng-model="projectsNew.project.project_deadline" min="{{projectsNew.today}}" required>
   <!-- PROJECT DEADLINE VALIDATION/MESSAGES -->
-  <div ng-messages="projectsNew.projectForm.project_deadline.$error" ng-show="projectsNew.projectForm.$submitted || projectsNew.projectForm.project_deadline.$touched">
+  <!-- <div ng-messages="projectsNew.projectForm.project_deadline.$error" ng-show="projectsNew.projectForm.$submitted || projectsNew.projectForm.project_deadline.$touched">
     <div ng-message="required" class="errorMessage">You need to give a date in which you want your project completed</div>
     <div ng-message="min" class="errorMessage">Projects cannot have a deadline date for today or earlier</div>
-  </div>
+  </div> -->
+
+
 
 
 <!--BID DEADLINE INPUT  -->
   <label for="bid_deadline">Bid Deadline</label>
   <input type="date" id="bid_deadline" name="bid_deadline" ng-model="projectsNew.project.bid_deadline" min="{{projectsNew.today}}" required>
   <!-- BID DEADLINE VALIDATION/MESSAGES -->
-  <div ng-messages="projectsNew.projectForm.bid_deadline.$error" ng-show="projectsNew.projectForm.$submitted || projectsNew.projectForm.bid_deadline.$touched">
+  <!-- <div ng-messages="projectsNew.projectForm.bid_deadline.$error" ng-show="projectsNew.projectForm.$submitted || projectsNew.projectForm.bid_deadline.$touched">
     <div ng-message="required" class="errorMessage">You need to give a date for when the final bids can be submitted</div>
     <div ng-message="min" class="errorMessage"> The bidding deadline cannot</div>
-  </div>
+  </div> -->
+
+
 
 
 <!--TECH STACK INPUT  -->
   <label for="tech_stack">Tech Stack</label>
   <input type="text" id="tech_stack" name="tech_stack" ng-model="projectsNew.project.tech_stack" required>
 <!-- TECH STACK VALIDATION/MESSAGES -->
-<div ng-messages="projectsNew.projectForm.tech_stack.$error" ng-show="projectsNew.projectForm.$submitted || projectsNew.projectForm.tech_stack.$touched">
+<!-- <div ng-messages="projectsNew.projectForm.tech_stack.$error" ng-show="projectsNew.projectForm.$submitted || projectsNew.projectForm.tech_stack.$touched">
   <div ng-message="required" class="errorMessage">Please supply at least one technology that you wish to be used in your project</div>
 </div>
-<!--
-(?:^|(?<= ))(one|common|word|or|another)(?:(?= )|$) -->
+-->
+<!--(?:^|(?<= ))(one|common|word|or|another)(?:(?= )|$) -->
 
 <!--BUDGET INPUT  -->
   <label for="budget">Budget</label>
   <input type="text" id="budget" name="budget" ng-model="projectsNew.project.budget" required>
 <!-- BUDGET VALIDATION/MESSAGES -->
-<div ng-messages="projectsNew.projectForm.budget.$error" ng-show="projectsNew.projectForm.$submitted || projectsNew.projectForm.budget.$touched">
+<!-- <div ng-messages="projectsNew.projectForm.budget.$error" ng-show="projectsNew.projectForm.$submitted || projectsNew.projectForm.budget.$touched">
   <div ng-message="required" class="errorMessage">A maximum budget is required</div>
-</div>
+</div> -->
 
 
 

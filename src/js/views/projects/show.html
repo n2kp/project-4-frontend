@@ -1,4 +1,4 @@
 <h1>Projo Show</h1>
 {{ projectsShow.project}}
 
-<button ui-sref="projectsEdit({ id: projectsShow.project.id})" >Edit</button>
+<button ui-sref="projectsEdit({ id: projectsShow.project.id})" ng-if="main.isAuthenticated() && main.currentUser.id === projectsShow.project.user.id">Edit</button>

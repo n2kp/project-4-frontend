@@ -6,7 +6,7 @@ MainCtrl.$inject = ['$rootScope', '$state', 'API_URL', '$auth', '$transitions'];
 function MainCtrl($rootScope, $state, API_URL, $auth, $transitions) {
   const vm = this;
   vm.isAuthenticated = $auth.isAuthenticated;
-
+  console.log(vm);
   $rootScope.$on('error', (e, err) => {
     vm.message = err.data.errors.join('; ');
 
@@ -26,7 +26,10 @@ function MainCtrl($rootScope, $state, API_URL, $auth, $transitions) {
 
     if(vm.stateHasChanged) vm.message = null;
     if(!vm.stateHasChanged) vm.stateHasChanged = true;
-    if($auth.getPayload()) vm.currentUser = $auth.getPayload();
+    if($auth.getPayload()) {
+      // console.log($auth.getPayload());
+      vm.currentUser = $auth.getPayload().id;
+    }
     vm.pageName = transition.$to().name;
   });
 

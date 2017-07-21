@@ -1,1 +1,15 @@
+$error: red;
 
+
+
+
+
+
+
+
+main {
+  .errorMessage {
+    padding:-10px;
+    color: $error;
+  }
+}

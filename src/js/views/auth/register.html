@@ -1,0 +1,32 @@
+<h1>Register</h1>
+<form ng-submit="auth.register()">
+    <div>
+      <label>Username</label>
+      <input type="text" ng-model="auth.user.username">
+    </div>
+    <div>
+      <label>First Name</label>
+      <input type="text" ng-model="auth.user.firstname">
+    </div>
+    <div>
+      <label>Last Name</label>
+      <input type="text" ng-model="auth.user.lastname">
+    </div>
+
+    <div>
+      <label>Email</label>
+      <input type="text" ng-model="auth.user.email">
+    </div>
+
+    <div>
+      <label>Password</label>
+      <input type="password" ng-model="auth.user.password">
+    </div>
+
+    <div>
+      <label>Password Confirmation</label>
+      <input type="password" ng-model="auth.user.password_confirmation">
+    </div>
+
+    <button>Register</button>
+  </form>

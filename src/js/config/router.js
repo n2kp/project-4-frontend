@@ -30,17 +30,17 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
     url: '/project/:id/edit',
     templateUrl: 'js/views/projects/edit.html',
     controller: 'ProjectEditCtrl as projectsEdit'
+  })
+  .state('login', {
+    url: '/login',
+    templateUrl: 'js/views/auth/login.html',
+    controller: 'AuthCtrl as auth'
+  })
+  .state('register', {
+    url: '/register',
+    templateUrl: 'js/views/auth/register.html',
+    controller: 'AuthCtrl as auth'
   });
-  // .state('login', {
-  //   url: '/login',
-  //   templateUrl: 'js/views/auth/login.html',
-  //   controller: 'AuthCtrl as auth'
-  // })
-  // .state('register', {
-  //   url: '/register',
-  //   templateUrl: 'js/views/auth/register.html',
-  //   controller: 'AuthCtrl as auth'
-  // });
 
   $urlRouterProvider.otherwise('/');
 }

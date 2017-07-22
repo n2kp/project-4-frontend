@@ -37,18 +37,18 @@ function ProjectNewCtrl (Project, User, $stateParams, $state ){
 ProjectShowCtrl.$inject = ['Project', '$stateParams', '$state', 'Tender'];
 function ProjectShowCtrl (Project, $stateParams,$state, Tender){
   const vm = this;
+  vm.tenders = Tender.query();
+
   vm.project = Project.get($stateParams);
   vm.tender = {};
 
 
   function addTender() {
-vm.tender.project_id = vm.project.id;
+    vm.tender.project_id = vm.project.id;
     Tender
     .save(vm.tender)
     .$promise
     .then((tender) => {
-      console.log(vm.tenders);
-
       vm.tenders.push(tender);
 
     });

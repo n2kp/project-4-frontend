@@ -16,7 +16,7 @@ function MainCtrl($rootScope, $state, API_URL, $auth, $transitions, User) {
     }
   });
 
-  const protectedStates = ['projectsNew', 'projectsEdit'];
+  const protectedStates = ['projectsNew', 'projectsEdit', 'projectsShow'];
 
   $transitions.onSuccess({}, (transition) => {
     if((!$auth.isAuthenticated() && protectedStates.includes(transition.$to().name))) {

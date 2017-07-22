@@ -7,8 +7,6 @@ ProfileCtrl.$inject = ['$auth', 'User', '$state', 'Review'];
 function ProfileCtrl($auth, User, $state, Review) {
   const vm = this;
 
-  // vm.user = User.query($state.params);
-
   vm.reviews = Review.query();
   vm.user = User.get($state.params);
 

@@ -11,7 +11,7 @@
   </div>
 
   <div class="col s5">
-    <div ng-if="project.is_priority == false" ng-repeat="project in projectsIndex.all" class="projectCards z-depth-1 cursor" ui-sref="projectsShow({ id: project.id })">
+    <div ng-if="!project.is_priority" ng-repeat="project in projectsIndex.all" class="projectCards z-depth-1 cursor"  ui-sref="projectsShow({ id: project.id })">
 
       <p class="marginBottomXXSm"> <span>Posted by</span> {{ project.user.username }} </p>
       <h2 class="marginBottomMd"> {{project.title }}</h2>
@@ -25,30 +25,29 @@
       <p class="marginBottomXSm"> <i class="tiny material-icons">code</i>
         <span>Tech Stack</span>{{project.tech_stack }}</p>
 
-      <p class="marginBottomXSm"> <i class="tiny material-icons">monetization_on</i>
-        <span>Budget</span>{{project.budget }}</p>
+        <p class="marginBottomXSm"> <i class="tiny material-icons">monetization_on</i>
+          <span>Budget</span>{{project.budget }}</p>
 
-        <p class="marginBottomLg"> <i class="tiny material-icons">alarm </i>
-          <span>Time left to tender</span> {{project.bid_deadline }}</p>
-
-
-
-<!--
-      <button ui-sref="projectsShow({ id: project.id })" class="button primary">View</button> -->
-    </div>
-  </div>
-</div>
+          <p class="marginBottomLg"> <i class="tiny material-icons">alarm </i>
+            <span>Time left to tender</span> {{project.bid_deadline }}</p>
 
 
-<div class="col s3 ">
-  <div ng-if="project.is_priority == true" ng-repeat="project in projectsIndex.all" class="projectCards z-depth-1">
-    <span><p>Paid Post</p></span>
-    <h2> {{project.title }}</h2>
-    <p> {{project.description }}</p>
-    <p> {{project.project_deadline }}</p>
-    <p> {{project.bid_deadline }}</p>
-    <p> {{project.tech_stack }}</p>
-    <p> {{project.budget }}</p>
-    <button ng-if="main.isAuthenticated()" ui-sref="projectsShow({ id: project.id })" class="button primary" >View</button>
-  </div>
-</div>
+
+            <button ng-if="main.isAuthenticated()" ui-sref="projectsShow({ id: project.id })" class="button primary">View</button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col s3 ">
+        <div ng-if="project.is_priority" ng-repeat="project in projectsIndex.all" class="projectCards z-depth-1">
+          <span><p>Paid Post</p></span>
+          <h2> {{project.title }}</h2>
+          <p> {{project.description }}</p>
+          <p> {{project.project_deadline }}</p>
+          <p> {{project.bid_deadline }}</p>
+          <p> {{project.tech_stack }}</p>
+          <p> {{project.budget }}</p>
+          <button ng-if="main.isAuthenticated()" ui-sref="projectsShow({ id: project.id })" class="button primary" >View</button>
+        </div>
+      </div>

@@ -16,7 +16,10 @@ function AuthCtrl($auth, $state) {
 
   function login() {
     $auth.login(vm.credentials)
-    .then(() => $state.go('projectsIndex'));
+    .then(() => {
+      
+      $state.go('projectsIndex');
+    });
   }
 
   vm.login = login;

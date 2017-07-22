@@ -37,12 +37,14 @@ function ProjectNewCtrl (Project, User, $stateParams, $state ){
 ProjectShowCtrl.$inject = ['Project', '$stateParams', '$state', 'Tender'];
 function ProjectShowCtrl (Project, $stateParams,$state, Tender){
   const vm = this;
-  vm.tenders = Tender.query();
+
 
   vm.project = Project.get($stateParams);
+
+  vm.tenders = Tender.query();
+
   vm.tender = {};
-
-
+  
   function addTender() {
     vm.tender.project_id = vm.project.id;
     Tender

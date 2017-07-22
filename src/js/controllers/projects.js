@@ -9,7 +9,7 @@ ProjectIndexCtrl.$inject = ['Project'];
 function ProjectIndexCtrl (Project) {
   const vm = this;
   vm.all = Project.query();
-  
+
 }
 
 

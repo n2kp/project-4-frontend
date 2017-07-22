@@ -4,19 +4,19 @@
 <h1><a ui-sref="profile({ id: projectsShow.project.user.id })">HERE</a></h1>
   <form ng-submit="projectsShow.tenderCreate()">
 
-    <label for="bid">Bid</label>
-    <input type="number" id="bid" name="bid" ng-model="projectsShow.tender.bid">
+  <label for="bid">Bid</label>
+  <input type="number" id="bid" name="bid" ng-model="projectsShow.tender.bid">
 
-    <label for="pitch">Pitch</label>
-    <input type="text" id="pitch" name="pitch" ng-model="projectsShow.tender.pitch">
+  <label for="pitch">Pitch</label>
+  <input type="text" id="pitch" name="pitch" ng-model="projectsShow.tender.pitch">
 
 
 
-    <button>Submit Offer</button>
-  </form>
+  <button>Submit Offer</button>
+</form>
 
 <div ng-repeat="tender in projectsShow.tenders">
-    <h1>{{ tender.bid }}</h1>
+  <h1>{{ tender.bid }}</h1>
   <h1>{{ tender.pitch }}</h1>
 </div>
 

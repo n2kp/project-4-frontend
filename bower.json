@@ -18,7 +18,8 @@
     "angular": "^1.5.8",
     "angular-resource": "^1.6.5",
     "angular-ui-router": "^1.0.5",
-    "satellizer": "^0.15.5"
+    "satellizer": "^0.15.5",
+    "angular-messages": "^1.6.5"
   },
   "resolutions": {
     "angular": "1.6.5"

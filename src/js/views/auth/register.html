@@ -1,9 +1,18 @@
 <h1>Register</h1>
-<form ng-submit="auth.register()">
+<form ng-submit="auth.register()" name="auth.registerForm" novalidate>
     <div>
-      <label>Username</label>
-      <input type="text" ng-model="auth.user.username">
+        <!--USERNAME INPUT  -->
+      <label for="username">Username</label>
+      <input type="text" name="username" id="username" ng-model="auth.user.username" unique required>
+        <!-- USERNAME VALIDATION/MESSAGES -->
+
+      <!-- <div ng-messages="auth.registerForm.username.$error" ng-show="auth.registerForm.$submitted || auth.registerForm.username.$touched">
+        <div ng-message="required" class="errorMessage">A username is required</div>
+        <div ng-message="unique" class="errorMessage">Please choose a different username, this one was already been taken</div>
+      </div> -->
+      
     </div>
+
     <div>
       <label>First Name</label>
       <input type="text" ng-model="auth.user.firstname">

@@ -13,10 +13,15 @@ function ProjectIndexCtrl (Project) {
 
 
 ProjectNewCtrl.$inject = ['Project', 'User', '$stateParams', '$state'];
-function ProjectNewCtrl (Project, User, $stateParams, $state){
+function ProjectNewCtrl (Project, User, $stateParams, $state ){
   const vm = this;
   vm.project = {};
   vm.users = User.query();
+
+
+  const today = new Date();
+  vm.today = today.toISOString();
+
 
   function projectsCreate() {
     Project

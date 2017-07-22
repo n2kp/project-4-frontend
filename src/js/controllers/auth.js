@@ -9,7 +9,7 @@ function AuthCtrl($auth, $state) {
   function register() {
     $auth.signup(vm.user)
     .then(() => $state.go('login') );
-
+    console.log(vm.user);
   }
 
   vm.register = register;

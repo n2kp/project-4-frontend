@@ -1,1 +1,36 @@
 
+@import 'reset-css/reset';
+
+*{
+  font-family: 'Raleway', sans-serif;
+}
+h1{
+  font-size: 42px;
+}
+
+//HOME PAGE STUFF
+
+.left{
+  width:50%;
+  height: 100vh;
+  float: left;
+  background-color: tomato;
+}
+
+.right{
+  width: 50%;
+  height: 100vh;
+  float: right;
+  background-color: dodgerblue;
+  background-image: url("https://image.ibb.co/ezztFQ/homepage1.gif");
+  background-position: center;
+}
+
+.homepageTitle{
+  text-align: left;
+  margin: 0 auto;
+  background-color: yellow;
+  position:relative;
+  top: 50%;
+  transform: translateY(-50%);
+}

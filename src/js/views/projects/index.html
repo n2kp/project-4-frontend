@@ -5,7 +5,7 @@
 <div class="row">
 
   <div class="col s2 offset-s1">
-    <div class="projectCards z-depth-1">
+    <div class="filter z-depth-1">
       <p>FILTER SOME STUFF</p>
     </div>
   </div>
@@ -23,7 +23,7 @@
 
 
       <p class="marginBottomSm"> <i class="tiny material-icons">code</i>
-        <span>Tech Stack</span>{{project.tech_stack }}</p>
+        <span>Tech Stack</span>{{ project.tech_stack }}</p>
 
         <p class="marginBottomXSm"> <i class="tiny material-icons">monetization_on</i>
           <span>Budget</span>{{project.budget }}</p>
@@ -36,7 +36,7 @@
 
 
           <div class="col s3">
-            <div ng-if="project.is_priority == true" ng-repeat="project in projectsIndex.all" class="projectCards z-depth-1">
+            <div ng-if="project.is_priority == true" ng-repeat="project in projectsIndex.all" class="projectCards z-depth-1 cursor" ui-sref="projectsShow({ id: project.id })">
               <span><p>Paid Post</p></span>
               <h2> {{project.title }}</h2>
               <p> {{project.description }}</p>

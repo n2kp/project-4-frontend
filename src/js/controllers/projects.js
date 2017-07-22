@@ -34,12 +34,29 @@ function ProjectNewCtrl (Project, User, $stateParams, $state ){
 }
 
 
-ProjectShowCtrl.$inject = ['Project', 'User', '$stateParams', '$state'];
-function ProjectShowCtrl (Project, User, $stateParams){
+ProjectShowCtrl.$inject = ['Project', '$stateParams', '$state', 'Tender'];
+function ProjectShowCtrl (Project, $stateParams,$state, Tender){
   const vm = this;
   vm.project = Project.get($stateParams);
+  vm.tender = {};
 
+
+  function addTender() {
+vm.tender.project_id = vm.project.id;
+    Tender
+    .save(vm.tender)
+    .$promise
+    .then((tender) => {
+      console.log(vm.tenders);
+
+      vm.tenders.push(tender);
+
+    });
+
+  }
+  vm.tenderCreate = addTender;
 }
+
 
 
 ProjectEditCtrl.$inject = ['Project', 'User', '$stateParams', '$state'];

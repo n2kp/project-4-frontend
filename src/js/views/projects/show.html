@@ -1,4 +1,17 @@
 <h1>Projo Show</h1>
-{{ projectsShow.project}}
+{{ projectsShow.project.title}}
+
+
+{{ projectsShow.tender}}
+
+<form ng-submit="projectsShow.tenderCreate()">
+
+  <label for="bid">Bid</label>
+  <input type="number" id="bid" name="bid" ng-model="projectsShow.tender.bid">
+
+
+  <button>Submit Offer</button>
+</form>
+
 
 <button ui-sref="projectsEdit({ id: projectsShow.project.id})" ng-if="main.isAuthenticated() && main.currentUser.id === projectsShow.project.user.id">Edit</button>

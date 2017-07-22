@@ -10,11 +10,32 @@ $highlight: #8AEC75;
 *{
   font-family: 'Raleway', sans-serif;
 }
-h1{
-  font-size: 42px;
+
+main {
+  .errorMessage {
+    padding:-10px;
+    color: $error;
+  }
 }
 
 //GENERAL STYLES
+.titleBig{
+  font-size: 64px;
+}
+
+h1{
+  font-size: 42px;
+  text-indent: 0 !important;
+}
+
+.marginBottomLg{
+  margin-bottom: 48px;
+}
+
+.marginRightSm{
+  margin-right: 16px;
+}
+
 
 .marginCenter{
   margin: 0 auto;
@@ -28,6 +49,20 @@ h1{
   float: left;
 }
 
+.button{
+  background-color: white;
+  padding: 8px 32px;
+  border-radius: 100px;
+}
+
+.primary{
+  background-color: $highlight;
+  color: white;
+  &.primary:hover {
+    background-color: darken($highlight, 20%);
+  }
+}
+
 //NAV STYLES
 
 .nav-logo{
@@ -35,6 +70,11 @@ h1{
   font-family: 'Rubik', sans-serif;
   font-weight: 500;
   color: $highlight;
+}
+
+.nav-logo-home{
+  position: fixed;
+  margin: 0px 16px
 }
 
 nav{
@@ -59,7 +99,7 @@ nav ul li a{
   width:50%;
   height: 100vh;
   float: left;
-  background-color: tomato;
+  padding: 24px;
 }
 
 .rightBlock{
@@ -73,19 +113,13 @@ nav ul li a{
 
 .homepageTitle{
   text-align: left;
-  margin: 0 auto;
-  background-color: yellow;
+  margin: 16px;
   position:relative;
-  top: 50%;
+  top: 40%;
   transform: translateY(-50%);
 }
 
-main {
-  .errorMessage {
-    padding:-10px;
-    color: $error;
-  }
-}
+
 
 //INDEX STYLES
 

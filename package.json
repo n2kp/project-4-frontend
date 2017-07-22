@@ -54,7 +54,10 @@
     }
   },
   "dependencies": {
-    "express": "^4.14.0"
+    "angular2-materialize": "^15.0.4",
+    "express": "^4.14.0",
+    "jquery": "^2.2.4",
+    "materialize-css": "^0.100.1"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",

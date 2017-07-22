@@ -1,12 +1,22 @@
+@import 'reset-css/reset';
+@import 'materialize-src/sass/materialize';
+
+// SASS COLOUR SCHEME
 $error: red;
 
-@import 'reset-css/reset';
 
+//OVERALL STYLES
 *{
   font-family: 'Raleway', sans-serif;
 }
 h1{
   font-size: 42px;
+}
+
+//GENERAL STYLES
+
+.marginCenter{
+  margin: 0 auto;
 }
 
 //HOME PAGE STUFF
@@ -41,3 +51,11 @@ main {
     padding:-10px;
     color: $error;
   }
+}
+
+//INDEX STYLES
+
+.projectCards{
+  margin: 16px 0px;
+  padding: 16px;
+}

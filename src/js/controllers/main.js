@@ -16,6 +16,14 @@ function MainCtrl($rootScope, $state, API_URL, $auth, $transitions) {
     }
   });
 
+  var justo = angular.module('materializeApp', ['ui.materialize'])
+  .controller('BodyController', ['$scope', function ($scope) {
+    $scope.select = {
+      value: 'Option1',
+      choices: ['Option1', 'an option', 'This is materialize', 'No, this is Patrick.']
+    };
+  }]);
+
   const protectedStates = ['projectsNew', 'projectsEdit'];
 
   $transitions.onSuccess({}, (transition) => {

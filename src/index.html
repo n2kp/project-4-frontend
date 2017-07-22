@@ -1,45 +1,41 @@
 <!DOCTYPE html>
 <html ng-app="justo">
-  <head>
-    <base href="/">
-    <meta charset="utf-8">
-    <title>Justo</title>
+<head>
+  <base href="/">
+  <meta charset="utf-8">
+  <title>Justo</title>
 
-    <!-- Materialize CSS -->
-      <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css"> -->
+  <!-- Materialize CSS -->
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css"> -->
 
-      <!-- <link rel="stylesheet" href="./js/scss/materialize-src/sass/materialize.scss"> -->
+  <!-- <link rel="stylesheet" href="./js/scss/materialize-src/sass/materialize.scss"> -->
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800" rel="stylesheet">
 
-    <!-- inject:js -->
-    <!-- endinject -->
-    <!-- inject:css -->
-    <!-- endinject -->
-  </head>
-  <body ng-controller="MainCtrl as main" >
+  <!-- inject:js -->
+  <!-- endinject -->
+  <!-- inject:css -->
+  <!-- endinject -->
+</head>
 
-  <nav>
+<body ng-controller="MainCtrl as main">
+
+  <nav ng-if="!main.isHome">
     <ul>
-
-
-    <li> <a ui-sref="projectsIndex">Projo index</a> </li>
-    <li ng-if="main.isAuthenticated()"> <a ui-sref="projectsNew" >Project New</a></li>
-    <li ng-if="main.isAuthenticated()"> <a ui-sref="profile({ id: main.currentUser })" > Profile </a></li>
-    <li ng-if="!main.isAuthenticated()"> <a ui-sref="login">Login</a></li>
-    <li ng-if="!main.isAuthenticated()"> <a ui-sref="register" >Register</a></li>
-    <li ng-if="main.isAuthenticated()"> <a ng-click="main.logout()" href="#">Logout</a></li>
+      <li><a ui-sref="projectsIndex">Projo index</a></li>
+      <li ng-if="main.isAuthenticated()"><a ui-sref="projectsNew">Project New</a></li>
+      <li ng-if="main.isAuthenticated()"><a ui-sref="profile({ id: main.currentUser })">Profile</a></li>
+      <li ng-if="!main.isAuthenticated()"><a ui-sref="login">Login</a></li>
+      <li ng-if="!main.isAuthenticated()"><a ui-sref="register" >Register</a></li>
+      <li ng-if="main.isAuthenticated()"><a ng-click="main.logout()" href="#">Logout</a></li>
     </ul>
   </nav>
 
+  <main ui-view>
+    {{main}}
+  </main>
 
-
-
-<main ui-view>
-  {{main}}
-</main>
-
-  </body>
+</body>
 </html>

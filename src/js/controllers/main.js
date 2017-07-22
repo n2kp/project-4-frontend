@@ -30,6 +30,7 @@ function MainCtrl($rootScope, $state, API_URL, $auth, $transitions) {
       vm.currentUser = $auth.getPayload().id;
     }
     vm.pageName = transition.$to().name;
+    vm.isHome = vm.pageName === 'home';
   });
 
   function logout() {

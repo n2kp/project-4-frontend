@@ -82,8 +82,11 @@ span{
 
 .button{
   background-color: white;
-  padding: 8px 32px;
+  padding: 16px 32px;
   border-radius: 100px;
+  width: 200px;
+  text-align: center;
+  display: inline-block;
 }
 
 .primary{
@@ -139,10 +142,10 @@ nav ul li a{
 
 .backgroundType{
   font-family: 'Ubuntu Mono', monospace;
-  font-size: 112px;
+  font-size: 130px;
       font-weight: 900;
       position: fixed;
-      top: 19%;
+      top: 22%;
       left: 2%;
       opacity: 0.1;
 }
@@ -151,7 +154,7 @@ nav ul li a{
   width:50%;
   height: 100vh;
   float: left;
-  padding: 24px;
+  padding: 24px 24px;
 }
 
 .rightBlock{
@@ -165,7 +168,7 @@ nav ul li a{
 
 .homepageTitle{
   text-align: left;
-  margin: 16px;
+  margin: 0px 40px;
   position:relative;
   top: 40%;
   transform: translateY(-50%);

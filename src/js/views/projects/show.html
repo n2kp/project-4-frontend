@@ -1,6 +1,6 @@
 <h1>Projo Show</h1>
-
-
+{{ projectsShow.project.user}}
+<h1><a ui-sref="profile({ id: projectsShow.project.user.id })">HERE</a></h1>
   <form ng-submit="projectsShow.tenderCreate()">
 
     <label for="bid">Bid</label>

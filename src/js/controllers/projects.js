@@ -9,6 +9,7 @@ ProjectIndexCtrl.$inject = ['Project'];
 function ProjectIndexCtrl (Project) {
   const vm = this;
   vm.all = Project.query();
+  
 }
 
 
@@ -44,7 +45,7 @@ function ProjectShowCtrl (Project, $stateParams,$state, Tender){
   vm.tenders = Tender.query();
 
   vm.tender = {};
-  
+
   function addTender() {
     vm.tender.project_id = vm.project.id;
     Tender

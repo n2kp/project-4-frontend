@@ -3,11 +3,12 @@
 
   <!--TITLE INPUT  -->
   <label for="title">Title</label>
-  <input type="text" id="title" name="title" ng-model="projectsNew.project.title" ng-maxlength="30" required>
+  <input type="text" id="title" name="title" ng-model="projectsNew.project.title" ng-maxlength="30" ng-minlength="5" required>
   <!-- TITLE VALIDATION/MESSAGES -->
   <!-- <div ng-messages="projectsNew.projectForm.title.$error" ng-show="projectsNew.projectForm.$submitted || projectsNew.projectForm.title.$touched">
     <div ng-message="required" class="errorMessage">A title is required to post a project</div>
     <div ng-message="maxlength" class="errorMessage">Cannot exceed 30 characters</div>
+    <div ng-message="minlength" class="errorMessage">Title must be longer than 5 characters</div>
   </div> -->
 
 
@@ -15,11 +16,12 @@
 
 <!--DESCRIPTION INPUT  -->
   <label for="project_deadline">Description</label>
-  <input type="textarea" id="description" name="description" ng-model="projectsNew.project.description" ng-maxlength="250" required>
+  <input type="textarea" id="description" name="description" ng-model="projectsNew.project.description" ng-maxlength="250" ng-minlength="25" required>
   <!-- DESCRIPTION VALIDATION/MESSAGES -->
   <!-- <div ng-messages="projectsNew.projectForm.description.$error" ng-show="projectsNew.projectForm.$submitted || projectsNew.projectForm.description.$touched">
     <div ng-message="required" class="errorMessage">A description is required to post a project</div>
     <div ng-message="maxlength" class="errorMessage">Cannot exceed 250 characters</div>
+    <div ng-message="minlength" class="errorMessage">Description must be longer than 25 characters</div>
   </div> -->
 
 
@@ -56,9 +58,9 @@
   <div ng-message="required" class="errorMessage">Please supply at least one technology that you wish to be used in your project</div>
 </div>
 -->
-<!--(?:^|(?<= ))(one|common|word|or|another)(?:(?= )|$) -->
+<!--(?:^|(?<= ))(one|common|woerd|or|another)(?:(?= )|$) -->
 
-<!--BUDGET INPUT  -->
+<!--BUDGET INPUT  -->3
   <label for="budget">Budget</label>
   <input type="text" id="budget" name="budget" ng-model="projectsNew.project.budget" required>
 <!-- BUDGET VALIDATION/MESSAGES -->

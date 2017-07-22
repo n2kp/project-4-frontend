@@ -1,52 +1,72 @@
 <h1>Register</h1>
 <form ng-submit="auth.register()" name="auth.registerForm" novalidate>
-    <div>
-        <!--USERNAME INPUT  -->
-      <label for="username">Username</label>
-      <input type="text" name="username" id="username" ng-model="auth.user.username" unique required>
-        <!-- USERNAME VALIDATION/MESSAGES -->
+  <div>
+    <!--USERNAME INPUT  -->
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username" ng-model="auth.user.username" unique required>
+    <!-- USERNAME VALIDATION/MESSAGES -->
 
-      <!-- <div ng-messages="auth.registerForm.username.$error" ng-show="auth.registerForm.$submitted || auth.registerForm.username.$touched">
-        <div ng-message="required" class="errorMessage">A username is required</div>
-        <div ng-message="unique" class="errorMessage">Please choose a different username, this one was already been taken</div>
-      </div> -->
-    </div>
-
-  <!--FIRST NAME INPUT  -->
-    <div>
-      <label>First Name</label>
-      <input type="text" ng-model="auth.user.firstname" name="firstname" id="firstname" required>
-    </div>
-      <!-- FIRST NAME VALIDATION/MESSAGES -->
-    <!-- <div ng-messages="auth.registerForm.firstname$error" ng-show="auth.registerForm.$submitted || auth.registerForm.firstname$touched">
-      <div ng-message="required" class="errorMessage">You forgot to provide us with you first name</div>
-    </div> -->
-
-      <!--LAST NAME INPUT  -->
-    <div>
-      <label>Last Name</label>
-      <input type="text" ng-model="auth.user.lastname" name="lastname" id="lastname" required>
-    </div>
-    <!-- LAST NAME VALIDATION/MESSAGES -->
-  <!-- <div ng-messages="auth.registerForm.firstname$error" ng-show="auth.registerForm.$submitted || auth.registerForm.firstname$touched">
-    <div ng-message="required" class="errorMessage">You forgot to provide us with you first name</div>
+    <!-- <div ng-messages="auth.registerForm.username.$error" ng-show="auth.registerForm.$submitted || auth.registerForm.username.$touched">
+    <div ng-message="required" class="errorMessage">A username is required</div>
+    <div ng-message="unique" class="errorMessage">Please choose a different username, this one was already been taken</div>
   </div> -->
+</div>
 
 
-    <div>
-      <label>Email</label>
-      <input type="text" ng-model="auth.user.email">
-    </div>
+<!--FIRST NAME INPUT  -->
+<div>
+  <label for="firstname">First Name</label>
+  <input type="text" ng-model="auth.user.firstname" name="firstname" id="firstname" required>
+</div>
+<!-- FIRST NAME VALIDATION/MESSAGES -->
+<!-- <div ng-messages="auth.registerForm.firstname.$error" ng-show="auth.registerForm.$submitted || auth.registerForm.firstname.$touched">
+<div ng-message="required" class="errorMessage">You forgot to provide us with you first name</div>
+</div> -->
 
-    <div>
-      <label>Password</label>
-      <input type="password" ng-model="auth.user.password">
-    </div>
 
-    <div>
-      <label>Password Confirmation</label>
-      <input type="password" ng-model="auth.user.password_confirmation">
-    </div>
+<!--LAST NAME INPUT  -->
+<div>
+  <label for="lastname">Last Name</label>
+  <input type="text" ng-model="auth.user.lastname" name="lastname" id="lastname" required>
+</div>
+<!-- LAST NAME VALIDATION/MESSAGES -->
+<!-- <div ng-messages="auth.registerForm.lastname.$error" ng-show="auth.registerForm.$submitted || auth.registerForm.lastname.$touched">
+<div ng-message="required" class="errorMessage">You forgot to provide us with you last name</div>
+</div> -->
 
-    <button>Register</button>
-  </form>
+
+<!--EMAIL INPUT  -->
+<div>
+  <label for="email">Email</label>
+  <input type="text" ng-model="auth.user.email" name="email" id="email" required>
+</div>
+<!-- EMAIL VALIDATION/MESSAGES -->
+<!-- <div ng-messages="auth.registerForm.email.$error" ng-show="auth.registerForm.$submitted || auth.registerForm.email.$touched">
+<div ng-message="required" class="errorMessage">An email address is required</div>
+<div ng-message="pattern" ng-show="register.registrationForm.$submitted || register.registrationForm.email.$touched" class="notificationThin" >This Email is not valid</div> pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+</div> -->
+
+
+<!--PASSWORD INPUT  -->
+<div>
+  <label for="password">Password</label>
+  <input type="password" ng-model="auth.user.password" name="password" id="password" required>
+</div>
+<!-- PASSWORD VALIDATION/MESSAGES -->
+<!-- <div ng-messages="auth.registerForm.password.$error" ng-show="auth.registerForm.$submitted || auth.registerForm.password.$touched">
+<div ng-message="required" class="errorMessage">You forgot to provide us with you first name</div>
+</div> -->
+
+
+<!--PASSWORD CONFIRMATION INPUT  -->
+<div>
+  <label>Password Confirmation</label>
+  <input type="password" ng-model="auth.user.password_confirmation" data-password-verify="auth.user.password" name="password_confirmation" id="password_confirmation" required>
+</div>
+<!-- PASSWORD CONFIRMATION VALIDATION/MESSAGES -->
+<!-- <div ng-messages="auth.registerForm.password.$error" ng-show="auth.registerForm.$submitted || auth.registerForm.password.$touched">
+<div ng-message="required" class="errorMessage">You forgot to provide us with you first name</div>
+</div> -->
+
+<button>Register</button>
+</form>

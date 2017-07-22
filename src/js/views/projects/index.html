@@ -18,14 +18,14 @@
 
       <p class="marginBottomMd"> {{project.description | limitTo: 150 }}...</p>
 
-      <p class="marginBottomXSm"> <i class="tiny material-icons">alarm </i> <span>Deadline</span>{{project.project_deadline }}</p>
+      <p class="marginBottomSm"> <i class="tiny material-icons">alarm </i> <span>Deadline</span>{{project.project_deadline }}</p>
 
 
 
-      <p class="marginBottomXSm"> <i class="tiny material-icons">code</i>
+      <p class="marginBottomSm"> <i class="tiny material-icons">code</i>
         <span>Tech Stack</span>{{project.tech_stack }}</p>
 
-      <p class="marginBottomXSm"> <i class="tiny material-icons">monetization_on</i>
+      <p class="marginBottomSm"> <i class="tiny material-icons">monetization_on</i>
         <span>Budget</span>{{project.budget }}</p>
 
         <p class="marginBottomLg"> <i class="tiny material-icons">alarm </i>
@@ -37,10 +37,10 @@
       <button ui-sref="projectsShow({ id: project.id })" class="button primary">View</button> -->
     </div>
   </div>
-</div>
 
 
-<div class="col s3 ">
+
+<div class="col s3">
   <div ng-if="project.is_priority == true" ng-repeat="project in projectsIndex.all" class="projectCards z-depth-1">
     <span><p>Paid Post</p></span>
     <h2> {{project.title }}</h2>
@@ -49,6 +49,6 @@
     <p> {{project.bid_deadline }}</p>
     <p> {{project.tech_stack }}</p>
     <p> {{project.budget }}</p>
-    <button ng-if="main.isAuthenticated()" ui-sref="projectsShow({ id: project.id })" class="button primary" >View</button>
+    <!-- <button ng-if="main.isAuthenticated()" ui-sref="projectsShow({ id: project.id })" class="button primary" >View</button> -->
   </div>
 </div>

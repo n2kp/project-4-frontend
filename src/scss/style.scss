@@ -18,6 +18,10 @@ main {
   }
 }
 
+.cursor{
+  cursor: pointer;
+}
+
 
 //FONT STYLES
 .titleBig{
@@ -31,19 +35,40 @@ h1{
 h2{
   font-size: 24px;
   font-weight: 500;
+  margin: 0;
+}
+
+span{
+  font-weight: bolder;
 }
 
 
 //GENERAL STYLES
 
-
 .marginBottomLg{
   margin-bottom: 48px;
 }
 
+
+
+.marginBottomMd{
+  margin-bottom: 16px;
+}
+
+.marginBottomSm{
+  margin-bottom: 8px;
+}
+
+.marginBottomXXSm{
+  margin-bottom: 4px;
+}
+
+
 .marginRightSm{
   margin-right: 16px;
 }
+
+
 
 
 .marginCenter{
@@ -135,6 +160,9 @@ nav ul li a{
 .projectCards{
   margin: 16px 0px;
   padding: 16px;
-  // overflow: hidden;
   word-wrap: break-word;
+  &.projectCards:hover{
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    transition: all 0.2s ease;
+  }
 }

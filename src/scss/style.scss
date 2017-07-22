@@ -3,7 +3,8 @@
 
 // SASS COLOUR SCHEME
 $error: red;
-
+$textColor: black;
+$highlight: #8AEC75;
 
 //OVERALL STYLES
 *{
@@ -19,16 +20,49 @@ h1{
   margin: 0 auto;
 }
 
-//HOME PAGE STUFF
+.right{
+  float: right;
+}
 
 .left{
+  float: left;
+}
+
+//NAV STYLES
+
+.nav-logo{
+  font-size: 24px;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 500;
+  color: $highlight;
+}
+
+nav{
+  background-color: white;
+  color: $textColor;
+  height: 48px;
+  padding: 16px;
+}
+
+nav ul li{
+  display: inline-block;
+  padding: 0px 8px;
+  color: $textColor;
+
+}
+nav ul li a{
+  color: $textColor;
+}
+//HOME PAGE STUFF
+
+.leftBlock{
   width:50%;
   height: 100vh;
   float: left;
   background-color: tomato;
 }
 
-.right{
+.rightBlock{
   width: 50%;
   height: 100vh;
   float: right;

@@ -29,15 +29,7 @@ function MainCtrl($rootScope, $state, API_URL, $auth, $transitions, User) {
     if($auth.getPayload()) {
       vm.currentUserPayload = $auth.getPayload();
       const id = vm.currentUserPayload.id;
-      vm.currentUserResoruce = User.get({id: id});
-
-      console.log(vm.currentUserResoruce);
-      // .$promise
-      // .then((user) => {
-      //   console.log('FINAL USER', user);
-      //   vm.currentUser.push(user);
-      //   console.log(vm.currentUser);
-      // });
+      vm.currentUser = User.get({id: id});
     }
 
 

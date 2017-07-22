@@ -1,5 +1,6 @@
+<!DOCTYPE html >
 <h1>Projo Show</h1>
-{{ main }}
+{{ main.currentUser.is_dev }}
 <h1><a ui-sref="profile({ id: projectsShow.project.user.id })">HERE</a></h1>
   <form ng-submit="projectsShow.tenderCreate()">
 

@@ -9,7 +9,7 @@ function ProfileCtrl($auth, User, $state, Review) {
 
   // vm.user = User.query($state.params);
 
-
+  vm.reviews = Review.query();
   vm.user = User.get($state.params);
 
   function logout() {
@@ -21,12 +21,13 @@ function ProfileCtrl($auth, User, $state, Review) {
   vm.newReview = {};
 
   function addReview() {
+    vm.newReview.receiver_id = vm.user.id;
+
     Review
-    .save({ user_id: vm.user.id }, vm.newReview)
+    .save(vm.newReview)
     .$promise
-    .then((review) => {
-      vm.user.reviews.push(review);
-      vm.newReview = {};
+    .then((newReview) => {
+      vm.reviews.push(newReview);
     });
   }
   vm.addReview = addReview;

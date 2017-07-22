@@ -3,7 +3,7 @@
 <div class="row">
   <div class="col s6 offset-s3">
     <div ng-repeat="project in projectsIndex.all" class=" projectCards z-depth-1">
-      <p>{{ project }}</p>
+      <p>{{ project.user }}</p>
       <button ui-sref="projectsShow({ id: project.id})" >View</button>
     </div>
   </div>

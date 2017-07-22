@@ -27,7 +27,6 @@ function MainCtrl($rootScope, $state, API_URL, $auth, $transitions) {
     if(vm.stateHasChanged) vm.message = null;
     if(!vm.stateHasChanged) vm.stateHasChanged = true;
     if($auth.getPayload()) {
-      // console.log($auth.getPayload());
       vm.currentUser = $auth.getPayload().id;
     }
     vm.pageName = transition.$to().name;

@@ -10,17 +10,28 @@
         <div ng-message="required" class="errorMessage">A username is required</div>
         <div ng-message="unique" class="errorMessage">Please choose a different username, this one was already been taken</div>
       </div> -->
-      
     </div>
 
+  <!--FIRST NAME INPUT  -->
     <div>
       <label>First Name</label>
-      <input type="text" ng-model="auth.user.firstname">
+      <input type="text" ng-model="auth.user.firstname" name="firstname" id="firstname" required>
     </div>
+      <!-- FIRST NAME VALIDATION/MESSAGES -->
+    <!-- <div ng-messages="auth.registerForm.firstname$error" ng-show="auth.registerForm.$submitted || auth.registerForm.firstname$touched">
+      <div ng-message="required" class="errorMessage">You forgot to provide us with you first name</div>
+    </div> -->
+
+      <!--LAST NAME INPUT  -->
     <div>
       <label>Last Name</label>
-      <input type="text" ng-model="auth.user.lastname">
+      <input type="text" ng-model="auth.user.lastname" name="lastname" id="lastname" required>
     </div>
+    <!-- LAST NAME VALIDATION/MESSAGES -->
+  <!-- <div ng-messages="auth.registerForm.firstname$error" ng-show="auth.registerForm.$submitted || auth.registerForm.firstname$touched">
+    <div ng-message="required" class="errorMessage">You forgot to provide us with you first name</div>
+  </div> -->
+
 
     <div>
       <label>Email</label>

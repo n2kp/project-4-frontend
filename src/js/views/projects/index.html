@@ -11,7 +11,7 @@
   </div>
 
   <div class="col s5">
-    <div ng-if="project.is_priority == false" ng-repeat="project in projectsIndex.all" class="projectCards z-depth-1 cursor" ui-sref="projectsShow({ id: project.id })">
+    <div ng-if="!project.is_priority" ng-repeat="project in projectsIndex.all" class="projectCards z-depth-1 cursor"  ui-sref="projectsShow({ id: project.id })">
 
       <p class="marginBottomXXSm"> <span>Posted by</span> {{ project.user.username }} </p>
       <h2 class="marginBottomMd"> {{project.title }}</h2>
@@ -25,11 +25,11 @@
       <p class="marginBottomSm"> <i class="tiny material-icons">code</i>
         <span>Tech Stack</span>{{project.tech_stack }}</p>
 
-      <p class="marginBottomSm"> <i class="tiny material-icons">monetization_on</i>
-        <span>Budget</span>{{project.budget }}</p>
+        <p class="marginBottomXSm"> <i class="tiny material-icons">monetization_on</i>
+          <span>Budget</span>{{project.budget }}</p>
 
-        <p class="marginBottomLg"> <i class="tiny material-icons">alarm </i>
-          <span>Time left to tender</span> {{project.bid_deadline }}</p>
+          <p class="marginBottomLg"> <i class="tiny material-icons">alarm </i>
+            <span>Time left to tender</span> {{project.bid_deadline }}</p>
 
   </div>
 

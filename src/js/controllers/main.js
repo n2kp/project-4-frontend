@@ -2,7 +2,7 @@ angular
 .module('justo')
 .controller('MainCtrl', MainCtrl);
 
-MainCtrl.$inject = ['$rootScope', '$state', 'API_URL', '$auth', '$transitions','User'];
+MainCtrl.$inject = ['$rootScope', '$state', 'API_URL', '$auth', '$transitions', 'User'];
 function MainCtrl($rootScope, $state, API_URL, $auth, $transitions, User) {
   const vm = this;
   vm.isAuthenticated = $auth.isAuthenticated;
@@ -27,19 +27,20 @@ function MainCtrl($rootScope, $state, API_URL, $auth, $transitions, User) {
     if(vm.stateHasChanged) vm.message = null;
     if(!vm.stateHasChanged) vm.stateHasChanged = true;
     if($auth.getPayload()) {
-      vm.users = User.query()
-      .$promise
-      .then((user) =>{
-        console.log(user);
-        vm.currentUser = $auth.getPayload();
-        // const currentId = vm.currentUserId.id;
-        // console.log();
-        // console.log(currentId);
-        vm.currentUser = user[Number(vm.currentUser.id)];
-        console.log(vm.currentUser);
-      });
+      vm.currentUserPayload = $auth.getPayload();
+      const id = vm.currentUserPayload.id;
+      vm.currentUserResoruce = User.get({id: id});
 
+      console.log(vm.currentUserResoruce);
+      // .$promise
+      // .then((user) => {
+      //   console.log('FINAL USER', user);
+      //   vm.currentUser.push(user);
+      //   console.log(vm.currentUser);
+      // });
     }
+
+
     vm.pageName = transition.$to().name;
     vm.isHome = vm.pageName === 'home';
   });

@@ -34,11 +34,23 @@ function ProjectNewCtrl (Project, User, $stateParams, $state ){
 }
 
 
-ProjectShowCtrl.$inject = ['Project', 'User', '$stateParams', '$state'];
-function ProjectShowCtrl (Project, User, $stateParams){
+ProjectShowCtrl.$inject = ['Project', 'User', '$stateParams', '$state', 'Conversation'];
+function ProjectShowCtrl (Project, User, $stateParams, $state, Conversation){
   const vm = this;
   vm.project = Project.get($stateParams);
 
+  function contactCreator(sender_id, receiver_id) {
+    console.log(sender_id, receiver_id);
+    Conversation
+      .save({ sender_id, receiver_id })
+      .$promise
+      .then((response) => {
+        console.log(response);
+        $state.go('conversations');
+      });
+  }
+
+  vm.contactCreator = contactCreator;
 }
 
 

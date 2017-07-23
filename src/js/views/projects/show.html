@@ -1,4 +1,8 @@
 <h1>Projo Show</h1>
-{{ projectsShow.project}}
+
+<button ng-click="projectsShow.contactCreator(main.currentUser, projectsShow.project.user.id)">Message {{ projectsShow.project.user.username}}</button>
+{{ main.currentUser}}
+{{ projectsShow.project.user.id}}
+<p>{{ projectsShow.project}}</p>
 
 <button ui-sref="projectsEdit({ id: projectsShow.project.id})" ng-if="main.isAuthenticated() && main.currentUser.id === projectsShow.project.user.id">Edit</button>

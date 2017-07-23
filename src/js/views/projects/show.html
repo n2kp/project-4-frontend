@@ -1,6 +1,7 @@
 <!DOCTYPE html >
 <h1>Projo Show</h1>
 
+<<<<<<< HEAD
 <h1><a ui-sref="profile({ id: projectsShow.project.user.id })">{{projectsShow.project.user.username}}</a>'s Project</h1>
 
 
@@ -24,5 +25,11 @@
 
 
 
+=======
+<button ng-click="projectsShow.contactCreator(main.currentUser, projectsShow.project.user.id)">Message {{ projectsShow.project.user.username}}</button>
+{{ main.currentUser}}
+{{ projectsShow.project.user.id}}
+<p>{{ projectsShow.project}}</p>
+>>>>>>> messaging-testing
 
 <button ui-sref="projectsEdit({ id: projectsShow.project.id})" ng-if="main.isAuthenticated() && main.currentUser.id === projectsShow.project.user.id">Edit</button>

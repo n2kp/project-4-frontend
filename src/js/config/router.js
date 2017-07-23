@@ -12,7 +12,7 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
     templateUrl: 'js/views/static/home.html'
   })
   .state('projectsIndex', {
-    url: '/project',
+    url: '/projects',
     templateUrl: 'js/views/projects/index.html',
     controller: 'ProjectIndexCtrl as projectsIndex'
   })
@@ -45,6 +45,11 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
     url: '/register',
     templateUrl: 'js/views/auth/register.html',
     controller: 'AuthCtrl as auth'
+  })
+  .state('conversations', {
+    url: '/conversations',
+    templateUrl: 'js/views/user/conversations.html',
+    controller: 'ConversationCtrl as conversations'
   });
 
   $urlRouterProvider.otherwise('/');

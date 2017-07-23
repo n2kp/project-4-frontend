@@ -23,9 +23,9 @@
 
 <body ng-controller="MainCtrl as main">
 
-  <nav ng-if="!main.isHome" class="z-depth-2">
+  <nav ng-if="!main.isHome" class="">
 
-    <a href="/" class="nav-logo left">jus.to_s</a>
+    <a ui-sref="/" class="nav-logo"></a>
 
     <ul id="nav-mobile" class="right ">
       <li><a ui-sref="projectsIndex">Projo index</a></li>

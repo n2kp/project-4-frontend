@@ -1,35 +1,65 @@
 <!DOCTYPE html >
-<h1>Projo Show</h1>
 
-<<<<<<< HEAD
-<h1><a ui-sref="profile({ id: projectsShow.project.user.id })">{{projectsShow.project.user.username}}</a>'s Project</h1>
+<div class="row">
+  <div class="col offset-s1 s5">
+    <div class="projectInfo">
+      <p><a ui-sref="profile({ id: projectsShow.project.user.id })">Posted by {{projectsShow.project.user.username}}</a></p>
+      <h1> {{ projectsShow.project.title}}</h1>
+      <p>{{ projectsShow.project.description}}</p>
+      <p>{{ projectsShow.project.project_deadline}}</p>
+      <p>{{ projectsShow.project.bid_deadline}}</p>
+      <p>{{ projectsShow.project.tech_stack}}</p>
+      <p>{{ projectsShow.project.tech_stack}}</p>
+      <p>{{ projectsShow.project.budget}}</p>
+      <br>
+      <!-- <p>{{ projectsShow.project}}</p> -->
+
+      <button ng-click="projectsShow.contactCreator(main.currentUser, projectsShow.project.user.id)" class="button primary">
+        Message {{ projectsShow.project.user.username}}</button>
+    </div>
+  </div>
 
 
-  <form ng-if="main.currentUser.is_dev || main.currentUser.id !== projectsShow.project.user.id" ng-submit="projectsShow.tenderCreate()">
-
-  <label for="bid">Bid</label>
-  <input type="number" id="bid" name="bid" ng-model="projectsShow.tender.bid">
-
-  <label for="pitch">Pitch</label>
-  <input type="text" id="pitch" name="pitch" ng-model="projectsShow.tender.pitch">
 
 
 
-  <button>Submit Offer</button>
-</form>
 
-<div ng-repeat="tender in projectsShow.tenders">
-  <h1>{{ tender.bid }}</h1>
-  <h1>{{ tender.pitch }}</h1>
+
+
+
+
+  <div class="col s5 marginTopLg">
+    <form ng-if="main.currentUser.is_dev || main.currentUser.id !== projectsShow.project.user.id" ng-submit="projectsShow.tenderCreate()">
+
+      <label for="bid">Bid</label>
+      <input type="number" id="bid" name="bid" ng-model="projectsShow.tender.bid">
+
+      <label for="pitch">Pitch</label>
+      <input type="text" id="pitch" name="pitch" ng-model="projectsShow.tender.pitch">
+
+      <label for="pitch">Image Upload</label>
+      <input type="text" id="pitch" name="pitch" ng-model="projectsShow.tender.pitch">
+
+
+
+      <button class="button primary">Submit Offer</button>
+    </form>
+
+
+    <div ng-repeat="tender in projectsShow.tenders">
+      <!-- <h1>{{ tender.bid }}</h1> -->
+      <!-- <h1>{{ tender.pitch }}</h1> -->
+    </div>
+
+
+
+
+
+    <!-- {{ main.currentUser}} -->
+    <!-- {{ projectsShow.project.user.id}} -->
+    <!-- <p>{{ projectsShow.project}}</p> -->
+
+
+    <button ui-sref="projectsEdit({ id: projectsShow.project.id})" ng-if="main.isAuthenticated() && main.currentUser.id === projectsShow.project.user.id">Edit</button>
+  </div>
 </div>
-
-
-
-=======
-<button ng-click="projectsShow.contactCreator(main.currentUser, projectsShow.project.user.id)">Message {{ projectsShow.project.user.username}}</button>
-{{ main.currentUser}}
-{{ projectsShow.project.user.id}}
-<p>{{ projectsShow.project}}</p>
->>>>>>> messaging-testing
-
-<button ui-sref="projectsEdit({ id: projectsShow.project.id})" ng-if="main.isAuthenticated() && main.currentUser.id === projectsShow.project.user.id">Edit</button>

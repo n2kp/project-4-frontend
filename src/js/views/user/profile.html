@@ -1,23 +1,28 @@
 <h1> Profile </h1>
 
-<<<<<<< HEAD
+<div class="row">
+  <div class="col s5">
+
+    <p> {{ profile.user }} </p>
+
+    <a ui-sref="conversations">Message</a>
+
+  </div>
+  <div class="col s5">
+  <div ng-repeat="review in profile.reviews">
+    <p>{{ review.body }}</p>
+    <p>{{ review.rating }}</p>
+  </div>
 
 
-<form ng-submit="profile.addReview()">
-            <textarea  placeholder="Write a user review" ng-model="profile.newReview.body"></textarea>
-              <input type="number" name="rating" ng-model="profile.newReview.rating">
-            <button class="button primary marginTop">Post Review</button>
-          </form>
-{{ profile.user.reviews }}
-
-<div ng-repeat="review in profile.reviews">
-  <h1>{{ review.body }}</h1>
-  <h1>{{ review.rating }}</h1>
-=======
-<a ui-sref="conversations">Conversations</a>
 
 
-<div>
-{{ profile.user }}
->>>>>>> messaging-testing
+
+    <form ng-submit="profile.addReview()">
+      <textarea  placeholder="Write a user review" ng-model="profile.newReview.body"></textarea>
+      <input type="number" name="rating" ng-model="profile.newReview.rating">
+      <button class="button primary marginTop">Post Review</button>
+    </form>
+
+  </div>
 </div>

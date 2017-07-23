@@ -27,10 +27,10 @@
 
     <a ui-sref="/" class="nav-logo"></a>
 
-    <ul id="nav-mobile" class="right ">
-      <li><a ui-sref="projectsIndex">Projo index</a></li>
+    <ul id="nav-mobile" class="right nav-button">
+      <li><a ui-sref="projectsIndex">Search Jobs</a></li>
 
-      <li ng-if="main.isAuthenticated()"><a ui-sref="projectsNew">Project New</a></li>
+      <li ng-if="main.isAuthenticated()"><a ui-sref="projectsNew">Post a Job</a></li>
 
       <li ng-if="main.isAuthenticated()"><a ui-sref="profile({ id: main.currentUser })">{{ main.currentUser.username }} </a></li>
       <img ng-src="{{ }}" alt="profile.user.imageSRC" class="NavProfileImage">

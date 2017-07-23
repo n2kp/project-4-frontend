@@ -22,6 +22,28 @@ main {
   cursor: pointer;
 }
 
+// SNAZZY LINIKS
+
+.nav-button {
+
+}
+
+.nav-button a {
+    background-image: linear-gradient(180deg,transparent 65%, $highlight 0);
+    background-size: 0 100%;
+    background-repeat: no-repeat;
+    text-decoration: none;
+    color: #000;
+    -webkit-transition: background-size .4s ease;
+    transition: background-size .4s ease;
+}
+
+.nav-button a:hover {
+    background-size: 100% 100%;
+    cursor: pointer;
+    color: #000;
+}
+
 
 //FONT STYLES
 .titleBig{
@@ -44,6 +66,9 @@ span{
 
 
 //GENERAL STYLES
+.marginTopXXLg{
+  margin-top: 100px;
+}
 
 .marginTopLg{
   margin-top: 48px;
@@ -102,10 +127,15 @@ span{
 //NAV STYLES
 
 nav{
+  position: fixed;
+  top: 0;
   background-color: white;
+  border-bottom: 1px solid lightgrey;
   color: $textColor;
   min-height: 48px;
   padding: 16px;
+  width: 100%;
+  margin: 0;
 }
 
 .nav-logo-icon{

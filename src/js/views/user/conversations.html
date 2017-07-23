@@ -1,0 +1,18 @@
+<h1>Conversations</h1>
+<div ng-repeat="conversation in conversations.conversations track by $index">
+  <p>{{conversation.id}}</p>
+  
+  <h4 ng-click="conversations.selectConversation(conversation, $index)">Conversation between {{conversation.receiver.username }} & {{conversation.sender.username }}</h4>
+  <div ng-model="conversation.messages" ng-repeat="message in conversation.messages">
+    <p>{{ message.body }}</p>
+  </div>
+</div>
+
+<p ng-show="conversations.index === null">Please select a conversation</p>
+<form ng-show="conversations.index !== null" ng-submit="conversations.addMessage(conversations.message)" name="conversations.messageForm">
+  <div>
+    <label for="body">Write a message... </label>
+    <input type="text" ng-model="conversations.message.body" name="body" id="body" required>
+    <button>Submit</button>
+  </div>
+</form>

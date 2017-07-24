@@ -11,6 +11,8 @@
   <div class="col s12 m12 l3 offset-s1">
     <div class="filter z-depth-1">
       <p>FILTER SOME STUFF</p>
+
+
     </div>
   </div>
 
@@ -23,16 +25,17 @@
 
       <p class="marginBottomMd"> {{project.description | limitTo: 150 }}...</p>
 
-      <p class="marginBottomSm"> <i class="tiny material-icons">alarm </i> <span>Deadline</span>{{project.project_deadline }}</p>
+      <p class="marginBottomSm"> <i class="tiny material-icons">alarm </i> <span>Deadline</span> {{project.project_deadline | date}}</p>
 
       <p class="marginBottomSm"> <i class="tiny material-icons">code</i>
-        <span>Tech Stack</span>{{ project.tech_stack }}</p>
+        <span>Tech Stack</span> {{ project.tech_stack }}</p>
 
         <p class="marginBottomXSm"> <i class="tiny material-icons">monetization_on</i>
-          <span>Budget</span> £ {{project.budget }}</p>
+          <span>Budget</span> {{project.budget | currency : '£' }}</p>
 
           <p class="marginBottomLg"> <i class="tiny material-icons">alarm </i>
-            <span>Time left to tender</span> {{project.bid_deadline }}</p>
+            <span>Time left to tender</span> {{project.bid_deadline | date }}</p>
+
           </div>
         </div>
 

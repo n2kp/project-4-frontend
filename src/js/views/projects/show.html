@@ -17,7 +17,7 @@
         <button ui-sref="projectsEdit({ id: projectsShow.project.id})" ng-if="main.isAuthenticated() && main.currentUser.id === projectsShow.project.user.id">Edit</button>
       </div>
     </div>
-
+    {{ main.currentUser.id }}
 
     <div class="col s5 marginTopLg">
       <form ng-if="!projectsShow.findUsersTender(main.currentUser.id) && main.currentUser.is_dev" ng-submit="projectsShow.tenderCreate()">
@@ -44,10 +44,13 @@
           <h5>{{ tender.pitch }}</h5>
           <h5>{{ tender.status }}</h5>
           <h5>{{ tender.user.username }}</h5>
+          <h5>{{ tender.user.status }}</h5>
 
-            <button ng-show="">Alter your bid</button>
+          <button ng-show="">Alter your bid</button>
 
-            <form ng-submit="projectsShow.update()">
+          <button ng-click="projectsShow.acceptBid(tender.id)">Accept this bid</button>
+
+            <!-- <form ng-submit="projectsShow.update()">
 
               <label for="bid">Bid</label>
               <input type="number" id="bid" name="bid" ng-model="projectsShow.tender.bid">
@@ -59,7 +62,7 @@
               <input type="text" id="image_src" name="image_src" ng-model="projectsShow.tender.image_src">
 
               <button class="button primary">Submit Offer</button>
-            </form>
+            </form> -->
 
             <button ng-click="projectsShow.delete(tender)" >Retract your bid</button>
         </div>

@@ -10,7 +10,6 @@ function ProjectIndexCtrl (Project, moment) {
   const vm = this;
   vm.all = Project.query();
   moment().hour(8).minute(0).second(0).toDate();
-
 }
 
 
@@ -42,9 +41,7 @@ function ProjectShowCtrl (Project, User, $stateParams, $state, Conversation, Ten
   moment().hour(8).minute(0).second(0).toDate();
 
   vm.project = Project.get($stateParams);
-
   vm.tenders = Tender.query();
-
   vm.tender = {};
 
   function addTender() {
@@ -57,14 +54,27 @@ function ProjectShowCtrl (Project, User, $stateParams, $state, Conversation, Ten
     });
   }
 
+  // function tenderUpdate() {
+  //   Tender
+  //   .update({ id: vm.tender.id }, vm.tender)
+  //   .$promise
+  //   .then(() =>  );
+  // }
+  // vm.update = tenderUpdate;
 
-  function tenderUpdate() {
-    Tender
-    .update({ id: vm.tender.id }, vm.tender)
-    .$promise
-    .then(() =>  );
+  function acceptBid(id) {
+    const updateTender = vm.project.tenders.map((tender) => {
+       if (tender.id === id) {
+         tender.status = 'accepted';
+         Tender.update({ id: tender.id }, tender);
+       } else {
+         tender.status = 'rejected';
+         Tender.update({ id: tender.id }, tender);
+       }
+    });
   }
-  vm.update = tenderUpdate;
+
+  vm.acceptBid = acceptBid;
 
 
   function tendersDelete(tender) {

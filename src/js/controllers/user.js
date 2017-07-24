@@ -83,16 +83,21 @@ function ConversationCtrl(Conversation, Message) {
     });
   }
 
+  function scrollToBottom(id){
+    var div = document.getElementById(id);
+    div.scrollTop = div.scrollHeight - div.clientHeight;
+  }
+
   function selectConversation(conversation, index) {
     Conversation
-      .get({ id: conversation.id })
-      .$promise
-      .then((conversation) => {
-        console.log(conversation);
-        vm.conversationId = conversation.id;
-        vm.index = index;
+    .get({ id: conversation.id })
+    .$promise
+    .then((conversation) => {
+      console.log(conversation);
+      vm.conversationId = conversation.id;
+      vm.index = index;
 
-      });
+    });
   }
 
   vm.addMessage = addMessage;

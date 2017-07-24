@@ -85,10 +85,10 @@ function ConversationCtrl(Conversation, Message) {
     });
   }
 
-  function($window, $anchorScroll) {
-
-    vm.messageWindowHeight = parseInt($window.innerHeight - 170) + 'px';
-  });
+  // function($window, $anchorScroll) {
+  //
+  //   vm.messageWindowHeight = parseInt($window.innerHeight - 170) + 'px';
+  // });
 
   function selectConversation(conversation, index) {
     Conversation

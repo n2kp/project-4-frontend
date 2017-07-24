@@ -67,7 +67,7 @@
   <input type="checkbox" id="is_priority" name="is_priority" ng-model="projectsEdit.project.is_priority">
   Is Priority</label>
 
-  <button>Update</button>
+  <button ng-click="projectsEdit.update()" >Update</button>
 
 </form>
-<button ng-click="projectsEdit.delete()" >Delete</button>
+<button ng-click="projectsEdit.delete()">Delete</button>

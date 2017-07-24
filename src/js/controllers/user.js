@@ -67,10 +67,12 @@ function ConversationCtrl(Conversation, Message) {
   vm.message = {};
   vm.conversationId = null;
   vm.index = null;
-  console.log(vm);
+
 
   function addMessage() {
     vm.message.conversation_id = vm.conversationId;
+    console.log(vm.message);
+    // vm.message.user_id = vm.currentUser.id
     Message
     .save({ id: vm.conversationId }, vm.message)
     .$promise
@@ -89,6 +91,7 @@ function ConversationCtrl(Conversation, Message) {
         console.log(conversation);
         vm.conversationId = conversation.id;
         vm.index = index;
+
       });
   }
 

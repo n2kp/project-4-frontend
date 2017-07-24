@@ -9,10 +9,8 @@
 
   <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
 
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
   <link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800" rel="stylesheet">
+
   <link href="https://fonts.googleapis.com/css?family=Rubik:400,500" rel="stylesheet">
 
   <!-- inject:js -->
@@ -31,6 +29,8 @@
       <li><a ui-sref="projectsIndex">Search Jobs {{mainmain.currentUser.image_src}}</a></li>
 
       <li ng-if="main.isAuthenticated()"><a ui-sref="projectsNew">Post a Job</a></li>
+
+      <li ng-if="main.isAuthenticated()"><a ui-sref="conversations">Chat</a></li>
 
       <li ng-if="main.isAuthenticated()"><a ui-sref="profile({ id: main.currentUser })">{{ main.currentUser.username }} </a></li>
       <img ng-src="{{ main.currentUser.image_src }}" alt="profile.user.image" class="NavProfileImage">

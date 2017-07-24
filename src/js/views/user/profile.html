@@ -5,7 +5,8 @@
 
     <p> {{ profile.user }} </p>
 
-    <a ui-sref="conversations">Message    </a>
+    <a ui-sref="conversations">Message</a>
+    <a ui-sref="profileEdit({ id: profile.user.id })">Update your profile</a>
 
   </div>
   <div class="col s5">

@@ -42,6 +42,7 @@ function ProjectShowCtrl (Project, User, $stateParams, $state, Conversation, Ten
 
   vm.project = Project.get($stateParams);
   vm.tenders = Tender.query();
+
   vm.tender = {};
 
   function addTender() {

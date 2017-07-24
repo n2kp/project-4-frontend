@@ -3,7 +3,7 @@
 <div class="row">
   <div class="col offset-s1 s5">
     <div class="projectInfo">
-      <p><a ui-sref="profile({ id: projectsShow.project.user.id })">Posted by {{ projectsShow.project.user.username }}</a></p>
+
       <h1> {{ projectsShow.project.title }}</h1>
       <p>{{ projectsShow.project.description }}</p>
       <p>{{ projectsShow.project.project_deadline | date }}</p>
@@ -15,6 +15,8 @@
       <button ng-click="projectsShow.contactCreator(main.currentUser.id, projectsShow.project.user.id)" class="button primary">
         Message {{ projectsShow.project.user.username}}</button>
 
+      <button><a ui-sref="profile({ id: projectsShow.project.user.id })" class="button primary">Posted by {{ projectsShow.project.user.username }}</a></button>
+
         <button ui-sref="projectsEdit({ id: projectsShow.project.id})" ng-if="main.currentUser.id === projectsShow.project.user.id">Edit</button>
 
       </div>
@@ -22,6 +24,9 @@
 
     <div class="col s5 marginTopLg">
       <form ng-if="!projectsShow.findUsersTender(main.currentUser.id) && main.currentUser.is_dev" ng-submit="projectsShow.tenderCreate()">
+
+         <h3>There are currently {{ projectsShow.project.tenders.length }} bids on this project, make your offer here...</h3>
+
 
         <label for="bid">Bid</label>
         <input type="number" id="bid" name="bid" ng-model="projectsShow.tender.bid">
@@ -48,10 +53,6 @@
           <h5>{{ tender.user.username }}</h5>
           <h5>{{ tender.user.status }}</h5>
 
-          <button ng-if="main.currentUser.id === tender.user.id" >Alter your bid</button>
-
-          <button ng-if="main.currentUser.id === projectsShow.project.user.id" ng-click="projectsShow.acceptBid(tender.id) ;contactCreator(main.currentUser.id, projectsShow.tender.user.id)">Accept this bid</button>
-
             <!-- <form ng-submit="projectsShow.update()">
 
               <label for="bid">Bid</label>
@@ -65,6 +66,9 @@
 
               <button class="button primary">Submit Offer</button>
             </form> -->
+            <button ng-if="main.currentUser.id === tender.user.id" >Alter your bid</button>
+
+            <button ng-if="main.currentUser.id === projectsShow.project.user.id" ng-click="projectsShow.acceptBid(tender.id) ;contactCreator(main.currentUser.id, projectsShow.tender.user.id)">Accept this bid</button>
 
             <button ng-if="main.currentUser.id === tender.user.id" ng-click="projectsShow.delete(tender)" >Retract your bid</button>
 

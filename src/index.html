@@ -33,19 +33,20 @@
       <li ng-if="main.isAuthenticated()"><a ui-sref="projectsNew">Post a Job</a></li>
 
       <li ng-if="main.isAuthenticated()"><a ui-sref="profile({ id: main.currentUser })">{{ main.currentUser.username }} </a></li>
-      <img ng-src="{{ }}" alt="profile.user.imageSRC" class="NavProfileImage">
+      <img ng-src="{{ main.currentUser.imageSRC }}" alt="profile.user.image" class="NavProfileImage">
 
       <li ng-if="!main.isAuthenticated()"><a ui-sref="login">Login</a></li>
 
       <li ng-if="!main.isAuthenticated()"><a ui-sref="register" >Register</a></li>
-      <!-- <li ng-if="main.isAuthenticated()"><a ng-click="main.logout()" href="/">Logout</a></li> -->
+      <li ng-if="main.isAuthenticated()"><a ng-click="main.logout()" href="/">Logout</a></li>
     </ul>
   </nav>
 
 
 
+
   <main ui-view>
-    {{main}}
+
   </main>
 
 </body>

@@ -83,10 +83,10 @@ function ConversationCtrl(Conversation, Message) {
     });
   }
 
-  function scrollToBottom(id){
-    var div = document.getElementById(id);
-    div.scrollTop = div.scrollHeight - div.clientHeight;
-  }
+  function($window, $anchorScroll) {
+
+    vm.messageWindowHeight = parseInt($window.innerHeight - 170) + 'px';
+  });
 
   function selectConversation(conversation, index) {
     Conversation

@@ -312,11 +312,14 @@ nav ul li a{
 //MESSAGES
 
 .chatBoxBounding{
-  position: relative;
-  margin-top: 24px;
-  height: 90vh;
+  position: absolute;
+  // margin-top: 24px;
+  height: 87vh;
   width: 85%;
-  margin: 0 auto;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  // margin: 32px auto;
   background-color: #f1ffee;
 }
 
@@ -328,7 +331,7 @@ nav ul li a{
 #chatList{
   background-color: white;
   padding: 0px 0px;
-  height: 90vh;
+  height: 87vh;
   box-shadow: 6px 4px 12px -8px #d6d6d6;
   z-index: 5;
   position: relative;

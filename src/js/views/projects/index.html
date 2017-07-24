@@ -1,23 +1,40 @@
 <!DOCTYPE html >
 <div class="row">
-<div class="col s5 offset-s5">
-  <h1 class="marginTopXXLg ">Find a job</h1>
+  <div class="col s5 offset-s5">
+    <h1 class="marginTopXXLg ">Find a job</h1>
+  </div>
 </div>
 
+<<<<<<< HEAD
+<div class="row">
+=======
 
 
 <div class="row reverse">
+>>>>>>> development
 
   <div class="col s12 m12 l3 offset-s1">
     <div class="filter z-depth-1">
       <p>FILTER SOME STUFF</p>
+      <input ng-model="projectsIndex.q" type="text" name="" value="">
+      
 
 
     </div>
   </div>
 
+<<<<<<< HEAD
+
+  <div class="col s5">
+    <div ng-if="!project.is_priority" ng-repeat="project in projectsIndex.all | filter: { title: projectsIndex.q,  }" class="projectCards z-depth-1 cursor"  ui-sref="projectsShow({ id: project.id })">
+=======
   <div class="col s12 m12 l5">
+<<<<<<< HEAD
     <div ng-if="!project.is_priority && project.is_active" ng-repeat="project in projectsIndex.all" class="projectCards z-depth-1 cursor"  ui-sref="projectsShow({ id: project.id })">
+=======
+    <div ng-if="!project.is_priority" ng-repeat="project in projectsIndex.all" class="projectCards z-depth-1 cursor"  ui-sref="projectsShow({ id: project.id })">
+>>>>>>> development
+>>>>>>> development
 
       <!-- <img ng-src="{{ project.user.image }}" alt="profile.user.imageSRC" class="NavProfileImage"> -->
       <p class="marginBottomXXSm"> <span>Posted by</span> {{ project.user.username }} </p>
@@ -40,6 +57,17 @@
         </div>
 
 
+<<<<<<< HEAD
+        <div class="col s3">
+          <div ng-if="project.is_priority == true" ng-repeat="project in projectsIndex.all" class="projectCards z-depth-1 cursor" ui-sref="projectsShow({ id: project.id })">
+            <span><p>Paid Post</p></span>
+            <h2> {{project.title }}</h2>
+            <p> {{project.description }}</p>
+            <p> {{project.project_deadline | date }}</p>
+            <p> {{project.bid_deadline | date}}</p>
+            <p> {{project.tech_stack }}</p>
+            <p> {{project.budget | currency : '£' }}</p>
+=======
         <div class="col s12 m12 l3">
           <div ng-if="project.is_priority == true && project.is_active" ng-repeat="project in projectsIndex.all" class=" projectCards cursor" ui-sref="projectsShow({ id: project.id })">
 
@@ -57,7 +85,11 @@
             </div>
 
 
+>>>>>>> development
             <!-- <button ng-if="main.isAuthenticated()" ui-sref="projectsShow({ id: project.id })" class="button primary" >View</button> -->
           </div>
+
+
+          <!-- <button ng-if="main.isAuthenticated()" ui-sref="projectsShow({ id: project.id })" class="button primary" >View</button> -->
         </div>
       </div>

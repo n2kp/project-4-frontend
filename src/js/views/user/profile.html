@@ -3,17 +3,26 @@
 <div class="row">
   <div class="col s5">
 
-    <p> {{ profile.user }} </p>
 
     <a ui-sref="conversations">Message</a>
     <a ui-sref="profileEdit({ id: profile.user.id })">Update your profile</a>
 
+    <h2>Current Bids made</h2>
+    <div ng-repeat="tender in profile.user.tenders">
+
+      <h5>Bid made: {{ tender.bid | currency : '£' : 0 }}</h5>
+      <h5>Your pitch: {{ tender.pitch }}</h5>
+      <h5>Current Status: {{ tender.status }}</h5>
+
+    </div>
+
   </div>
+
   <div class="col s5">
-  <div ng-repeat="review in profile.reviews">
-    <p>{{ review.body }}</p>
-    <p>{{ review.rating }}</p>
-  </div>
+    <div ng-repeat="review in profile.reviews">
+      <p>{{ review.body }}</p>
+      <p>{{ review.rating }}</p>
+    </div>
 
 
 

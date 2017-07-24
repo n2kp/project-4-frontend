@@ -5,10 +5,11 @@ angular
 .controller('ProjectShowCtrl', ProjectShowCtrl)
 .controller('ProjectEditCtrl', ProjectEditCtrl);
 
-ProjectIndexCtrl.$inject = ['Project'];
-function ProjectIndexCtrl (Project) {
+ProjectIndexCtrl.$inject = ['Project', 'moment'];
+function ProjectIndexCtrl (Project, moment) {
   const vm = this;
   vm.all = Project.query();
+  moment().hour(8).minute(0).second(0).toDate();
 
 }
 
@@ -62,12 +63,12 @@ function ProjectShowCtrl (Project, User, $stateParams, $state, Conversation, Ten
   function contactCreator(sender_id, receiver_id) {
     console.log(sender_id, receiver_id);
     Conversation
-      .save({ sender_id, receiver_id })
-      .$promise
-      .then((response) => {
-        console.log(response);
-        $state.go('conversations');
-      });
+    .save({ sender_id, receiver_id })
+    .$promise
+    .then((response) => {
+      console.log(response);
+      $state.go('conversations');
+    });
   }
 
   vm.contactCreator = contactCreator;

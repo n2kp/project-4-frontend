@@ -10,6 +10,13 @@ function ProjectIndexCtrl (Project) {
   const vm = this;
   vm.all = Project.query();
 
+  // function filterPosts() {
+  //   const params = { title: vm.q, postType: vm.postType};
+  //   if(vm.useDate) params.date = vm.date;
+  //   vm.filtered = filterFilter(vm.all, params);
+  //   vm.filtered = orderByFilter(vm.filtered);
+  // }
+
 }
 
 

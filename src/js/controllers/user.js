@@ -63,7 +63,9 @@ function EditProfileCtrl($auth, User, $state) {
 ConversationCtrl.$inject = ['Conversation', 'Message'];
 function ConversationCtrl(Conversation, Message) {
   const vm = this;
+
   vm.conversations = Conversation.query();
+
   vm.message = {};
   vm.conversationId = null;
   vm.index = null;

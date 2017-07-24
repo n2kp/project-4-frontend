@@ -1,7 +1,8 @@
 angular
 .module('justo')
 .controller('ProfileCtrl', ProfileCtrl)
-.controller('EditProfileCtrl', EditProfileCtrl);
+.controller('EditProfileCtrl', EditProfileCtrl)
+.controller('ConversationCtrl', ConversationCtrl);
 
 ProfileCtrl.$inject = ['$auth', 'User', '$state', 'Review'];
 function ProfileCtrl($auth, User, $state, Review) {
@@ -57,4 +58,40 @@ function EditProfileCtrl($auth, User, $state) {
       $state.go('profile', $state.params);
     });
   }
+}
+
+ConversationCtrl.$inject = ['Conversation', 'Message'];
+function ConversationCtrl(Conversation, Message) {
+  const vm = this;
+  vm.conversations = Conversation.query();
+  vm.message = {};
+  vm.conversationId = null;
+  vm.index = null;
+  console.log(vm);
+
+  function addMessage() {
+    vm.message.conversation_id = vm.conversationId;
+    Message
+    .save({ id: vm.conversationId }, vm.message)
+    .$promise
+    .then(() => {
+      console.log('vm ---  ', vm);
+      vm.conversations[vm.index].messages.push(vm.message);
+      vm.message = {};
+    });
+  }
+
+  function selectConversation(conversation, index) {
+    Conversation
+      .get({ id: conversation.id })
+      .$promise
+      .then((conversation) => {
+        console.log(conversation);
+        vm.conversationId = conversation.id;
+        vm.index = index;
+      });
+  }
+
+  vm.addMessage = addMessage;
+  vm.selectConversation = selectConversation;
 }

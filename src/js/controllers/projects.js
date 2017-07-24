@@ -35,8 +35,8 @@ function ProjectNewCtrl (Project, User, $stateParams, $state ){
 }
 
 
-ProjectShowCtrl.$inject = ['Project', '$stateParams', '$state', 'Tender'];
-function ProjectShowCtrl (Project, $stateParams,$state, Tender){
+ProjectShowCtrl.$inject = ['Project', 'User', '$stateParams', '$state', 'Conversation', 'Tender'];
+function ProjectShowCtrl (Project, User, $stateParams, $state, Conversation, Tender) {
   const vm = this;
 
 
@@ -58,6 +58,19 @@ function ProjectShowCtrl (Project, $stateParams,$state, Tender){
 
   }
   vm.tenderCreate = addTender;
+
+  function contactCreator(sender_id, receiver_id) {
+    console.log(sender_id, receiver_id);
+    Conversation
+      .save({ sender_id, receiver_id })
+      .$promise
+      .then((response) => {
+        console.log(response);
+        $state.go('conversations');
+      });
+  }
+
+  vm.contactCreator = contactCreator;
 }
 
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html >
-<div class="row">
-  <div class="col s6 offset-s3 z-depth-1">
-    <h1>New Projo</h1>
+<div class="row marginTopLg">
+  <div class="col s6 offset-s1">
+    <h1>Post a Job</h1>
     <form ng-submit="projectsNew.create()"  name="projectsNew.projectForm" novalidate autocomplete="off">
 
       <!--TITLE INPUT  -->
@@ -18,14 +18,24 @@
 
 
     <!--DESCRIPTION INPUT  -->
-    <label for="project_deadline">Description</label>
-    <input type="textarea" id="description" name="description" ng-model="projectsNew.project.description" ng-maxlength="250" ng-minlength="25" required>
+    <div class="input-field">
+      <textarea id="description" class="materialize-textarea" ng-model="projectsNew.project.description" ng-maxlength="250" ng-minlength="25" required></textarea>
+      <label for="description">Project Brief</label>
+    </div>
     <!-- DESCRIPTION VALIDATION/MESSAGES -->
     <!-- <div ng-messages="projectsNew.projectForm.description.$error" ng-show="projectsNew.projectForm.$submitted || projectsNew.projectForm.description.$touched">
     <div ng-message="required" class="errorMessage">A description is required to post a project</div>
     <div ng-message="maxlength" class="errorMessage">Cannot exceed 250 characters</div>
     <div ng-message="minlength" class="errorMessage">Description must be longer than 25 characters</div>
   </div> -->
+
+
+
+
+
+
+
+
 
 
 
@@ -71,13 +81,16 @@
 <div ng-message="required" class="errorMessage">A maximum budget is required</div>
 </div> -->
 
+<p>
+      <input type="checkbox" id="is_priority" name="is_priority" ng-model="projectsNew.project.is_priority"/>
+      <label for="is_priority">Priority Advertisment</label> - If this is selected your project will appear on the priority panel
+    </p>
 
-
-<label for="is_priority">
+<!-- <label for="is_priority">
   <input type="checkbox" id="is_priority" name="is_priority" ng-model="projectsNew.project.is_priority">
-  Is Priority</label><span><em>  - If this is selected your project will appear on the priority panel</em></span>
+  Is Priority</label><span><em>  - If this is selected your project will appear on the priority panel</em></span> -->
 
-  <button>Create</button>
+  <button class="button primary marginTopSm">Create</button>
 </form>
 </div>
 </div>

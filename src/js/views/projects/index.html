@@ -1,28 +1,31 @@
 <!DOCTYPE html >
-<h1>Projects Index Page</h1>
+<div class="row">
+<div class="col s5 offset-s5">
+  <h1 class="marginTopXXLg ">Find a job</h1>
+</div>
+
 
 
 <div class="row">
 
-  <div class="col s2 offset-s1">
+  <div class="col s2 offset-s1 ">
     <div class="filter z-depth-1">
       <p>FILTER SOME STUFF</p>
 
-      
+
     </div>
   </div>
 
   <div class="col s5">
     <div ng-if="!project.is_priority" ng-repeat="project in projectsIndex.all" class="projectCards z-depth-1 cursor"  ui-sref="projectsShow({ id: project.id })">
 
+      <!-- <img ng-src="{{ project.user.image }}" alt="profile.user.imageSRC" class="NavProfileImage"> -->
       <p class="marginBottomXXSm"> <span>Posted by</span> {{ project.user.username }} </p>
       <h2 class="marginBottomMd"> {{project.title }}</h2>
 
       <p class="marginBottomMd"> {{project.description | limitTo: 150 }}...</p>
 
       <p class="marginBottomSm"> <i class="tiny material-icons">alarm </i> <span>Deadline</span> {{project.project_deadline | date}}</p>
-
-
 
       <p class="marginBottomSm"> <i class="tiny material-icons">code</i>
         <span>Tech Stack</span> {{ project.tech_stack }}</p>
@@ -48,5 +51,9 @@
               <p> {{project.budget | currency : '£' }}</p>
               <!-- <button ng-if="main.isAuthenticated()" ui-sref="projectsShow({ id: project.id })" class="button primary" >View</button> -->
             </div>
+
+
+            <!-- <button ng-if="main.isAuthenticated()" ui-sref="projectsShow({ id: project.id })" class="button primary" >View</button> -->
           </div>
-</div>
+        </div>
+      </div>

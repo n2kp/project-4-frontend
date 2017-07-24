@@ -10,7 +10,6 @@ function ProjectIndexCtrl (Project, moment) {
   const vm = this;
   vm.all = Project.query();
   moment().hour(8).minute(0).second(0).toDate();
-
 }
 
 
@@ -42,7 +41,6 @@ function ProjectShowCtrl (Project, User, $stateParams, $state, Conversation, Ten
   moment().hour(8).minute(0).second(0).toDate();
 
   vm.project = Project.get($stateParams);
-
   vm.tenders = Tender.query();
 
   vm.tender = {};
@@ -57,7 +55,6 @@ function ProjectShowCtrl (Project, User, $stateParams, $state, Conversation, Ten
     });
   }
 
-
   // function tenderUpdate() {
   //   Tender
   //   .update({ id: vm.tender.id }, vm.tender)
@@ -68,7 +65,6 @@ function ProjectShowCtrl (Project, User, $stateParams, $state, Conversation, Ten
 
 
   function tendersDelete(tender) {
-    console.log(tender.id);
     Tender
     .delete({ id: tender.id })
     .$promise
@@ -94,12 +90,10 @@ function ProjectShowCtrl (Project, User, $stateParams, $state, Conversation, Ten
 
 
   function contactCreator(sender_id, receiver_id) {
-    console.log(sender_id, receiver_id);
     Conversation
     .save({ sender_id, receiver_id })
     .$promise
-    .then((response) => {
-      console.log(response);
+    .then(() => {
       $state.go('conversations');
     });
   }

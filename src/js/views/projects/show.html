@@ -6,11 +6,10 @@
       <p><a ui-sref="profile({ id: projectsShow.project.user.id })">Posted by {{projectsShow.project.user.username}}</a></p>
       <h1> {{ projectsShow.project.title}}</h1>
       <p>{{ projectsShow.project.description}}</p>
-      <p>{{ projectsShow.project.project_deadline}}</p>
-      <p>{{ projectsShow.project.bid_deadline}}</p>
+      <p>{{ projectsShow.project.project_deadline | date}}</p>
+      <p>{{ projectsShow.project.bid_deadline | amDifference : null : 'days' }} days </p>
       <p>{{ projectsShow.project.tech_stack}}</p>
-      <p>{{ projectsShow.project.tech_stack}}</p>
-      <p>{{ projectsShow.project.budget}}</p>
+      <p>{{ projectsShow.project.budget | currency : '£' : 0}}</p>
       <br>
 
       <button ng-click="projectsShow.contactCreator(main.currentUser.id, projectsShow.project.user.id)" class="button primary">
@@ -20,10 +19,10 @@
 
 
 
-
+{{ main.currentUser.tenders }}
 
     <div class="col s5 marginTopLg">
-      <form ng-if="main.currentUser.is_dev || main.currentUser.id !== projectsShow.project.user.id || main.currentUser.tenders === 1" ng-submit="projectsShow.tenderCreate()">
+        <form ng-if="main.currentUser.is_dev && main.currentUser.tenders === 1" ng-submit="projectsShow.tenderCreate()">
 
         <label for="bid">Bid</label>
         <input type="number" id="bid" name="bid" ng-model="projectsShow.tender.bid">
@@ -38,9 +37,9 @@
       </form>
 
 
-
+<!-- ng-if="main.currentUser.id === projectsShow.project.user.id" -->
       <h1>Current Bids</h1>
-      <div ng-if="main.currentUser.id === projectsShow.project.user.id" ng-repeat="tender in projectsShow.project.tenders">
+      <div  ng-repeat="tender in projectsShow.project.tenders">
         <h5>{{ tender.bid }}</h5>
         <h5>{{ tender.pitch }}</h5>
         <h5>{{ tender.status }}</h5>

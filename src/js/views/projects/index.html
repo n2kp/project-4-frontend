@@ -31,10 +31,10 @@
         <span>Tech Stack</span> {{ project.tech_stack }}</p>
 
         <p class="marginBottomXSm"> <i class="tiny material-icons">monetization_on</i>
-          <span>Budget</span> {{ project.budget | currency : '£' }}</p>
+          <span>Budget</span> {{ project.budget | currency : '£' : 0 }}</p>
 
           <p class="marginBottomLg"> <i class="tiny material-icons">alarm </i>
-            <span>Time left to submit an offer  </span>{{ project.bid_deadline | amDifference : null : 'days' }} days </p>
+            <span>Time left to submit a bid  </span>{{ project.bid_deadline | amDifference : null : 'days' }} days </p>
 
           </div>
         </div>

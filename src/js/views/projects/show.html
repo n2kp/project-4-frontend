@@ -40,6 +40,7 @@
       <div  ng-repeat="tender in projectsShow.project.tenders">
 
         <div ng-if="main.currentUser.id === tender.user.id || main.currentUser.id === projectsShow.project.user.id">
+          <h1 ng-if="main.currentUser.id === tender.user.id ">Your current bid</h1>
           <h5>{{ tender.bid }}</h5>
           <h5>{{ tender.pitch }}</h5>
           <h5>{{ tender.status }}</h5>

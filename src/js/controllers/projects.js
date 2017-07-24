@@ -5,18 +5,11 @@ angular
 .controller('ProjectShowCtrl', ProjectShowCtrl)
 .controller('ProjectEditCtrl', ProjectEditCtrl);
 
-ProjectIndexCtrl.$inject = ['Project'];
-function ProjectIndexCtrl (Project) {
+ProjectIndexCtrl.$inject = ['Project', 'moment'];
+function ProjectIndexCtrl (Project, moment) {
   const vm = this;
   vm.all = Project.query();
-
-  // function filterPosts() {
-  //   const params = { title: vm.q, postType: vm.postType};
-  //   if(vm.useDate) params.date = vm.date;
-  //   vm.filtered = filterFilter(vm.all, params);
-  //   vm.filtered = orderByFilter(vm.filtered);
-  // }
-
+  moment().hour(8).minute(0).second(0).toDate();
 }
 
 
@@ -42,15 +35,13 @@ function ProjectNewCtrl (Project, User, $stateParams, $state ){
 }
 
 
-ProjectShowCtrl.$inject = ['Project', 'User', '$stateParams', '$state', 'Conversation', 'Tender'];
-function ProjectShowCtrl (Project, User, $stateParams, $state, Conversation, Tender) {
+ProjectShowCtrl.$inject = ['Project', 'User', '$stateParams', '$state', 'Conversation', 'Tender', 'moment'];
+function ProjectShowCtrl (Project, User, $stateParams, $state, Conversation, Tender, moment) {
   const vm = this;
-
+  moment().hour(8).minute(0).second(0).toDate();
 
   vm.project = Project.get($stateParams);
-
   vm.tenders = Tender.query();
-
   vm.tender = {};
 
   function addTender() {
@@ -60,21 +51,67 @@ function ProjectShowCtrl (Project, User, $stateParams, $state, Conversation, Ten
     .$promise
     .then((tender) => {
       vm.tenders.push(tender);
-
     });
-
   }
+
+  // function tenderUpdate() {
+  //   Tender
+  //   .update({ id: vm.tender.id }, vm.tender)
+  //   .$promise
+  //   .then(() =>  );
+  // }
+  // vm.update = tenderUpdate;
+
+  function acceptBid(id) {
+    const updateTender = vm.project.tenders.map((tender) => {
+       if (tender.id === id) {
+         tender.status = 'accepted';
+         Tender.update({ id: tender.id }, tender);
+       } else {
+         tender.status = 'rejected';
+         Tender.update({ id: tender.id }, tender);
+       }
+    });
+  }
+
+  vm.acceptBid = acceptBid;
+
+
+  function tendersDelete(tender) {
+    console.log(tender.id);
+    Tender
+    .delete({ id: tender.id })
+    .$promise
+    .then(() => {
+      const index = vm.project.tenders.indexOf(tender);
+      vm.project.tenders.splice(index, 1);
+    });
+  }
+  vm.delete = tendersDelete;
+
+
+
+  function findUsersTender(id) {
+    if (!vm.project.tenders) return false;
+    const arrayOfTenders = vm.project.tenders.map((tender) => {
+      return tender.user.id === id;
+    });
+    return arrayOfTenders.includes(true);
+  }
+  vm.findUsersTender = findUsersTender;
   vm.tenderCreate = addTender;
+
+
 
   function contactCreator(sender_id, receiver_id) {
     console.log(sender_id, receiver_id);
     Conversation
-      .save({ sender_id, receiver_id })
-      .$promise
-      .then((response) => {
-        console.log(response);
-        $state.go('conversations');
-      });
+    .save({ sender_id, receiver_id })
+    .$promise
+    .then((response) => {
+      console.log(response);
+      $state.go('conversations');
+    });
   }
 
   vm.contactCreator = contactCreator;

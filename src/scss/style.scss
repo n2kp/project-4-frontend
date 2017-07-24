@@ -11,6 +11,13 @@ $highlight: #8AEC75;
   font-family: 'Raleway', sans-serif;
 }
 
+.red{
+  background-color: red;
+}
+.blue{
+  background-color: blue;
+}
+
 main {
   .errorMessage {
     padding:-10px;
@@ -24,24 +31,20 @@ main {
 
 // SNAZZY LINIKS
 
-.nav-button {
-
-}
-
 .nav-button a {
-    background-image: linear-gradient(180deg,transparent 65%, $highlight 0);
-    background-size: 0 100%;
-    background-repeat: no-repeat;
-    text-decoration: none;
-    color: #000;
-    -webkit-transition: background-size .4s ease;
-    transition: background-size .4s ease;
+  background-image: linear-gradient(180deg,transparent 65%, $highlight 0);
+  background-size: 0 100%;
+  background-repeat: no-repeat;
+  text-decoration: none;
+  color: #000;
+  -webkit-transition: background-size .4s ease;
+  transition: background-size .4s ease;
 }
 
 .nav-button a:hover {
-    background-size: 100% 100%;
-    cursor: pointer;
-    color: #000;
+  background-size: 100% 100%;
+  cursor: pointer;
+  color: #000;
 }
 
 
@@ -60,8 +63,21 @@ h2{
   margin: 0;
 }
 
+h4{
+  margin: 0px 0px 8px 0px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
 span{
   font-weight: bolder;
+}
+
+small{
+  font-size: 10px;
+  color: lightgrey;
+  float: right;
+  margin-left: 100px;
 }
 
 
@@ -127,7 +143,7 @@ span{
 //NAV STYLES
 
 nav{
-  position: fixed;
+  // position: fixed;
   top: 0;
   background-color: white;
   border-bottom: 1px solid lightgrey;
@@ -136,6 +152,7 @@ nav{
   padding: 16px;
   width: 100%;
   margin: 0;
+  margin-bottom: 10px;
 }
 
 .nav-logo-icon{
@@ -257,8 +274,8 @@ nav ul li a{
 }
 
 .sticky{
-position: fixed;
-left: 90%;
+  position: fixed;
+  left: 90%;
 
 }
 
@@ -270,6 +287,80 @@ left: 90%;
 
 //PROJECT SHOW
 
+.conversationsList{
+  border-bottom: 1px solid lightgrey;
+  padding: 16px;
+  margin: 16px 0px 8px 0px;
+  &.conversationsList:hover{
+    background-color: lightgrey;
+  }
+}
+
 .projectInfo{
   word-wrap: break-word;
+}
+
+//MESSAGES
+#chatList{
+  background-color: lightgrey;
+  padding: 0px 0px;
+}
+
+.chatHeading{
+  margin: 24px 16px;
+}
+
+.chatBoxBounding{
+  position: relative;
+  margin-top: 24px;
+  height: 90vh;
+  width: 85%;
+  margin: 0 auto;
+}
+
+.chatSidebarMessages{
+  padding: 16px 0px;
+  // margin: 16px 0px;
+  background-color: white;
+  &.chatSidebarMessages:hover {
+    background-color: fbfbfb;
+  }
+}
+
+.chatInput{
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 16px;
+}
+.marginZero{
+  margin-bottom: 0px;
+}
+
+.speech-bubble-received {
+  max-width: 60%;
+  position: relative;
+  color: black;
+  background-color: $highlight;
+  padding: 8px 16px;
+  border-radius: 14px 0px 14px 14px;
+  margin: 16px 0px;
+  float: right;
+}
+
+.speech-bubble-sent {
+  max-width: 60%;
+  position: relative;
+  color: black;
+  background-color: white;
+  padding: 8px 16px;
+  border-radius: 2px 14px 14px 14px;
+  margin: 16px 0px;
+  float: left;
+}
+
+.chatProfileImage{
+  background-color: lightgrey;
+  height: 48px;
+  width: 48px;
+  border-radius: 24px;
 }

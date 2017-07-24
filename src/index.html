@@ -5,14 +5,18 @@
   <meta charset="utf-8">
   <title>Justo</title>
 
+  <script src="components/moment/moment.js"></script>
+
+  <script src="components/angular-moment/angular-moment.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js" charset="utf-8"></script>
+
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
 
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
   <link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800" rel="stylesheet">
+
   <link href="https://fonts.googleapis.com/css?family=Rubik:400,500" rel="stylesheet">
 
   <!-- inject:js -->
@@ -23,7 +27,7 @@
 
 <body ng-controller="MainCtrl as main">
 
-  <nav ng-if="!main.isHome" class="">
+  <nav ng-if="!main.isHome">
 
     <a ui-sref="/" class="nav-logo"></a>
 
@@ -32,8 +36,15 @@
 
       <li ng-if="main.isAuthenticated()"><a ui-sref="projectsNew">Post a Job</a></li>
 
+<<<<<<< HEAD
       <li ng-if="main.isAuthenticated()"><a ui-sref="profile({ id: main.currentUser.id })">{{ main.currentUser.username }}</a></li>
       <img ng-src="{{ }}" alt="profile.user.imageSRC" class="NavProfileImage">
+=======
+      <li ng-if="main.isAuthenticated()"><a ui-sref="conversations">Chat</a></li>
+
+      <li ng-if="main.isAuthenticated()"><a ui-sref="profile({ id: main.currentUser })">{{ main.currentUser.username }} </a></li>
+      <img ng-src="{{ main.currentUser.image_src }}" alt="profile.user.image" class="NavProfileImage">
+>>>>>>> development
 
       <li ng-if="!main.isAuthenticated()"><a ui-sref="login">Login</a></li>
 
@@ -44,8 +55,9 @@
 
 
 
+
   <main ui-view>
-    {{main}}
+
   </main>
 
 </body>

@@ -54,10 +54,17 @@ function ProjectShowCtrl (Project, User, $stateParams, $state, Conversation, Ten
     .$promise
     .then((tender) => {
       vm.tenders.push(tender);
-
     });
-
   }
+
+  function findUsersTender(id) {
+    if (!vm.project.tenders) return false;
+    const arrayOfTenders = vm.project.tenders.map((tender) => {
+      return tender.user.id === id;
+    });
+    return arrayOfTenders.includes(true);
+  }
+  vm.findUsersTender = findUsersTender;
   vm.tenderCreate = addTender;
 
   function contactCreator(sender_id, receiver_id) {

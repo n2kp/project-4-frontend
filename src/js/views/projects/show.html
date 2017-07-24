@@ -18,11 +18,8 @@
     </div>
 
 
-
-{{ main.currentUser.tenders }}
-
     <div class="col s5 marginTopLg">
-        <form ng-if="main.currentUser.is_dev && main.currentUser.tenders === 1" ng-submit="projectsShow.tenderCreate()">
+        <form ng-if="!projectsShow.findUsersTender(main.currentUser.id) && main.currentUser.is_dev" ng-submit="projectsShow.tenderCreate()">
 
         <label for="bid">Bid</label>
         <input type="number" id="bid" name="bid" ng-model="projectsShow.tender.bid">
@@ -38,14 +35,16 @@
 
 
 <!-- ng-if="main.currentUser.id === projectsShow.project.user.id" -->
+
       <h1>Current Bids</h1>
       <div  ng-repeat="tender in projectsShow.project.tenders">
-        <h5>{{ tender.bid }}</h5>
-        <h5>{{ tender.pitch }}</h5>
-        <h5>{{ tender.status }}</h5>
 
-
-
+        <div ng-if="main.currentUser.id === tender.user.id || main.currentUser.id === projectsShow.project.user.id">
+          <h5>{{ tender.bid }}</h5>
+          <h5>{{ tender.pitch }}</h5>
+          <h5>{{ tender.status }}</h5>
+          <h5>{{ tender.user.username }}</h5>
+        </div>
       </div>
         <button ui-sref="projectsEdit({ id: projectsShow.project.id})" ng-if="main.isAuthenticated() && main.currentUser.id === projectsShow.project.user.id">Edit</button>
     </div>

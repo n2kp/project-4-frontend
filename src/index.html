@@ -5,6 +5,12 @@
   <meta charset="utf-8">
   <title>Justo</title>
 
+  <script src="components/moment/moment.js"></script>
+
+  <script src="components/angular-moment/angular-moment.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js" charset="utf-8"></script>
+
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
@@ -33,7 +39,7 @@
       <li ng-if="main.isAuthenticated()"><a ui-sref="projectsNew">Post a Job</a></li>
 
       <li ng-if="main.isAuthenticated()"><a ui-sref="profile({ id: main.currentUser.id })">{{ main.currentUser.username }} </a></li>
-      <img ng-src="{{ }}" alt="profile.user.imageSRC" class="NavProfileImage">
+      <img ng-src="{{ main.currentUser.image_src }}" alt="profile.user.image_src" class="NavProfileImage">
 
       <li ng-if="!main.isAuthenticated()"><a ui-sref="login">Login</a></li>
 
@@ -44,8 +50,9 @@
 
 
 
+
   <main ui-view>
-    {{main}}
+
   </main>
 
 </body>

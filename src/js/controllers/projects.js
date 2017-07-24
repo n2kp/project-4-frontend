@@ -63,15 +63,18 @@ function ProjectShowCtrl (Project, User, $stateParams, $state, Conversation, Ten
   // vm.update = tenderUpdate;
 
   function acceptBid(id) {
-    const updateTender = vm.project.tenders.map((tender) => {
-       if (tender.id === id) {
-         tender.status = 'accepted';
-         Tender.update({ id: tender.id }, tender);
-       } else {
-         tender.status = 'rejected';
-         Tender.update({ id: tender.id }, tender);
-       }
+    vm.project.tenders.map((tender) => {
+      if (tender.id === id) {
+        tender.status = 'accepted';
+        Tender.update({ id: tender.id }, tender);
+      } else {
+        tender.status = 'rejected';
+        Tender.update({ id: tender.id }, tender);
+      }
     });
+    vm.project.is_active = false;
+    Project.update({ id: vm.project.id }, vm.project);
+    // contactCreator(vm.project.user.id, tender.user.id);
   }
 
   vm.acceptBid = acceptBid;

@@ -17,7 +17,6 @@
         <button ui-sref="projectsEdit({ id: projectsShow.project.id})" ng-if="main.isAuthenticated() && main.currentUser.id === projectsShow.project.user.id">Edit</button>
       </div>
     </div>
-    {{ main.currentUser.id }}
 
     <div class="col s5 marginTopLg">
       <form ng-if="!projectsShow.findUsersTender(main.currentUser.id) && main.currentUser.is_dev" ng-submit="projectsShow.tenderCreate()">

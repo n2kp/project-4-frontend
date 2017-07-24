@@ -74,14 +74,12 @@ function ProjectShowCtrl (Project, User, $stateParams, $state, Conversation, Ten
     });
     vm.project.is_active = false;
     Project.update({ id: vm.project.id }, vm.project);
-    // contactCreator(vm.project.user.id, tender.user.id);
   }
 
   vm.acceptBid = acceptBid;
 
 
   function tendersDelete(tender) {
-    console.log(tender.id);
     Tender
     .delete({ id: tender.id })
     .$promise
@@ -107,12 +105,10 @@ function ProjectShowCtrl (Project, User, $stateParams, $state, Conversation, Ten
 
 
   function contactCreator(sender_id, receiver_id) {
-    console.log(sender_id, receiver_id);
     Conversation
     .save({ sender_id, receiver_id })
     .$promise
-    .then((response) => {
-      console.log(response);
+    .then(() => {
       $state.go('conversations');
     });
   }

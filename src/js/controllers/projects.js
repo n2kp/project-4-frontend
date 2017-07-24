@@ -57,6 +57,30 @@ function ProjectShowCtrl (Project, User, $stateParams, $state, Conversation, Ten
     });
   }
 
+
+  function tenderUpdate() {
+    Tender
+    .update({ id: vm.tender.id }, vm.tender)
+    .$promise
+    .then(() =>  );
+  }
+  vm.update = tenderUpdate;
+
+
+  function tendersDelete(tender) {
+    console.log(tender.id);
+    Tender
+    .delete({ id: tender.id })
+    .$promise
+    .then(() => {
+      const index = vm.project.tenders.indexOf(tender);
+      vm.project.tenders.splice(index, 1);
+    });
+  }
+  vm.delete = tendersDelete;
+
+
+
   function findUsersTender(id) {
     if (!vm.project.tenders) return false;
     const arrayOfTenders = vm.project.tenders.map((tender) => {
@@ -66,6 +90,8 @@ function ProjectShowCtrl (Project, User, $stateParams, $state, Conversation, Ten
   }
   vm.findUsersTender = findUsersTender;
   vm.tenderCreate = addTender;
+
+
 
   function contactCreator(sender_id, receiver_id) {
     console.log(sender_id, receiver_id);

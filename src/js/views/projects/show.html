@@ -14,12 +14,13 @@
 
       <button ng-click="projectsShow.contactCreator(main.currentUser.id, projectsShow.project.user.id)" class="button primary">
         Message {{ projectsShow.project.user.username}}</button>
+        <button ui-sref="projectsEdit({ id: projectsShow.project.id})" ng-if="main.isAuthenticated() && main.currentUser.id === projectsShow.project.user.id">Edit</button>
       </div>
     </div>
 
 
     <div class="col s5 marginTopLg">
-        <form ng-if="!projectsShow.findUsersTender(main.currentUser.id) && main.currentUser.is_dev" ng-submit="projectsShow.tenderCreate()">
+      <form ng-if="!projectsShow.findUsersTender(main.currentUser.id) && main.currentUser.is_dev" ng-submit="projectsShow.tenderCreate()">
 
         <label for="bid">Bid</label>
         <input type="number" id="bid" name="bid" ng-model="projectsShow.tender.bid">
@@ -34,8 +35,6 @@
       </form>
 
 
-<!-- ng-if="main.currentUser.id === projectsShow.project.user.id" -->
-
       <h1>Current Bids</h1>
       <div  ng-repeat="tender in projectsShow.project.tenders">
 
@@ -45,7 +44,27 @@
           <h5>{{ tender.pitch }}</h5>
           <h5>{{ tender.status }}</h5>
           <h5>{{ tender.user.username }}</h5>
+
+            <button ng-show="">Alter your bid</button>
+
+            <form ng-submit="projectsShow.update()">
+
+              <label for="bid">Bid</label>
+              <input type="number" id="bid" name="bid" ng-model="projectsShow.tender.bid">
+
+              <label for="pitch">Pitch</label>
+              <input type="text" id="pitch" name="pitch" ng-model="projectsShow.tender.pitch">
+
+              <label for="image_src">Image Upload</label>
+              <input type="text" id="image_src" name="image_src" ng-model="projectsShow.tender.image_src">
+
+              <button class="button primary">Submit Offer</button>
+            </form>
+
+            <button ng-click="projectsShow.delete(tender)" >Retract your bid</button>
         </div>
       </div>
-        <button ui-sref="projectsEdit({ id: projectsShow.project.id})" ng-if="main.isAuthenticated() && main.currentUser.id === projectsShow.project.user.id">Edit</button>
+
+
     </div>
+  </div>

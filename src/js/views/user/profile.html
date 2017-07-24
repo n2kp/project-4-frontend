@@ -1,18 +1,38 @@
 <h1> Profile </h1>
-
 <div class="row">
   <div class="col s5">
+    <h6>{{ profile.user.username }}</h6>
+    <h6>{{ profile.user.firstname }} {{ profile.user.lastname }}</h6>
+    <h6>{{ profile.user.email }}</h6>
+    <h6>Skills: {{ profile.user.tech_stack }}</h6>
+    <h6>Portfolio: {{ profile.user.portfolio_url }}</h6>
+    <h6>LinkedIn: {{ profile.user.linkedin_url }}</h6>
+    <h6>Github: {{ profile.user.github_url }}</h6>
 
-    <p> {{ profile.user }} </p>
 
-    <a ui-sref="conversations">Message    </a>
+
+
+
+    <a ui-sref="conversations">Message</a>
+    <a ng-if="main.currentUser.id === profile.user.id" ui-sref="profileEdit({ id: profile.user.id })">Update your profile</a>
+    <br>
+    <br>
+    <h2>Current Bids made</h2>
+    <div ng-repeat="tender in profile.user.tenders">
+<br>
+      <p>Bid made: {{ tender.bid | currency : '£' : 0 }}</p>
+      <p>Your pitch: {{ tender.pitch }}</p>
+      <p>Current Status: {{ tender.status }}</p>
+
+    </div>
 
   </div>
+
   <div class="col s5">
-  <div ng-repeat="review in profile.reviews">
-    <p>{{ review.body }}</p>
-    <p>{{ review.rating }}</p>
-  </div>
+    <div ng-repeat="review in profile.reviews">
+      <p>{{ review.body }}</p>
+      <p>{{ review.rating }}</p>
+    </div>
 
 
 

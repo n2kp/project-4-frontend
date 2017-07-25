@@ -5,6 +5,7 @@
 $error: red;
 $textColor: black;
 $highlight: #8AEC75;
+$borderColor: #ececec;
 
 //OVERALL STYLES
 *{
@@ -346,7 +347,7 @@ nav ul li a{
 
 .scroll{
   max-height: 84%;
-    overflow: auto;
+  overflow: auto;
 }
 
 #chatList{
@@ -418,20 +419,23 @@ nav ul li a{
 
 // register
 
+.devOrNot{
+  border: 1px solid $borderColor;
+  margin: 24px 8px 16px 8px;
+}
+
+input[type="radio"]{
+  display: none;
+}
 
 input[type=radio]:checked + label {
-  width: 100%;
-  height: 100%;
-  background-color: lightgrey;
+  background-color: #ececec;
 }
 
 .registerSelect{
-  margin-top: 48px;
   padding: 16px;
-  height: 300px;
-  width: 100%;
   &.registerSelect:hover{
-    background-color: orange;
+    background-color: $borderColor;
   }
 }
 
@@ -439,28 +443,6 @@ input[type=radio]:checked + label {
   background-color: red;
   position: absolute;
 }
-
-[type="radio"]{
-  position: fixed;
-}
-
-[type="radio"]:checked + label:before {
-position: fixed;
-}
-
-[type="radio"]:checked + label:after {
-position: fixed;
-}
-
-[type="radio"]:not(:checked) + label:before {
-position: fixed;
-color: lightgrey;
-}
-
-[type="radio"]:checked + label:after {
-  position: fixed;
-  color: lightgrey;
-  }
 
 .devSelectImageOne{
   margin: 0 auto;
@@ -474,7 +456,7 @@ color: lightgrey;
 }
 
 .devSelectImageTwo{
-    margin: 0 auto;
+  margin: 0 auto;
   height: 80px;
   width: 80px;
   border-radius: 80px;

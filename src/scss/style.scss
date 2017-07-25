@@ -1,5 +1,5 @@
 @import 'reset-css/reset';
-@import 'bootstrap/bootstrap-grid';
+@import 'bootstrap/bootstrap';
 
 // SASS COLOUR SCHEME
 $error: red;
@@ -16,6 +16,10 @@ $highlight: #8AEC75;
 }
 .blue{
   background-color: blue;
+}
+
+.yellow{
+  background-color: yellow;
 }
 
 #greyText{
@@ -36,6 +40,10 @@ main {
     padding:-10px;
     color: $error;
   }
+}
+
+#center{
+  margin: 0 auto;
 }
 
 .cursor{
@@ -95,6 +103,10 @@ small{
 
 
 //GENERAL STYLES
+
+.text-center{
+  text-align: center;
+}
 .marginTopXXLg{
   margin-top: 100px;
 }
@@ -262,7 +274,8 @@ nav ul li a{
   margin: 16px 0px;
   padding: 16px;
   word-wrap: break-word;
-  background-color: $highlight;
+  background-color: #212329;
+  color: $highlight;
   height: 100vh;
   width: 15%;
   top: 48px;
@@ -272,9 +285,9 @@ nav ul li a{
   margin: 16px 0px;
   padding: 16px;
   word-wrap: break-word;
+  border-bottom: 1px solid lightgrey;
   &.projectCards:hover{
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-    transition: all 0.2s ease;
+
   }
 }
 
@@ -405,21 +418,20 @@ nav ul li a{
 
 // register
 
-input[type=radio]{
-  background: yellow;
-}
 
 input[type=radio]:checked + label {
-  height: 200px;
-  width: 100px;
+  width: 100%;
+  height: 100%;
   background-color: lightgrey;
 }
 
 .registerSelect{
-  // background-color: red;
-  text-align: center;
+  margin-top: 48px;
+  padding: 16px;
+  height: 300px;
+  width: 100%;
   &.registerSelect:hover{
-    // background-color: blue;
+    background-color: orange;
   }
 }
 
@@ -428,11 +440,27 @@ input[type=radio]:checked + label {
   position: absolute;
 }
 
-.hidden{
-  display: none;
-
-  // visibility: hidden
+[type="radio"]{
+  position: fixed;
 }
+
+[type="radio"]:checked + label:before {
+position: fixed;
+}
+
+[type="radio"]:checked + label:after {
+position: fixed;
+}
+
+[type="radio"]:not(:checked) + label:before {
+position: fixed;
+color: lightgrey;
+}
+
+[type="radio"]:checked + label:after {
+  position: fixed;
+  color: lightgrey;
+  }
 
 .devSelectImageOne{
   margin: 0 auto;

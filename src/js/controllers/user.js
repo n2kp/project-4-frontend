@@ -74,21 +74,15 @@ function ConversationCtrl(Conversation, Message) {
   function addMessage() {
     vm.message.conversation_id = vm.conversationId;
     console.log(vm.message);
-    // vm.message.user_id = vm.currentUser.id
     Message
     .save({ id: vm.conversationId }, vm.message)
     .$promise
-    .then(() => {
-      console.log('vm ---  ', vm);
-      vm.conversations[vm.index].messages.push(vm.message);
+    .then((response) => {
+      const message = response.conversation.messages.pop();
+      vm.conversations[vm.index].messages.push(message);
       vm.message = {};
     });
   }
-
-  // function($window, $anchorScroll) {
-  //
-  //   vm.messageWindowHeight = parseInt($window.innerHeight - 170) + 'px';
-  // });
 
   function selectConversation(conversation, index) {
     Conversation

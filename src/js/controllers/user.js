@@ -86,18 +86,42 @@ function ConversationCtrl(Conversation, Message) {
 
   function addMessage() {
     vm.message.conversation_id = vm.conversationId;
-    console.log(vm.message);
+
     Message
     .save({ id: vm.conversationId }, vm.message)
     .$promise
     .then((response) => {
-      const message = response.conversation.messages.pop();
-      vm.conversations[vm.index].messages.push(message);
+      console.log(response);
+      const newMessage = response.conversation.messages.pop();
+      vm.conversations[vm.index].messages.push(newMessage);
       vm.message = {};
     });
   }
 
-  function selectConversation(conversation, index) {
+  function getUnread(currentUserId) {
+    let count = 0;
+    vm.conversations.forEach((conversation) => {
+      return conversation.messages.map((message) => {
+        if (message.user_id !== currentUserId && !message.read) {
+          return count += 1;
+        }
+        console.log('Count: ', count);
+      });
+    });
+
+  }
+
+  vm.getUnread = getUnread;
+
+  function selectConversation(conversation, index, currentUserId) {
+
+    conversation.messages.forEach((message) => {
+      if (message.user_id !== currentUserId) {
+        message.read = true;
+      }
+    });
+
+    console.log(conversation.messages);
     Conversation
     .get({ id: conversation.id })
     .$promise

@@ -11,6 +11,21 @@
         <div ng-if="profileEdit.user.is_dev === null">
           <h2> How would you like to use Justo? </h2>
 
+          <h1>Update your Profile</h1>
+          <form ng-submit="profileEdit.update()" name="auth.registerForm" novalidate>
+
+            <div>
+              <!--USERNAME INPUT  -->
+              <label for="username">Username</label>
+              <input type="text" name="username" id="username" ng-model="profileEdit.user.username" unique required>
+              <!-- USERNAME VALIDATION/MESSAGES -->
+
+              <!-- <div ng-messages="auth.registerForm.username.$error" ng-show="auth.registerForm.$submitted || auth.registerForm.username.$touched">
+              <div ng-message="required" class="errorMessage">A username is required</div>
+              <div ng-message="unique" class="errorMessage">Please choose a different username, this one was already been taken</div>
+            </div> -->
+          </div>
+
           <div class="row">
             <input class="hidden" type="radio" id="is_dev" name="is_dev" value="is_dev" ng-model="profileEdit.user.is_dev" data-ng-value="true">
             <label for="is_dev" class="col-sm-5 devOrNot text-center registerSelect cursor">

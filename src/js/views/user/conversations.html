@@ -1,63 +1,82 @@
+<!DOCTYPE html >
+
 <div class="main">
 
+  <div class="row justify-content-center">
+    <div class="row col-11 chatBoxBounding shadow-1">
 
-<div class="row">
+      <div class="col-3 chatList">
+        <div class="chatHeading">
 
-  <div class="z-depth-1 offset-s1 chatBoxBounding">
+          <img ng-src="{{ main.currentUser.image_src }}" alt="profile.user.image" class="NavProfileImage">
+        </div>
 
-    <div class="col s3" id="chatList">
-      <div class="chatHeading">
-        <img ng-src="{{ main.currentUser.image_src }}" alt="profile.user.image" class="NavProfileImage">
-      </div>
-      <div ng-repeat="conversation in conversations.conversations track by $index">
-        <div class="col s12" id="chatSidebarMessages">
-          <div ng-click="conversations.selectConversation(conversation, $index)" class="cursor">
-            <div class="row" id="zero">
-              <div class="col s2 marginRightSm">
-                <img ng-src="{{ conversation.receiver.username  === main.currentUser.username ? conversation.sender.username : conversation.receiver.username }}" alt="profile.user.imageSRC" class=" chatProfileImage">
-              </div>
-              <div class="col s9">
-                <h4> {{ conversation.receiver.username  === main.currentUser.username ? conversation.sender.username : conversation.receiver.username }}</h4>
-                <div ng-repeat="message in conversation.messages track by $index">
-                  <div ng-if="(conversation.messages.length-1) === $index">
-                    <p id="greyText"> {{ message.body | limitTo: 55 }}... </p>
+        <div ng-repeat="conversation in conversations.conversations track by $index">
+
+          <div class="col-sm-12" id="chatSidebarMessages">
+            <div ng-click="conversations.selectConversation(conversation, $index)" class="cursor">
+              <div class="row" id="zero">
+
+                <div class="col-2 marginRightSm">
+                  <img ng-src="{{ conversation.receiver.username  === main.currentUser.username ? conversation.sender.username : conversation.receiver.username }}" alt="profile.user.imageSRC" class=" chatProfileImage">
+                </div>
+
+                <div class="col-sm-8">
+                  <h4> {{ conversation.receiver.username  === main.currentUser.username ? conversation.sender.username : conversation.receiver.username }}</h4>
+                  <div ng-repeat="message in conversation.messages track by $index">
+
+                    <div ng-if="(conversation.messages.length-1) === $index">
+                      <p id="greyText"> {{ message.body | limitTo: 55 }}... </p>
+                      <small> {{ message.created_at | date : 'shortTime' }} </small>
+                    </div>
                   </div>
                 </div>
+
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <p ng-show="conversations.index === null"> Please select a conversation </p>
 
-    <!-- CONVERSATION -->
+      <div ng-show="conversations.index === null" class="col-9 noShowChat">
+        <div class="noShowChatContent">
+          <div class="noChatImage"></div>
+          <h1 class="center"> Start the conversation</h1>
+          <p class="center"> Please select a conversation to start chatting</p>
+        </div>
+      </div>
 
-    <div ng-show="conversations.index !== null" class="col s9 scroll" id="zero">
+      <!-- CONVERSATION -->
+      <div class="col-9 messageside">
+        <div ng-show="conversations.index !== null" class="col-12 messageScroll">
 
-      <div ng-repeat="message in conversations.conversations[conversations.index].messages">
+          <div ng-repeat="message in conversations.conversations[conversations.index].messages" class="speech-bubble-row">
 
-        <div class="row">
-          <div ng-class="{true:'speech-bubble-sent', false:'speech-bubble-received'}[main.currentUser.id === message.user_id]">
-
-            <p> {{ message.body }} </p> <small>{{ message.created_at | date : 'shortTime' }}</small></div>
+            <div ng-class="{true:'speech-bubble-sent', false:'speech-bubble-received'}[main.currentUser.id === message.user_id]">
+              <div class="body">
+                <p>  {{ message.body }} </p>
+              </div><div class="small">{{ message.created_at | date : 'shortTime' }} </div>
+            </div>
           </div>
         </div>
 
         <!-- WRITE A MESSAGE SECTION -->
-        <div class="col s9 chatInput" id="zero">
-          <div class="chatPadding">
 
-            <form ng-show="conversations.index !== null" ng-submit="conversations.addMessage(conversations.message)" name="conversations.messageForm">
 
-              <label for="body">Write a message... </label>
-              <input type="text" ng-model="conversations.message.body" name="body" id="body" required>
-              <button>Submit</button>
 
-            </form>
-          </div>
-        </div>
+
+          <form ng-show="conversations.index !== null" ng-submit="conversations.addMessage(conversations.message)" name="conversations.messageForm">
+
+            <div class="col-12 chatInput">
+              <div class="chatPadding">
+
+
+                <input type="text" ng-model="conversations.message.body" name="body" id="body" placeholder="Write a message..." class="col-10 chatTextBox" required>
+                <button class=" col-1 chatSubmit cursor"> <i class=" material-icons iconLarge">message</i> </button>
+              </div>
+            </div>
+          </form>
       </div>
     </div>
   </div>

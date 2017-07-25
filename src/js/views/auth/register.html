@@ -1,44 +1,37 @@
 <!DOCTYPE html >
 <div class="main">
 
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col text-center">
 
-  <div class="row">
+        <h1>Register</h1>
+        <p>{{ auth.user }}</p>
+        <div class="form2" ng-show="auth.show==1">
+          <h2> How would you like to use Justo? </h2>
 
-
-    <div class="col s6 offset-s3">
-
-      <h1>Register</h1>
-
-
-      <p>{{ auth.user }}</p>
-
-      <div class="form2" ng-show="auth.show==1">
-
-
-        <h2> How would you like to use Justo? </h2>
-
-        <div class="row">
-
-          <input class="hidden center-align" type="radio" id="is_dev" name="is_dev" value="is_dev" ng-model="auth.user.is_dev" data-ng-value="true">
-          <label for="is_dev" class="radioSelect cursor col s5 registerSelect center-align">
-            <div class="devSelectImageOne"></div>
-            Developer looking for work
-          </label>
+          <div class="row">
+            <input class="hidden" type="radio" id="is_dev" name="is_dev" value="is_dev" ng-model="auth.user.is_dev" data-ng-value="true">
+            <label for="is_dev" class="col-sm-5 devOrNot text-center registerSelect cursor">
 
 
+              <div class="devSelectImageOne"></div>
+              Developer looking for work
+            </label>
 
-          <input class="hidden" type="radio" id="is_customer" name="is_customer" value="is_dev" ng-model="auth.user.is_dev" data-ng-value="false">
-
-          <label for="is_customer" class="col s5 registerSelect center-align radioSelect cursor">
-            <div class="devSelectImageTwo"></div>
-            Business looking for developers
-
-          </label>
+            <input class="hidden" type="radio" id="is_customer" name="is_customer" value="is_dev" ng-model="auth.user.is_dev" data-ng-value="false">
+            <label for="is_customer" class="col-sm-5 devOrNot registerSelect cursor">
+              <div class="devSelectImageTwo"></div>
+              Business looking for developers
+            </label>
+          </div>
 
         </div>
-        <button  ng-click="auth.show = 2" >Next</button>
-
+        <div class="row justify-content-center">
+          <a class=" col-sm-2 button primary cursor" ng-click="auth.show = 2" >Next</a>
+        </div>
       </div>
+    </div>
 
 
 
@@ -47,53 +40,53 @@
 
 
 
-      <form ng-submit="auth.register()" name="auth.registerForm" novalidate>
+    <form ng-submit="auth.register()" name="auth.registerForm" novalidate>
 
-        <div class="form2" ng-show="auth.show==2">
-          <div>
-            <!--USERNAME INPUT  -->
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username" ng-model="auth.user.username" unique required>
-            <!-- USERNAME VALIDATION/MESSAGES -->
-
-            <!-- <div ng-messages="auth.registerForm.username.$error" ng-show="auth.registerForm.$submitted || auth.registerForm.username.$touched">
-            <div ng-message="required" class="errorMessage">A username is required</div>
-            <div ng-message="unique" class="errorMessage">Please choose a different username, this one was already been taken</div>
-          </div> -->
-        </div>
-
-        <!--EMAIL INPUT  -->
+      <div class="form2" ng-show="auth.show==2">
         <div>
-          <label for="email">Email</label>
-          <input type="text" ng-model="auth.user.email" name="email" id="email" required>
-        </div>
-        <!-- EMAIL VALIDATION/MESSAGES -->
-        <!-- <div ng-messages="auth.registerForm.email.$error" ng-show="auth.registerForm.$submitted || auth.registerForm.email.$touched">
-        <div ng-message="required" class="errorMessage">An email address is required</div>
-        <div ng-message="pattern" ng-show="register.registrationForm.$submitted || register.registrationForm.email.$touched" class="notificationThin" >This Email is not valid</div> pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
-      </div> -->
+          <!--USERNAME INPUT  -->
+          <label for="username">Username</label>
+          <input type="text" name="username" id="username" ng-model="auth.user.username" unique required>
+          <!-- USERNAME VALIDATION/MESSAGES -->
 
-      <!--PASSWORD INPUT  -->
-      <div>
-        <label for="password">Password</label>
-        <input type="password" ng-model="auth.user.password" name="password" id="password" required>
+          <!-- <div ng-messages="auth.registerForm.username.$error" ng-show="auth.registerForm.$submitted || auth.registerForm.username.$touched">
+          <div ng-message="required" class="errorMessage">A username is required</div>
+          <div ng-message="unique" class="errorMessage">Please choose a different username, this one was already been taken</div>
+        </div> -->
       </div>
-      <!-- PASSWORD VALIDATION/MESSAGES -->
-      <!-- <div ng-messages="auth.registerForm.password.$error" ng-show="auth.registerForm.$submitted || auth.registerForm.password.$touched">
-      <div ng-message="required" class="errorMessage">You forgot to provide us with you first name</div>
+
+      <!--EMAIL INPUT  -->
+      <div>
+        <label for="email">Email</label>
+        <input type="text" ng-model="auth.user.email" name="email" id="email" required>
+      </div>
+      <!-- EMAIL VALIDATION/MESSAGES -->
+      <!-- <div ng-messages="auth.registerForm.email.$error" ng-show="auth.registerForm.$submitted || auth.registerForm.email.$touched">
+      <div ng-message="required" class="errorMessage">An email address is required</div>
+      <div ng-message="pattern" ng-show="register.registrationForm.$submitted || register.registrationForm.email.$touched" class="notificationThin" >This Email is not valid</div> pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
     </div> -->
 
-
-    <!--PASSWORD CONFIRMATION INPUT  -->
+    <!--PASSWORD INPUT  -->
     <div>
-      <label>Password Confirmation</label>
-      <input type="password" ng-model="auth.user.password_confirmation" data-password-verify="auth.user.password" name="password_confirmation" id="password_confirmation" required>
+      <label for="password">Password</label>
+      <input type="password" ng-model="auth.user.password" name="password" id="password" required>
     </div>
-    <!-- PASSWORD CONFIRMATION VALIDATION/MESSAGES -->
+    <!-- PASSWORD VALIDATION/MESSAGES -->
     <!-- <div ng-messages="auth.registerForm.password.$error" ng-show="auth.registerForm.$submitted || auth.registerForm.password.$touched">
     <div ng-message="required" class="errorMessage">You forgot to provide us with you first name</div>
   </div> -->
-  <button  ng-click="auth.show = 3">Next</button>
+
+
+  <!--PASSWORD CONFIRMATION INPUT  -->
+  <div>
+    <label>Password Confirmation</label>
+    <input type="password" ng-model="auth.user.password_confirmation" data-password-verify="auth.user.password" name="password_confirmation" id="password_confirmation" required>
+  </div>
+  <!-- PASSWORD CONFIRMATION VALIDATION/MESSAGES -->
+  <!-- <div ng-messages="auth.registerForm.password.$error" ng-show="auth.registerForm.$submitted || auth.registerForm.password.$touched">
+  <div ng-message="required" class="errorMessage">You forgot to provide us with you first name</div>
+</div> -->
+<button  ng-click="auth.show = 3">Next</button>
 </div>
 
 
@@ -137,6 +130,7 @@
 
 
 </form>
+</div>
 </div>
 </div>
 </div>

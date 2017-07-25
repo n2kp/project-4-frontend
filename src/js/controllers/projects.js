@@ -36,10 +36,11 @@ function ProjectNewCtrl (Project, User, $stateParams, $state ){
 ProjectShowCtrl.$inject = ['Project', 'User', '$stateParams', '$state', 'Conversation', 'Tender', 'moment'];
 function ProjectShowCtrl (Project, User, $stateParams, $state, Conversation, Tender, moment) {
   const vm = this;
-  moment().hour(8).minute(0).second(0).toDate();
+  moment().hour(0).minute(0).second(0).toDate();
 
   vm.project = Project.get($stateParams);
   vm.tenders = Tender.query();
+
   vm.tender = {};
 
   function addTender() {
@@ -49,6 +50,7 @@ function ProjectShowCtrl (Project, User, $stateParams, $state, Conversation, Ten
     .$promise
     .then((tender) => {
       vm.tenders.push(tender);
+      $state.go('projectsIndex');
     });
   }
 
@@ -60,23 +62,8 @@ function ProjectShowCtrl (Project, User, $stateParams, $state, Conversation, Ten
   // }
   // vm.update = tenderUpdate;
 
-  function acceptBid(id) {
-    const updateTender = vm.project.tenders.map((tender) => {
-       if (tender.id === id) {
-         tender.status = 'accepted';
-         Tender.update({ id: tender.id }, tender);
-       } else {
-         tender.status = 'rejected';
-         Tender.update({ id: tender.id }, tender);
-       }
-    });
-  }
-
-  vm.acceptBid = acceptBid;
-
 
   function tendersDelete(tender) {
-    console.log(tender.id);
     Tender
     .delete({ id: tender.id })
     .$promise
@@ -100,12 +87,10 @@ function ProjectShowCtrl (Project, User, $stateParams, $state, Conversation, Ten
 
 
   function contactCreator(sender_id, receiver_id) {
-    console.log(sender_id, receiver_id);
     Conversation
     .save({ sender_id, receiver_id })
     .$promise
-    .then((response) => {
-      console.log(response);
+    .then(() => {
       $state.go('conversations');
     });
   }

@@ -17,9 +17,9 @@
   </div>
 
   <div class="col s12 m12 l5">
-    <div ng-if="!project.is_priority" ng-repeat="project in projectsIndex.all" class="projectCards z-depth-1 cursor"  ui-sref="projectsShow({ id: project.id })">
+    <div ng-if="!project.is_priority && project.is_active" ng-repeat="project in projectsIndex.all" class="projectCards z-depth-1 cursor"  ui-sref="projectsShow({ id: project.id })">
 
-      <!-- <img ng-src="{{ project.user.image }}" alt="profile.user.imageSRC" class="NavProfileImage"> -->
+      <img ng-src="{{ project.user.image }}" alt="profile.user.imageSRC" class="NavProfileImage">
       <p class="marginBottomXXSm"> <span>Posted by</span> {{ project.user.username }} </p>
       <h2 class="marginBottomMd"> {{project.title }}</h2>
 
@@ -41,7 +41,7 @@
 
 
         <div class="col s12 m12 l3">
-          <div ng-if="project.is_priority == true" ng-repeat="project in projectsIndex.all" class=" projectCards cursor" ui-sref="projectsShow({ id: project.id })">
+          <div ng-if="project.is_priority && project.is_active " ng-repeat="project in projectsIndex.all" class=" projectCards cursor" ui-sref="projectsShow({ id: project.id })">
 
             <img ng-src="{{ project.user.image }}" alt="profile.user.imageSRC" class="paidImage">
 
@@ -55,9 +55,8 @@
             <div class="paidPost">
               <p class="marginBottomLg">Paid Post</p>
             </div>
-
-
             <!-- <button ng-if="main.isAuthenticated()" ui-sref="projectsShow({ id: project.id })" class="button primary" >View</button> -->
           </div>
         </div>
       </div>
+    </div>

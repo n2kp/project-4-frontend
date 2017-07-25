@@ -18,6 +18,15 @@ $highlight: #8AEC75;
   background-color: blue;
 }
 
+#greyText{
+  color: lightgrey;
+}
+
+#zero{
+  margin: 0px;
+  padding: 0px;
+}
+
 main {
   .errorMessage {
     padding:-10px;
@@ -165,7 +174,7 @@ nav{
   background-position: center;
 }
 
-.nav-logo{
+.nav-logo {
   position: absolute;
   height: 32px;
   width: 32px;
@@ -301,37 +310,58 @@ nav ul li a{
 }
 
 //MESSAGES
+
+.chatBoxBounding{
+  position: absolute;
+  // margin-top: 24px;
+  height: 87vh;
+  width: 85%;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  // margin: 32px auto;
+  background-color: #f1ffee;
+}
+
+.scroll{
+  max-height: 84%;
+    overflow: auto;
+}
+
 #chatList{
-  background-color: lightgrey;
+  background-color: white;
   padding: 0px 0px;
+  height: 87vh;
+  box-shadow: 6px 4px 12px -8px #d6d6d6;
+  z-index: 5;
+  position: relative;
 }
 
 .chatHeading{
-  margin: 24px 16px;
+  padding: 24px 16px;
+  background-color: lightgrey;
 }
 
-.chatBoxBounding{
-  position: relative;
-  margin-top: 24px;
-  height: 90vh;
-  width: 85%;
-  margin: 0 auto;
-}
-
-.chatSidebarMessages{
+#chatSidebarMessages{
   padding: 16px 0px;
-  // margin: 16px 0px;
   background-color: white;
-  &.chatSidebarMessages:hover {
-    background-color: fbfbfb;
+  &#chatSidebarMessages:hover {
+    background-color: #efefef;
   }
 }
 
+.chatPadding{
+  padding: 16px;
+}
+
 .chatInput{
+  background-color: white;
   position: absolute;
   bottom: 0;
   margin-bottom: 16px;
+
 }
+
 .marginZero{
   margin-bottom: 0px;
 }
@@ -343,7 +373,7 @@ nav ul li a{
   background-color: $highlight;
   padding: 8px 16px;
   border-radius: 14px 0px 14px 14px;
-  margin: 16px 0px;
+  margin: 16px 16px;
   float: right;
 }
 
@@ -354,7 +384,7 @@ nav ul li a{
   background-color: white;
   padding: 8px 16px;
   border-radius: 2px 14px 14px 14px;
-  margin: 16px 0px;
+  margin: 16px 16px;
   float: left;
 }
 

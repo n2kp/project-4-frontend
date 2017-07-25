@@ -32,14 +32,16 @@
     <a ui-sref="/" class="nav-logo"></a>
 
     <ul id="nav-mobile" class="right nav-button">
+
       <li><a ui-sref="projectsIndex">Search Jobs</a></li>
 
       <li ng-if="main.isAuthenticated()"><a ui-sref="projectsNew">Post a Job</a></li>
 
       <li ng-if="main.isAuthenticated()"><a ui-sref="conversations">Chat</a></li>
 
-      <li ng-if="main.isAuthenticated()"><a ui-sref="profile({ id: main.currentUser })">{{ main.currentUser.username }} </a></li>
+      <li ng-if="main.isAuthenticated()"><a ui-sref="profile({ id: main.currentUser.id })">{{ main.currentUser.username }} </a></li>
       <img ng-src="{{ main.currentUser.image_src }}" alt="profile.user.image" class="NavProfileImage">
+
 
       <li ng-if="!main.isAuthenticated()"><a ui-sref="login">Login</a></li>
 
@@ -47,9 +49,6 @@
       <li ng-if="main.isAuthenticated()"><a ng-click="main.logout()" href="/">Logout</a></li>
     </ul>
   </nav>
-
-
-
 
   <main ui-view>
 

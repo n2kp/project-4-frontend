@@ -1,7 +1,7 @@
 angular
 .module('justo')
 .controller('ProfileCtrl', ProfileCtrl)
-.controller('EditProfileCtrl', EditProfileCtrl)
+.controller('ProfileEditCtrl', ProfileEditCtrl)
 .controller('ConversationCtrl', ConversationCtrl);
 
 ProfileCtrl.$inject = ['$auth', 'User', '$state', 'Review'];
@@ -43,8 +43,8 @@ function ProfileCtrl($auth, User, $state, Review) {
   vm.deleteReview = deleteReview;
 }
 
-EditProfileCtrl.$inject = ['$auth', 'User','$state'];
-function EditProfileCtrl($auth, User, $state) {
+ProfileEditCtrl.$inject = ['$auth', 'User','$state'];
+function ProfileEditCtrl($auth, User, $state) {
   const vm = this;
 
   vm.user = User.get($state.params);
@@ -63,7 +63,9 @@ function EditProfileCtrl($auth, User, $state) {
 ConversationCtrl.$inject = ['Conversation', 'Message'];
 function ConversationCtrl(Conversation, Message) {
   const vm = this;
+
   vm.conversations = Conversation.query();
+
   vm.message = {};
   vm.conversationId = null;
   vm.index = null;
@@ -72,27 +74,26 @@ function ConversationCtrl(Conversation, Message) {
   function addMessage() {
     vm.message.conversation_id = vm.conversationId;
     console.log(vm.message);
-    // vm.message.user_id = vm.currentUser.id
     Message
     .save({ id: vm.conversationId }, vm.message)
     .$promise
-    .then(() => {
-      console.log('vm ---  ', vm);
-      vm.conversations[vm.index].messages.push(vm.message);
+    .then((response) => {
+      const message = response.conversation.messages.pop();
+      vm.conversations[vm.index].messages.push(message);
       vm.message = {};
     });
   }
 
   function selectConversation(conversation, index) {
     Conversation
-      .get({ id: conversation.id })
-      .$promise
-      .then((conversation) => {
-        console.log(conversation);
-        vm.conversationId = conversation.id;
-        vm.index = index;
+    .get({ id: conversation.id })
+    .$promise
+    .then((conversation) => {
+      console.log(conversation);
+      vm.conversationId = conversation.id;
+      vm.index = index;
 
-      });
+    });
   }
 
   vm.addMessage = addMessage;

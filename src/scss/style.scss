@@ -394,3 +394,56 @@ nav ul li a{
   width: 48px;
   border-radius: 24px;
 }
+
+// register
+
+input[type=radio]{
+  background: yellow;
+}
+
+input[type=radio]:checked + label {
+  height: 200px;
+  width: 100px;
+  background-color: lightgrey;
+}
+
+.registerSelect{
+  // background-color: red;
+  text-align: center;
+  &.registerSelect:hover{
+    // background-color: blue;
+  }
+}
+
+#is_dev{
+  background-color: red;
+  position: absolute;
+}
+
+.hidden{
+  display: none;
+
+  // visibility: hidden
+}
+
+.devSelectImageOne{
+  margin: 0 auto;
+  height: 80px;
+  width: 80px;
+  border-radius: 80px;
+  // background-color: red;
+  background-image: url("https://image.ibb.co/dn0825/Screen_Shot_2017_07_25_at_10_28_21.png");
+  background-position: center;
+  background-size: contain;
+}
+
+.devSelectImageTwo{
+    margin: 0 auto;
+  height: 80px;
+  width: 80px;
+  border-radius: 80px;
+  // background-color: red;
+  background-image: url("https://image.ibb.co/g13BN5/Screen_Shot_2017_07_25_at_10_25_51.png");
+  background-position: center;
+  background-size: contain;
+}

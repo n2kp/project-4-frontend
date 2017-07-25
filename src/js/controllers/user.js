@@ -43,19 +43,32 @@ function ProfileCtrl($auth, User, $state, Review) {
   vm.deleteReview = deleteReview;
 }
 
-ProfileEditCtrl.$inject = ['$auth', 'User','$state'];
-function ProfileEditCtrl($auth, User, $state) {
+ProfileEditCtrl.$inject = ['$auth', 'User','$state', '$scope', '$rootScope', 'API_URL','$http'];
+function ProfileEditCtrl($auth, User, $state, $scope, $rootScope, API_URL, $http) {
   const vm = this;
 
   vm.user = User.get($state.params);
   vm.update = userUpdate;
+
+  // $scope.$watch(vm.user.is_dev, () => {
+  //   console.log('changed');
+  //   // $rootScope.$broadcast('isDev', { isDev: vm.profile.is_dev });
+  //   $scope.$emit('child', vm.user.is_dev);
+  // });
 
   function userUpdate() {
     User
     .update($state.params, vm.user)
     .$promise
     .then(() => {
-      $state.go('profile', $state.params);
+
+      $http.get(`${API_URL}/refresh`)
+        .then((response) => {
+          console.log(response);
+          var refreshToken = response.data.token;
+          $auth.setToken(refreshToken);
+          $state.go('profile', $state.params);
+        });
     });
   }
 }

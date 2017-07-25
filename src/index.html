@@ -11,6 +11,7 @@
 
   <link href="https://fonts.googleapis.com/css?family=Rubik:400,500" rel="stylesheet">
 
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!-- inject:js -->
   <!-- endinject -->
   <!-- inject:css -->
@@ -39,6 +40,7 @@
 
       <li ng-if="!main.isAuthenticated()"><a ui-sref="register" >Register</a></li>
       <li ng-if="main.isAuthenticated()"><a ng-click="main.logout()" href="/">Logout</a></li>
+      <li>{{ main.message }}</li>
     </ul>
   </nav>
 

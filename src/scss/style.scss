@@ -3,7 +3,7 @@
 
 // SASS COLOUR SCHEME
 $error: red;
-$textColor: black;
+$textColor: #4b5961;
 $highlight: #8AEC75;
 $borderColor: #ececec;
 
@@ -24,7 +24,7 @@ $borderColor: #ececec;
 }
 
 #greyText{
-  color: lightgrey;
+  color: $borderColor;
 }
 
 #zero{
@@ -77,29 +77,30 @@ main {
 
 h1{
   font-size: 42px;
+  color: $textColor;
 }
 
 h2{
   font-size: 24px;
   font-weight: 500;
   margin: 0;
+  color: $textColor;
 }
 
 h4{
   margin: 0px 0px 8px 0px;
   font-size: 16px;
   font-weight: 500;
+  color: $textColor;
 }
 
 span{
   font-weight: bolder;
 }
 
-small{
-  font-size: 10px;
-  color: lightgrey;
-  float: right;
-  margin-left: 100px;
+p{
+  margin: 0px;
+  color: $textColor;
 }
 
 
@@ -172,9 +173,9 @@ nav{
   position: fixed;
   top: 0;
   background-color: white;
-  border-bottom: 1px solid lightgrey;
+  border-bottom: 1px solid $borderColor;
   color: $textColor;
-  min-height: 48px;
+  height: 48px;
   padding: 16px;
   width: 100%;
   margin: 0;
@@ -227,7 +228,7 @@ nav ul li a{
 }
 
 .NavProfileImage{
-  background-color: lightgrey;
+  background-color: $borderColor;
   height: 24px;
   width: 24px;
   border-radius: 24px;
@@ -286,9 +287,8 @@ nav ul li a{
   margin: 16px 0px;
   padding: 16px;
   word-wrap: break-word;
-  border-bottom: 1px solid lightgrey;
+  border-bottom: 1px solid $borderColor;
   &.projectCards:hover{
-
   }
 }
 
@@ -319,11 +319,11 @@ nav ul li a{
 //PROJECT SHOW
 
 .conversationsList{
-  border-bottom: 1px solid lightgrey;
+  border-bottom: 1px solid $borderColor;
   padding: 16px;
   margin: 16px 0px 8px 0px;
   &.conversationsList:hover{
-    background-color: lightgrey;
+    background-color: $borderColor;
   }
 }
 
@@ -333,35 +333,90 @@ nav ul li a{
 
 //MESSAGES
 
+.body{
+  display: block;
+}
+
+.small{
+  font-size: 10px;
+  color: $borderColor;
+  float: right;
+  margin-left: 100px;
+  display: block;
+}
+
 .chatBoxBounding{
-  position: absolute;
-  // margin-top: 24px;
   height: 87vh;
-  width: 85%;
-  top:50%;
-  left:50%;
-  transform: translate(-50%, -50%);
-  // margin: 32px auto;
-  background-color: #f1ffee;
+  overflow: hidden;
+  padding: 0px;
 }
 
-.scroll{
-  max-height: 84%;
+.center{
+  text-align: center;
+}
+
+.messageScroll{
   overflow: auto;
+  height: inherit;
+  height: 76vh;
+  // background-color: yellow;
 }
 
-#chatList{
+.noShowChat{
+  background-color: #f5f5f7;
+}
+
+.noShowChatContent{
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.noChatImage{
+  margin: 0 auto;
+  height: 300px;
+  width: 400px;
+  border-radius: 200px;
+  background-image: url("https://preview.ibb.co/j7xfFQ/chat.jpg");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+
+.messageside{
+  background-color: #f5f5f7;
+  margin: 0px;
+  padding: 0px;
+  &p{
+    padding: 0px;
+  }
+}
+.shadow-1{
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.chatInput{
+  background-color: white;
+  position: absolute;
+  bottom: 0;
+  padding: 0px;
+  margin: 0p;
+}
+
+.chatList{
   background-color: white;
   padding: 0px 0px;
   height: 87vh;
   box-shadow: 6px 4px 12px -8px #d6d6d6;
   z-index: 5;
-  position: relative;
 }
 
 .chatHeading{
   padding: 24px 16px;
-  background-color: lightgrey;
+  background-color: $highlight;
 }
 
 #chatSidebarMessages{
@@ -376,46 +431,63 @@ nav ul li a{
   padding: 16px;
 }
 
-.chatInput{
-  background-color: white;
-  position: absolute;
-  bottom: 0;
-  margin-bottom: 16px;
-
-}
-
 .marginZero{
   margin-bottom: 0px;
 }
 
+.speech-bubble-row {
+  overflow: hidden;
+}
+
 .speech-bubble-received {
+  color: black;
+  background-color: white;
+  padding: 8px 16px;
+  border-radius: 0px 14px 14px 14px;
+  margin: 16px 16px;
   max-width: 60%;
-  position: relative;
+  display: inline-block;
+}
+
+.speech-bubble-sent {
+  max-width: 60%;
   color: black;
   background-color: $highlight;
   padding: 8px 16px;
   border-radius: 14px 0px 14px 14px;
   margin: 16px 16px;
+  display: inline-block;
   float: right;
 }
 
-.speech-bubble-sent {
-  max-width: 60%;
-  position: relative;
-  color: black;
-  background-color: white;
-  padding: 8px 16px;
-  border-radius: 2px 14px 14px 14px;
-  margin: 16px 16px;
-  float: left;
-}
 
 .chatProfileImage{
-  background-color: lightgrey;
+  background-color: $borderColor;
   height: 48px;
   width: 48px;
   border-radius: 24px;
 }
+
+.chatTextBox{
+  border: 1px solid $borderColor;
+  border-radius: 4px;
+  height: 42px;
+}
+
+.chatSubmit{
+  background-color: white;
+  border: none;
+  color: $highlight;
+  &.chatSubmit:hover{
+    color: darken($highlight, 20%)
+  }
+}
+
+.iconLarge{
+  margin-top:8px;
+  font-size: 32px;
+}
+
 
 // register
 

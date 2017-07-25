@@ -25,15 +25,14 @@
 
       <p class="marginBottomMd"> {{project.description | limitTo: 150 }}...</p>
 
-      <p class="marginBottomSm"> <i class="tiny material-icons">alarm </i> <span>Project Deadline</span> {{project.project_deadline | date}}</p>
+      <p class="marginBottomSm"> <span>Project Deadline</span> {{project.project_deadline | date}}</p>
 
-      <p class="marginBottomSm"> <i class="tiny material-icons">code</i>
-        <span>Tech Stack</span> {{ project.tech_stack }}</p>
+      <p class="marginBottomSm">      <span>Tech Stack</span> {{ project.tech_stack }}</p>
 
-        <p class="marginBottomXSm"> <i class="tiny material-icons">monetization_on</i>
+        <p class="marginBottomXSm">
           <span>Budget</span> {{ project.budget | currency : '£' : 0 }}</p>
 
-          <p class="marginBottomLg"> <i class="tiny material-icons">alarm </i>
+          <p class="marginBottomLg">
             <span>Time left to submit a bid  </span>{{ project.bid_deadline | amDifference : null : 'days' }} days </p>
 
           </div>

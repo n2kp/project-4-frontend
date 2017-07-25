@@ -1,82 +1,93 @@
 <!DOCTYPE html >
 <div class="row">
 
+  <div class="col s6 offset-s3 z-depth-1">
 
-<div class="col s6 offset-s3 z-depth-1">
+    <h1>Update your Profile</h1>
+    <form ng-submit="profileEdit.update()" name="auth.registerForm" novalidate>
+      <div>
+        <!--USERNAME INPUT  -->
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" ng-model="profileEdit.user.username" unique required>
+        <!-- USERNAME VALIDATION/MESSAGES -->
 
-<h1>Update your Profile</h1>
-<form ng-submit="profileEdit.update()" name="auth.registerForm" novalidate>
-  <div>
-    <!--USERNAME INPUT  -->
-    <label for="username">Username</label>
-    <input type="text" name="username" id="username" ng-model="profileEdit.user.username" unique required>
-    <!-- USERNAME VALIDATION/MESSAGES -->
+        <!-- <div ng-messages="auth.registerForm.username.$error" ng-show="auth.registerForm.$submitted || auth.registerForm.username.$touched">
+        <div ng-message="required" class="errorMessage">A username is required</div>
+        <div ng-message="unique" class="errorMessage">Please choose a different username, this one was already been taken</div>
+      </div> -->
+    </div>
 
-    <!-- <div ng-messages="auth.registerForm.username.$error" ng-show="auth.registerForm.$submitted || auth.registerForm.username.$touched">
-    <div ng-message="required" class="errorMessage">A username is required</div>
-    <div ng-message="unique" class="errorMessage">Please choose a different username, this one was already been taken</div>
+
+    <!--FIRST NAME INPUT  -->
+    <div>
+      <label for="firstname">First Name</label>
+      <input type="text" ng-model="profileEdit.user.firstname" name="firstname" id="firstname" required>
+    </div>
+    <!-- FIRST NAME VALIDATION/MESSAGES -->
+    <!-- <div ng-messages="auth.registerForm.firstname.$error" ng-show="auth.registerForm.$submitted || auth.registerForm.firstname.$touched">
+    <div ng-message="required" class="errorMessage">You forgot to provide us with you first name</div>
   </div> -->
-</div>
 
 
-<!--FIRST NAME INPUT  -->
-<div>
-  <label for="firstname">First Name</label>
-  <input type="text" ng-model="profileEdit.user.firstname" name="firstname" id="firstname" required>
-</div>
-<!-- FIRST NAME VALIDATION/MESSAGES -->
-<!-- <div ng-messages="auth.registerForm.firstname.$error" ng-show="auth.registerForm.$submitted || auth.registerForm.firstname.$touched">
-<div ng-message="required" class="errorMessage">You forgot to provide us with you first name</div>
+  <!--LAST NAME INPUT  -->
+  <div>
+    <label for="lastname">Last Name</label>
+    <input type="text" ng-model="profileEdit.user.lastname" name="lastname" id="lastname" required>
+  </div>
+  <!-- LAST NAME VALIDATION/MESSAGES -->
+  <!-- <div ng-messages="auth.registerForm.lastname.$error" ng-show="auth.registerForm.$submitted || auth.registerForm.lastname.$touched">
+  <div ng-message="required" class="errorMessage">You forgot to provide us with you last name</div>
 </div> -->
 
 
-<!--LAST NAME INPUT  -->
+<!--EMAIL INPUT  -->
 <div>
-  <label for="lastname">Last Name</label>
-  <input type="text" ng-model="profileEdit.user.lastname" name="lastname" id="lastname" required>
-</div>
-<!-- LAST NAME VALIDATION/MESSAGES -->
-<!-- <div ng-messages="auth.registerForm.lastname.$error" ng-show="auth.registerForm.$submitted || auth.registerForm.lastname.$touched">
-<div ng-message="required" class="errorMessage">You forgot to provide us with you last name</div>
-</div> -->
-
-<!--TECH STACK INPUT  -->
-<div>
-  <label for="tech_stack">Email</label>
-  <input type="text" ng-model="profileEdit.user.tech_stack" name="tech_stack" id="tech_stack">
+  <label for="email">Email</label>
+  <input type="text" ng-model="profileEdit.user.email" name="email" id="email" required>
 </div>
 
+<div ng-if="main.currentUser.is_dev">
 
 
-<!--PORTFOLIO WEBSITE INPUT  -->
-<div>
-  <label for="portfolio_url">Portfolio Site</label>
-  <input type="text" ng-model="profileEdit.user.portfolio_url" name="portfolio_url" id="portfolio_url" required>
-</div>
+  <!--TECH STACK INPUT  -->
+  <div>
+    <label for="tech_stack">Tech Stack</label>
+    <input type="text" ng-model="profileEdit.user.tech_stack" name="tech_stack" id="tech_stack">
+  </div>
 
 
-<!--LINKED IN INPUT  -->
-<div>
-  <label for="linkedin_url">LinkedIn URL</label>
-  <input type="text" ng-model="profileEdit.user.linkedin_url" name="linkedin_url" id="linkedin_url" required>
-</div>
+
+  <!--PORTFOLIO WEBSITE INPUT  -->
+  <div>
+    <label for="portfolio_url">Portfolio Site</label>
+    <input type="text" ng-model="profileEdit.user.portfolio_url" name="portfolio_url" id="portfolio_url" required>
+  </div>
 
 
-<!--GITHUB INPUT  -->
-<div>
-  <label for="github_url">Github URL</label>
-  <input type="text" ng-model="profileEdit.user.github_url" name="github_url" id="github_url" required>
+  <!--LINKED IN INPUT  -->
+  <div>
+    <label for="linkedin_url">LinkedIn URL</label>
+    <input type="text" ng-model="profileEdit.user.linkedin_url" name="linkedin_url" id="linkedin_url" required>
+  </div>
+
+
+  <!--GITHUB INPUT  -->
+  <div>
+    <label for="github_url">Github URL</label>
+    <input type="text" ng-model="profileEdit.user.github_url" name="github_url" id="github_url" required>
+  </div>
 </div>
 
 <!--IMAGE INPUT  -->
 <div>
-  <label for="image">Profile Picture</label>
-  <input type="text" ng-model="profileEdit.user.image" name="image" id="image" required>
+  <label for="base64">Profile Picture</label>
+  <input type="file" base64 ng-model="profileEdit.user.base64" name="base64" id="base64">
 </div>
 <!-- IMAGE VALIDATION/MESSAGES -->
 <!-- <div ng-messages="auth.registerForm.lastname.$error" ng-show="auth.registerForm.$submitted || auth.registerForm.lastname.$touched">
 <div ng-message="required" class="errorMessage">You forgot to provide us with you last name</div>
 </div> -->
+
 
 <button>Update your Profile</button>
 </form>

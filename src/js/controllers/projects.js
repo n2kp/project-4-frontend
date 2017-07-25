@@ -26,9 +26,6 @@ function ProjectIndexCtrl (Project, moment, filterFilter, $scope) {
     if(vm.useDeadline) params.deadline = vm.bid_deadline;
 
     vm.filtered = filterFilter(vm.all, params);
-    // vm.filtered = orderByFilter(vm.filtered);
-    console.log(vm.filtered);
-    console.log(vm.budget);
   }
 
   function lowerThan(prop, val){

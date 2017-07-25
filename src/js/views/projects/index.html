@@ -27,9 +27,8 @@
     <div ng-if="!project.is_priority && project.is_active" ng-repeat="project in projectsIndex.filtered
     | filter: projectsIndex.lowerThan('budget', projectsIndex.budget)
     | filter: projectsIndex.dateFilter('bid_deadline', projectsIndex.bid_deadline)"
-    class="projectCards z-depth-1 cursor"  ui-sref="projectsShow({ id: project.id })">
+    class="projectCards z-depth-1 cursor" ui-sref="projectsShow({ id: project.id })">
 
-      <!-- <img ng-src="{{ project.user.image }}" alt="profile.user.imageSRC" class="NavProfileImage"> -->
       <p class="marginBottomXXSm"> <span>Posted by</span> {{ project.user.username }} </p>
       <h2 class="marginBottomMd"> {{project.title }}</h2>
 

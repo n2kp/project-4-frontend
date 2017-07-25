@@ -3,7 +3,7 @@
 
 // SASS COLOUR SCHEME
 $error: red;
-$textColor: black;
+$textColor: #4b5961;
 $highlight: #8AEC75;
 $borderColor: #ececec;
 
@@ -77,18 +77,21 @@ main {
 
 h1{
   font-size: 42px;
+  color: $textColor;
 }
 
 h2{
   font-size: 24px;
   font-weight: 500;
   margin: 0;
+  color: $textColor;
 }
 
 h4{
   margin: 0px 0px 8px 0px;
   font-size: 16px;
   font-weight: 500;
+  color: $textColor;
 }
 
 span{
@@ -97,6 +100,7 @@ span{
 
 p{
   margin: 0px;
+  color: $textColor;
 }
 
 
@@ -171,7 +175,7 @@ nav{
   background-color: white;
   border-bottom: 1px solid $borderColor;
   color: $textColor;
-  min-height: 48px;
+  height: 48px;
   padding: 16px;
   width: 100%;
   margin: 0;
@@ -343,30 +347,63 @@ nav ul li a{
 
 .chatBoxBounding{
   height: 87vh;
-  background-color: #f1ffee;
   overflow: hidden;
+  padding: 0px;
+}
+
+.center{
+  text-align: center;
 }
 
 .messageScroll{
   overflow: auto;
   height: inherit;
   height: 76vh;
-  background-color: yellow;
+  // background-color: yellow;
 }
 
+.noShowChat{
+  background-color: #f5f5f7;
+}
+
+.noShowChatContent{
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.noChatImage{
+  margin: 0 auto;
+  height: 300px;
+  width: 400px;
+  border-radius: 200px;
+  background-image: url("https://preview.ibb.co/j7xfFQ/chat.jpg");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+
 .messageside{
-  background-color: orange;
+  background-color: #f5f5f7;
+  margin: 0px;
+  padding: 0px;
   &p{
     padding: 0px;
   }
+}
+.shadow-1{
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 
 .chatInput{
   background-color: white;
   position: absolute;
   bottom: 0;
-  background-color: red;
-  padding: 16px;
+  padding: 0px;
+  margin: 0p;
 }
 
 .chatList{
@@ -379,7 +416,7 @@ nav ul li a{
 
 .chatHeading{
   padding: 24px 16px;
-  background-color: $borderColor;
+  background-color: $highlight;
 }
 
 #chatSidebarMessages{
@@ -424,13 +461,33 @@ nav ul li a{
 }
 
 
-
 .chatProfileImage{
   background-color: $borderColor;
   height: 48px;
   width: 48px;
   border-radius: 24px;
 }
+
+.chatTextBox{
+  border: 1px solid $borderColor;
+  border-radius: 4px;
+  height: 42px;
+}
+
+.chatSubmit{
+  background-color: white;
+  border: none;
+  color: $highlight;
+  &.chatSubmit:hover{
+    color: darken($highlight, 20%)
+  }
+}
+
+.iconLarge{
+  margin-top:8px;
+  font-size: 32px;
+}
+
 
 // register
 

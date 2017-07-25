@@ -3,7 +3,7 @@
 <div class="main">
 
   <div class="row justify-content-center">
-    <div class="row col-11 chatBoxBounding">
+    <div class="row col-11 chatBoxBounding shadow-1">
 
       <div class="col-3 chatList">
         <div class="chatHeading">
@@ -27,17 +27,25 @@
 
                     <div ng-if="(conversation.messages.length-1) === $index">
                       <p id="greyText"> {{ message.body | limitTo: 55 }}... </p>
+                      <small> {{ message.created_at | date : 'shortTime' }} </small>
                     </div>
                   </div>
                 </div>
+
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!--
-      <p ng-show="conversations.index === null" class="col-4 red"> Please select a conversation </p> -->
+
+      <div ng-show="conversations.index === null" class="col-9 noShowChat">
+        <div class="noShowChatContent">
+          <div class="noChatImage"></div>
+          <h1 class="center"> Start the conversation</h1>
+          <p class="center"> Please select a conversation to start chatting</p>
+        </div>
+      </div>
 
       <!-- CONVERSATION -->
       <div class="col-9 messageside">
@@ -45,37 +53,31 @@
 
           <div ng-repeat="message in conversations.conversations[conversations.index].messages" class="speech-bubble-row">
 
-
-
-              <div ng-class="{true:'speech-bubble-sent', false:'speech-bubble-received'}[main.currentUser.id === message.user_id]">
-                <div class="body">
+            <div ng-class="{true:'speech-bubble-sent', false:'speech-bubble-received'}[main.currentUser.id === message.user_id]">
+              <div class="body">
                 <p>  {{ message.body }} </p>
-                </div><div class="small">{{ message.created_at | date : 'shortTime' }} </div>
+              </div><div class="small">{{ message.created_at | date : 'shortTime' }} </div>
             </div>
           </div>
         </div>
 
-        <!-- <div class="col-9 messageside">
-        <ul>
-        <li class="speech-bubble-sent"><span>Hi its tim!</span></li>
-        <li class="speech-bubble-received"><span>Yo, s'up tim!</span></li>
-      </ul>
-    </div> -->
+        <!-- WRITE A MESSAGE SECTION -->
 
-    <!-- WRITE A MESSAGE SECTION -->
-    <div class="col-12 chatInput">
-      <div class="chatPadding">
 
-        <form ng-show="conversations.index !== null" ng-submit="conversations.addMessage(conversations.message)" name="conversations.messageForm">
 
-          <label for="body">Write a message... </label>
-          <input type="text" ng-model="conversations.message.body" name="body" id="body" required>
-          <button>Submit</button>
 
-        </form>
+          <form ng-show="conversations.index !== null" ng-submit="conversations.addMessage(conversations.message)" name="conversations.messageForm">
+
+            <div class="col-12 chatInput">
+              <div class="chatPadding">
+
+
+                <input type="text" ng-model="conversations.message.body" name="body" id="body" placeholder="Write a message..." class="col-10 chatTextBox" required>
+                <button class=" col-1 chatSubmit cursor"> <i class=" material-icons iconLarge">message</i> </button>
+              </div>
+            </div>
+          </form>
       </div>
     </div>
   </div>
-</div>
-</div>
 </div>

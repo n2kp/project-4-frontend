@@ -27,6 +27,10 @@ $highlight: #8AEC75;
   padding: 0px;
 }
 
+main{
+  margin-top: 80px;
+}
+
 main {
   .errorMessage {
     padding:-10px;
@@ -152,7 +156,7 @@ small{
 //NAV STYLES
 
 nav{
-  // position: fixed;
+  position: fixed;
   top: 0;
   background-color: white;
   border-bottom: 1px solid lightgrey;
@@ -162,6 +166,7 @@ nav{
   width: 100%;
   margin: 0;
   margin-bottom: 10px;
+  z-index: 50;
 }
 
 .nav-logo-icon{
@@ -250,14 +255,17 @@ nav ul li a{
   transform: translateY(-50%);
 }
 
-
-
 //INDEX STYLES
 
 .filter{
+  position: fixed;
   margin: 16px 0px;
   padding: 16px;
   word-wrap: break-word;
+  background-color: $highlight;
+  height: 100vh;
+  width: 15%;
+  top: 48px;
 }
 
 .projectCards{

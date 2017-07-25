@@ -5,11 +5,62 @@ angular
 .controller('ProjectShowCtrl', ProjectShowCtrl)
 .controller('ProjectEditCtrl', ProjectEditCtrl);
 
-ProjectIndexCtrl.$inject = ['Project', 'moment'];
-function ProjectIndexCtrl (Project, moment) {
+ProjectIndexCtrl.$inject = ['Project', 'moment', 'filterFilter', '$scope'];
+function ProjectIndexCtrl (Project, moment, filterFilter, $scope) {
   const vm = this;
-  vm.all = Project.query();
+
+  Project.query()
+  .$promise
+  .then((projects) => {
+    vm.all = projects;
+    filterProjects();
+  });
+
   moment().hour(8).minute(0).second(0).toDate();
+
+
+  function filterProjects() {
+    const params = { title: vm.q, tech_stack: vm.q };
+
+    if(vm.useBudget) params.budget = vm.budget;
+    if(vm.useDeadline) params.deadline = vm.bid_deadline;
+
+    vm.filtered = filterFilter(vm.all, params);
+    // vm.filtered = orderByFilter(vm.filtered);
+    console.log(vm.filtered);
+    console.log(vm.budget);
+  }
+
+  function lowerThan(prop, val){
+    if(vm.useBudget) {
+      return function(project) {
+        console.log(project);
+        if (project[prop] < val || project[prop] === undefined) return true;
+      };
+    }
+  }
+  vm.lowerThan = lowerThan;
+
+  function dateFilter(prop, val) {
+    if(vm.useDeadline) {
+      return function(project) {
+        const chosenEndDate = moment().add(val, 'day')._d;
+        const bidEndDate = moment(project[prop])._d;
+        console.log('Chosen end date: ', chosenEndDate);
+        console.log('Project end date: ', moment(project[prop])._d);
+        // console.log(chosenEndDate._d);
+        console.log(chosenEndDate > bidEndDate);
+        if (chosenEndDate > bidEndDate) return true;
+      };
+    }
+  }
+
+  vm.dateFilter = dateFilter;
+
+  //create a watch group to listen out for changes and then running the function
+  $scope.$watchGroup([
+    () => vm.q
+  ], filterProjects);
 }
 
 

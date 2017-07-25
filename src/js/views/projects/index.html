@@ -9,7 +9,7 @@
       <p>FILTER SOME STUFF</p>
       <input ng-model="projectsIndex.q" type="text" name="" value="">
       <div class="filters">
-        <div class="">
+        <div>
           <input type="checkbox" id="budget" ng-model="projectsIndex.useBudget">
           <label for="budget">Budget less than {{ projectsIndex.budget | currency:'£':0 }}</label>
           <input type="range" ng-model="projectsIndex.budget" step="2000" min="1000" max="100000" ng-disabled="!projectsIndex.useBudget">
@@ -27,7 +27,7 @@
     <div ng-if="!project.is_priority && project.is_active" ng-repeat="project in projectsIndex.filtered
     | filter: projectsIndex.lowerThan('budget', projectsIndex.budget)
     | filter: projectsIndex.dateFilter('bid_deadline', projectsIndex.bid_deadline)"
-    class="projectCards z-depth-1 cursor"  ui-sref="projectsShow({ id: project.id })">
+    class="projectCards z-depth-1 cursor" ui-sref="projectsShow({ id: project.id })">
 
       <img ng-src="{{ project.user.image }}" alt="profile.user.imageSRC" class="NavProfileImage">
       <p class="marginBottomXXSm"> <span>Posted by</span> {{ project.user.username }} </p>

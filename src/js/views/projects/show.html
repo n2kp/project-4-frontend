@@ -34,8 +34,8 @@
         <label for="pitch">Pitch</label>
         <input type="text" id="pitch" name="pitch" ng-model="projectsShow.tender.pitch">
 
-        <label for="image_src">Image Upload</label>
-        <input type="text" id="image_src" name="image_src" ng-model="projectsShow.tender.image_src">
+        <label for="base64">Image Upload</label>
+        <input type="file" base64 id="base64" name="base64" ng-model="projectsShow.tender.base64">
 
         <button class="button primary">Submit Offer</button>
       </form>
@@ -68,7 +68,7 @@
             </form> -->
             <button ng-if="main.currentUser.id === tender.user.id" >Alter your bid</button>
 
-            <button ng-if="main.currentUser.id === projectsShow.project.user.id" ng-click="projectsShow.acceptBid(tender.id) ;contactCreator(main.currentUser.id, projectsShow.tender.user.id)">Accept this bid</button>
+            <button ng-if="main.currentUser.id === projectsShow.project.user.id" ng-click="projectsShow.acceptBid(tender.id) ; contactCreator(main.currentUser.id, projectsShow.tender.user.id)">Accept this bid</button>
 
             <button ng-if="main.currentUser.id === tender.user.id" ng-click="projectsShow.delete(tender)" >Retract your bid</button>
 

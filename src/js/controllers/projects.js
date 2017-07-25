@@ -38,7 +38,7 @@ function ProjectNewCtrl (Project, User, $stateParams, $state ){
 ProjectShowCtrl.$inject = ['Project', 'User', '$stateParams', '$state', 'Conversation', 'Tender', 'moment'];
 function ProjectShowCtrl (Project, User, $stateParams, $state, Conversation, Tender, moment) {
   const vm = this;
-  moment().hour(8).minute(0).second(0).toDate();
+  moment().hour(0).minute(0).second(0).toDate();
 
   vm.project = Project.get($stateParams);
   vm.tenders = Tender.query();
@@ -52,6 +52,7 @@ function ProjectShowCtrl (Project, User, $stateParams, $state, Conversation, Ten
     .$promise
     .then((tender) => {
       vm.tenders.push(tender);
+      $state.go('projectsIndex');
     });
   }
 

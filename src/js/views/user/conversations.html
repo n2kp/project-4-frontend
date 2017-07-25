@@ -9,12 +9,14 @@
       <div class="chatHeading">
         <img ng-src="{{ main.currentUser.image_src }}" alt="profile.user.image" class="NavProfileImage">
       </div>
+      <!-- <button ng-click="conversations.getUnread(main.currentUser.id)">Click</button> -->
       <div ng-repeat="conversation in conversations.conversations track by $index">
         <div class="col s12" id="chatSidebarMessages">
-          <div ng-click="conversations.selectConversation(conversation, $index)" class="cursor">
+          <div ng-click="conversations.selectConversation(conversation, $index, main.currentUser.id)" class="cursor">
             <div class="row" id="zero">
               <div class="col s2 marginRightSm">
                 <img ng-src="{{ conversation.receiver.username  === main.currentUser.username ? conversation.sender.username : conversation.receiver.username }}" alt="profile.user.imageSRC" class=" chatProfileImage">
+
               </div>
               <div class="col s9">
                 <h4> {{ conversation.receiver.username  === main.currentUser.username ? conversation.sender.username : conversation.receiver.username }}</h4>
@@ -41,15 +43,15 @@
         <div class="row">
           <div ng-class="{true:'speech-bubble-sent', false:'speech-bubble-received'}[main.currentUser.id === message.user_id]">
 
-            <p> {{ message.body }} </p> <small>{{ message.created_at | date : 'shortTime' }}</small></div>
+            <p> {{ message.body }} </p> <small>{{ message.read }}{{ message.created_at | date : 'shortTime' }}</small></div>
           </div>
         </div>
 
         <!-- WRITE A MESSAGE SECTION -->
-        <div class="col s9 chatInput" id="zero">
+        <div >
           <div class="chatPadding">
 
-            <form ng-show="conversations.index !== null" ng-submit="conversations.addMessage(conversations.message)" name="conversations.messageForm">
+            <form ng-show="conversations.index !== null" ng-submit="conversations.addMessage()" name="conversations.messageForm">
 
               <label for="body">Write a message... </label>
               <input type="text" ng-model="conversations.message.body" name="body" id="body" required>

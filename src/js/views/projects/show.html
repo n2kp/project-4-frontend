@@ -11,7 +11,7 @@
       <p>{{ projectsShow.project.tech_stack }}</p>
       <p>{{ projectsShow.project.budget | currency : '£' : 0}}</p>
       <br>
-
+      {{projectsShow.project}}
       <button ng-click="projectsShow.contactCreator(main.currentUser.id, projectsShow.project.user.id)" class="button primary">
         Message {{ projectsShow.project.user.username}}</button>
 

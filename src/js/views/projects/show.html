@@ -1,4 +1,6 @@
 <!DOCTYPE html >
+<div class="main">
+
 
 <div class="row">
   <div class="col offset-s1 s5">
@@ -11,7 +13,7 @@
       <p>{{ projectsShow.project.tech_stack }}</p>
       <p>{{ projectsShow.project.budget | currency : '£' : 0}}</p>
       <br>
-
+      {{projectsShow.project}}
       <button ng-click="projectsShow.contactCreator(main.currentUser.id, projectsShow.project.user.id)" class="button primary">
         Message {{ projectsShow.project.user.username}}</button>
 
@@ -52,6 +54,7 @@
           <h5>{{ tender.status }}</h5>
           <h5>{{ tender.user.username }}</h5>
           <h5>{{ tender.user.status }}</h5>
+          <img ng-src="{{ tender.image_src }}">
 
             <!-- <form ng-submit="projectsShow.update()">
 
@@ -75,7 +78,6 @@
             <button ng-if="main.currentUser.id === projectsShow.project.user.id" ng-click="projectsShow.delete(tender)">Reject this bid</button>
         </div>
       </div>
-
-
     </div>
   </div>
+</div>

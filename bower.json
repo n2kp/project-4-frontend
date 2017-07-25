@@ -21,7 +21,8 @@
     "satellizer": "^0.15.5",
     "angular-messages": "^1.6.5",
     "angular-moment": "^1.0.1",
-    "ng-materialize": "^0.1.2"
+    "ng-materialize": "^0.1.2",
+    "moment": "^2.18.1"
   },
   "resolutions": {
     "angular": "1.6.5"

@@ -1,5 +1,5 @@
 @import 'reset-css/reset';
-@import 'materialize-src/sass/materialize';
+@import 'bootstrap/bootstrap-grid';
 
 // SASS COLOUR SCHEME
 $error: red;
@@ -25,6 +25,10 @@ $highlight: #8AEC75;
 #zero{
   margin: 0px;
   padding: 0px;
+}
+
+.main{
+  margin-top: 80px;
 }
 
 main {
@@ -152,7 +156,7 @@ small{
 //NAV STYLES
 
 nav{
-  // position: fixed;
+  position: fixed;
   top: 0;
   background-color: white;
   border-bottom: 1px solid lightgrey;
@@ -162,6 +166,7 @@ nav{
   width: 100%;
   margin: 0;
   margin-bottom: 10px;
+  z-index: 50;
 }
 
 .nav-logo-icon{
@@ -250,14 +255,17 @@ nav ul li a{
   transform: translateY(-50%);
 }
 
-
-
 //INDEX STYLES
 
 .filter{
+  position: fixed;
   margin: 16px 0px;
   padding: 16px;
   word-wrap: break-word;
+  background-color: $highlight;
+  height: 100vh;
+  width: 15%;
+  top: 48px;
 }
 
 .projectCards{
@@ -393,4 +401,57 @@ nav ul li a{
   height: 48px;
   width: 48px;
   border-radius: 24px;
+}
+
+// register
+
+input[type=radio]{
+  background: yellow;
+}
+
+input[type=radio]:checked + label {
+  height: 200px;
+  width: 100px;
+  background-color: lightgrey;
+}
+
+.registerSelect{
+  // background-color: red;
+  text-align: center;
+  &.registerSelect:hover{
+    // background-color: blue;
+  }
+}
+
+#is_dev{
+  background-color: red;
+  position: absolute;
+}
+
+.hidden{
+  display: none;
+
+  // visibility: hidden
+}
+
+.devSelectImageOne{
+  margin: 0 auto;
+  height: 80px;
+  width: 80px;
+  border-radius: 80px;
+  // background-color: red;
+  background-image: url("https://image.ibb.co/dn0825/Screen_Shot_2017_07_25_at_10_28_21.png");
+  background-position: center;
+  background-size: contain;
+}
+
+.devSelectImageTwo{
+    margin: 0 auto;
+  height: 80px;
+  width: 80px;
+  border-radius: 80px;
+  // background-color: red;
+  background-image: url("https://image.ibb.co/g13BN5/Screen_Shot_2017_07_25_at_10_25_51.png");
+  background-position: center;
+  background-size: contain;
 }

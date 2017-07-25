@@ -70,10 +70,8 @@ function ProjectNewCtrl (Project, User, $stateParams, $state ){
   vm.project = {};
   vm.users = User.query();
 
-
   const today = new Date();
   vm.today = today.toISOString();
-
 
   function projectsCreate() {
     Project
@@ -115,6 +113,20 @@ function ProjectShowCtrl (Project, User, $stateParams, $state, Conversation, Ten
   // }
   // vm.update = tenderUpdate;
 
+  function acceptBid(id) {
+    vm.project.tenders.map((tender) => {
+      if (tender.id === id) {
+        tender.status = 'accepted';
+        Tender.update({ id: tender.id }, tender);
+      } else {
+        tender.status = 'rejected';
+        Tender.update({ id: tender.id }, tender);
+      }
+    });
+    vm.project.is_active = false;
+    Project.update({ id: vm.project.id }, vm.project);
+  }
+  vm.acceptBid = acceptBid;
 
   function tendersDelete(tender) {
     Tender
@@ -128,7 +140,6 @@ function ProjectShowCtrl (Project, User, $stateParams, $state, Conversation, Ten
   vm.delete = tendersDelete;
 
 
-
   function findUsersTender(id) {
     if (!vm.project.tenders) return false;
     const arrayOfTenders = vm.project.tenders.map((tender) => {
@@ -138,7 +149,6 @@ function ProjectShowCtrl (Project, User, $stateParams, $state, Conversation, Ten
   }
   vm.findUsersTender = findUsersTender;
   vm.tenderCreate = addTender;
-
 
 
   function contactCreator(sender_id, receiver_id) {
@@ -152,7 +162,6 @@ function ProjectShowCtrl (Project, User, $stateParams, $state, Conversation, Ten
 
   vm.contactCreator = contactCreator;
 }
-
 
 
 ProjectEditCtrl.$inject = ['Project', 'User', '$stateParams', '$state'];

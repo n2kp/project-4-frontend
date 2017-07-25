@@ -70,13 +70,14 @@
 
 <!--IMAGE INPUT  -->
 <div>
-  <label for="image">Profile Picture</label>
-  <input type="text" ng-model="profileEdit.user.image" name="image" id="image" required>
+  <label for="base64">Profile Picture</label>
+  <input type="file" base64 ng-model="profileEdit.user.base64" name="base64" id="base64">
 </div>
 <!-- IMAGE VALIDATION/MESSAGES -->
 <!-- <div ng-messages="auth.registerForm.lastname.$error" ng-show="auth.registerForm.$submitted || auth.registerForm.lastname.$touched">
 <div ng-message="required" class="errorMessage">You forgot to provide us with you last name</div>
 </div> -->
+
 
 <button>Update your Profile</button>
 </form>

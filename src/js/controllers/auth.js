@@ -26,4 +26,11 @@ function AuthCtrl($auth, $state) {
   }
 
   vm.login = login;
+
+  function authenticate(provider) {
+    $auth.authenticate(provider)
+    .then(() => $state.go('projectsIndex'));
+  }
+
+  vm.authenticate = authenticate;
 }

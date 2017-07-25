@@ -11,10 +11,10 @@
           <div ng-click="conversations.selectConversation(conversation, $index)" class="cursor">
             <div class="row" id="zero">
               <div class="col s2 marginRightSm">
-                <img ng-src="{{ conversation.receiver.image }}" alt="profile.user.imageSRC" class=" chatProfileImage">
+                <img ng-src="{{ conversation.receiver.username  === main.currentUser.username ? conversation.sender.username : conversation.receiver.username }}" alt="profile.user.imageSRC" class=" chatProfileImage">
               </div>
               <div class="col s9">
-                <h4> {{conversation.receiver.username }}</h4>
+                <h4> {{ conversation.receiver.username  === main.currentUser.username ? conversation.sender.username : conversation.receiver.username }}</h4>
                 <div ng-repeat="message in conversation.messages track by $index">
                   <div ng-if="(conversation.messages.length-1) === $index">
                     <p id="greyText"> {{ message.body | limitTo: 55 }}... </p>
@@ -38,7 +38,7 @@
         <div class="row">
           <div ng-class="{true:'speech-bubble-sent', false:'speech-bubble-received'}[main.currentUser.id === message.user_id]">
 
-            <p> {{ message.body }} </p> <small>{{ message.updated_at | date : 'shortTime' }}</small></div>
+            <p> {{ message.body }} </p> <small>{{ message.created_at | date : 'shortTime' }}</small></div>
           </div>
         </div>
 

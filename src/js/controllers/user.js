@@ -4,12 +4,13 @@ angular
 .controller('ProfileEditCtrl', ProfileEditCtrl)
 .controller('ConversationCtrl', ConversationCtrl);
 
-ProfileCtrl.$inject = ['$auth', 'User', '$state', 'Review'];
-function ProfileCtrl($auth, User, $state, Review) {
+ProfileCtrl.$inject = ['$auth', 'User', '$state', 'Review', 'Project'];
+function ProfileCtrl($auth, User, $state, Review, Project) {
   const vm = this;
 
   vm.reviews = Review.query();
   vm.user = User.get($state.params);
+  vm.projects = Project.query();
 
   function logout() {
     $auth.logout();

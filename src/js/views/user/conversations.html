@@ -26,7 +26,7 @@
                   <div ng-repeat="message in conversation.messages track by $index">
 
                     <div ng-if="(conversation.messages.length-1) === $index">
-                      <p id="greyText"> {{ message.body | limitTo: 55 }}... </p>
+                      <p id="greyText"> {{ message.body | limitTo: 25 }}... </p>
                       <small> {{ message.created_at | date : 'shortTime' }} </small>
                     </div>
                   </div>

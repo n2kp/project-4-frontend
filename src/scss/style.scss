@@ -91,6 +91,8 @@ main {
 }
 
 
+
+
 //FONT STYLES
 .titleBig{
   font-size: 64px;
@@ -166,6 +168,9 @@ p{
 .marginRightSm{
   margin-right: 16px;
 }
+.marginRightXSm{
+  margin-right: 8px;
+}
 
 .marginCenter{
   margin: 0 auto;
@@ -181,13 +186,14 @@ p{
 
 .button{
   background-color: white;
-  padding: 8px 32px;
-  border-radius: 100px;
-  width: 200px;
+  padding: 4px 32px;
+  border-radius: 4px;
   text-align: center;
   display: inline-block;
   border: none;
   cursor: pointer;
+  text-decoration: none;
+
 }
 
 .primary{
@@ -195,6 +201,29 @@ p{
   color: white;
   &.primary:hover {
     background-color: darken($highlight, 20%);
+    text-decoration: none;
+    color: white;
+  }
+}
+
+.facebook{
+  background-color: #3b5998;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  &.facebook:hover {
+    background-color: darken(#3b5998, 10%);
+
+  }
+}
+.github{
+  background-color: #24292e;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  &.github:hover {
+    background-color: lighten(#24292e, 10%);
+
   }
 }
 
@@ -602,8 +631,8 @@ input[type=radio]:checked + label {
   border: 1px solid white;
   padding: 4px 16px;
   border-radius: 4px;
-  position: fixed;
-  right: 10%;
+  position: relative;
+  left: 84%;
   top: 60px;
   color: white;
   text-decoration: none;
@@ -619,7 +648,7 @@ input[type=radio]:checked + label {
   text-decoration: none;
   position: relative;
   right: 0.4%;
-  top: 244px;
+  top: 220px;
   font-size: 24px;
   padding: 0px 8px;
   display: inline-block;

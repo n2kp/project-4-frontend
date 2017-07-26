@@ -52,14 +52,21 @@
         <p>{{ project.bid_deadline | amDifference : null : 'days' }} days </p>
         <p>{{ project.tech_stack }}</p>
         <p>{{ project.budget | currency : '£' : 0}}</p>
-        <h5>You currently have {{ project.tenders.length }} bids on this project, <a ui-sref="projectsShow({ id: project.id })">click here</a> to view your project </h5>
+        <h5>You currently have {{ project.tenders.length }} bids on this project</h5>
+          <a ui-sref="projectsShow({ id: project.id })" class="button primary">view project </a>
       </div>
     </div>
 
   </div>
 
   <div class="col-5">
-    <h2>Review <em ng-if="profile.user.reviews.length > 1">'s</em></h2>
+    <h2>Review's</h2>
+
+    <div ng-if="profile.user.reviews_received.length === 0" class="profileCards shadow-1">
+    <h1>  This user currently has no reviews </h1>
+    </div>
+
+
     <div ng-repeat="review in profile.user.reviews_received" class="profileCards shadow-1">
       <p>{{ review.body }}</p>
       <p>Rating: {{ review.rating }}</p>

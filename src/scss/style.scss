@@ -19,8 +19,8 @@ $borderColor: #ececec;
   background-color: blue;
 }
 
-.yellow{
-  background-color: yellow;
+.green{
+  background-color: green;
 }
 
 #greyText{
@@ -788,4 +788,56 @@ $range-label-width: 60px !default;
   &:active::-moz-range-thumb {
     background: $highlight;
   }
+}
+
+// BIDDING
+
+#noPaddingBottom{
+  padding-bottom: 0px;
+}
+
+.bidAccept{
+  text-align: center;
+  margin: 8px auto;
+  background-color: white;
+  border: 2px solid $highlight;
+  color: $highlight;
+  padding: 10px;
+  border-radius: 100px;
+  width: 48px;
+  height: 48px;
+  font-size: 14px;
+  &.bidAccept:hover{
+    color: white;
+    background-color: $highlight;
+  }
+}
+
+.tenderInfo{
+  border-bottom: 1px solid $borderColor;
+}
+
+.bidReject{
+  margin: 8px auto;
+  background-color: white;
+  border: 2px solid red;
+  padding: 10px;
+  border-radius: 100px;
+  color: red;
+  width: 48px;
+  height: 48px;
+  font-size: 14px;
+  &.bidReject:hover{
+    color: white;
+    background-color: red;
+  }
+}
+
+.bidButton{
+  display: inline;
+}
+
+.acceptBox{
+  // border: 1px solid grey;
+  width: 50%;
 }

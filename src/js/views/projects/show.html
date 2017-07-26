@@ -44,17 +44,31 @@
 
 
         <h1>Current Bids</h1>
-        <div ng-repeat="tender in projectsShow.project.tenders" class="projectCards">
+
+        <div ng-repeat="tender in projectsShow.project.tenders" class="projectCards" id="noPaddingBottom">
 
           <div ng-if="main.currentUser.id === tender.user.id || main.currentUser.id === projectsShow.project.user.id">
 
-            <h1 ng-if="main.currentUser.id === tender.user.id ">Your current bid</h1>
-            <h5>{{ tender.bid }}</h5>
-            <h5>{{ tender.pitch }}</h5>
-            <h5>{{ tender.status }}</h5>
-            <h5>{{ tender.user.username }}</h5>
-            <h5>{{ tender.user.status }}</h5>
-            <img ng-src="{{ tender.image_src }}">
+            <div class="tenderInfo">
+
+
+
+              <h1 ng-if="main.currentUser.id === tender.user.id ">Your current bid</h1>
+              <h2 class="marginBottomMd">{{ tender.user.firstname }}'s offer</h2>
+              <h5>{{ tender.bid  | currency : '£' : 0 }}</h5>
+              <h5>{{ tender.pitch }}</h5>
+
+
+
+              <div ng-class="{blue:tender.status === 'pending', red:tender.status === 'rejected', green:tender.status === 'accepted'}"> {{ tender.status }} </div>
+
+              <h5>{{ tender.user.status }}</h5>
+              <!-- <p> {{ tender }}</p> -->
+              <div ng-if="tender.image_src !== null">
+                <img ng-src="{{ tender.image_src }}">
+              </div>
+            </div>
+
 
             <div>
 
@@ -82,14 +96,47 @@
             </div>
 
 
+            <div class="row justify-content-center">
 
-            <button ng-if="main.currentUser.id === projectsShow.project.user.id" ng-click="projectsShow.acceptBid(tender.id) ; contactCreator(main.currentUser.id, projectsShow.tender.user.id)">Accept this bid</button>
 
-            <button ng-if="main.currentUser.id === tender.user.id" ng-click="projectsShow.delete(tender)" >Retract your bid</button>
+              <div ng-if="main.currentUser.id === projectsShow.project.user.id" ng-click="projectsShow.acceptBid(tender.id) ; contactCreator(main.currentUser.id, projectsShow.tender.user.id)" class="cursor justify-content-center acceptBox">
 
-            <button ng-if="main.currentUser.id === projectsShow.project.user.id" ng-click="projectsShow.delete(tender)">Reject this bid</button>
+
+                <div class="bidAccept">
+                  <i class="material-icons">done</i>
+                </div>
+                <h4 class="text-center">Accept this bid</h4>
+              </div>
+
+
+
+              <h4 ng-if="main.currentUser.id === tender.user.id" ng-click="projectsShow.delete(tender)">Retract your bid</h4>
+
+              <div ng-if="main.currentUser.id === projectsShow.project.user.id" ng-click="projectsShow.delete(tender)" class="cursor acceptBox">
+
+
+                <div class="bidReject">
+                  <i class="material-icons">clear</i>
+                </div>
+                <h4 class="text-center">Reject this bid</h4>
+
+
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+
+
+    <!-- <div ng-class="'{bidRejected': tender.status === 'rejected', 'bidAccepted': tender.status === 'accepted',
+    'bidPending': tender.status === 'pending' "> </div>
+
+
+    <div ng-class="'{rejected: 'bidRejected', accepted: 'bidAccept', rejected: 'bidRejected'}[tender.status]"></div>
+
+    tender.status === 'rejected', 'bidAccepted': tender.status === 'accepted',
+    'bidPending': tender.status === 'pending' "> </div>
+
+
+    <div ng-class="{true:'speech-bubble-sent', false:'speech-bubble-received'}[main.currentUser.id === message.user_id]"> -->

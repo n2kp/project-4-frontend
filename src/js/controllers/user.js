@@ -96,6 +96,17 @@ function ProfileEditCtrl($auth, User, $state, $scope, $rootScope, API_URL, $http
     });
   }
 
+  function deleteUser() {
+    User
+    .delete({ id: vm.user.id})
+    .$promise
+    .then(() =>
+    $state.go('login'));
+
+  }
+
+  vm.deleteUser = deleteUser;
+
 
 
 }
@@ -163,12 +174,12 @@ function ConversationCtrl(Conversation, Message, $scope) {
       vm.conversationId = conversation.id;
       vm.index = index;
       Message
-        .get({ id: vm.conversationId })
-        .$promise
-        .then((response) => {
-          console.log('From index messages', response);
-          // .. update Angular
-        });
+      .get({ id: vm.conversationId })
+      .$promise
+      .then((response) => {
+        console.log('From index messages', response);
+        // .. update Angular
+      });
 
     });
   }

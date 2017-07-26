@@ -92,7 +92,7 @@
           <!--PORTFOLIO WEBSITE INPUT  -->
           <div>
             <label for="portfolio_url">Portfolio Site</label>
-            <input type="text" ng-model="profileEdit.user.portfolio_url" name="portfolio_url" id="portfolio_url" ng-pattern="(@'^(http|https)://.*$')" >
+            <input type="text" ng-model="profileEdit.user.portfolio_url" name="portfolio_url" id="portfolio_url" pattern="(@'^(http|https)://.*$')" >
           </div>
           <!-- PORTFOLIO WEBSITE VALIDATION/MESSAGES -->
           <div ng-messages="profileEdit.editProfileForm.portfolio_url.$error" ng-show="profileEdit.editProfileForm.$submitted || profileEdit.editProfileForm.portfolio_url.$touched">
@@ -103,11 +103,11 @@
 
           <!--LINKED IN INPUT  -->
           <div>
-            <label for="linkedin_url">LinkedIn URL</label>
-            <input type="text" ng-model="profileEdit.user.linkedin_url" name="linkedin_url" id="linkedin_url" ng-pattern="(@'^(http|https)://.*$')">
+            <label for="facebook_url">Facebook URL</label>
+            <input type="text" ng-model="profileEdit.user.facebook_url" name="facebook_url" id="facebook_url" pattern="(@'^(http|https)://.*$')">
           </div>
           <!-- LINKED IN VALIDATION/MESSAGES -->
-          <div ng-messages="profileEdit.editProfileForm.linkedin_url.$error" ng-show="profileEdit.editProfileForm.$submitted || profileEdit.editProfileForm.linkedin_url.$touched">
+          <div ng-messages="profileEdit.editProfileForm.facebook_url.$error" ng-show="profileEdit.editProfileForm.$submitted || profileEdit.editProfileForm.facebook_url.$touched">
             <div ng-message="pattern" class="errorMessage">The URL must start with 'http://' or 'https://'</div>
           </div>
 
@@ -116,12 +116,11 @@
           <!--GITHUB INPUT  -->
           <div>
             <label for="github_url">Github URL</label>
-            <input type="text" ng-model="profileEdit.user.github_url" name="github_url" id="github_url" ng-pattern="(@'^(http|https)://.*$')" required>
+            <input type="text" ng-model="profileEdit.user.github_url" name="github_url" id="github_url" pattern="(@'^(http|https)://.*$')">
           </div>
           <!-- GITHUB VALIDATION/MESSAGES -->
           <div ng-messages="profileEdit.editProfileForm.github_url.$error" ng-show="profileEdit.editProfileForm.$submitted || profileEdit.editProfileForm.github_url.$touched">
             <div ng-message="pattern" class="errorMessage">The URL must start with 'http://' or 'https://'</div>
-            <div ng-message="required" class="errorMessage">The URL must start with 'http://' or 'https://'</div>
           </div>
 
         </div>
@@ -133,7 +132,7 @@
         </div>
 
         <button>Update your Profile</button>
-
+        <button ng-click="profileEdit.deleteUser()">Delete</button>
       </form>
     </div>
   </div>

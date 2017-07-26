@@ -53,6 +53,7 @@ function ProfileCtrl($auth, User, $state, Review, Project) {
   }
   vm.addReview = addReview;
 
+
   function deleteReview(review) {
     Review
     .delete({ user_id: vm.user.id, id: review.id })
@@ -81,20 +82,33 @@ function ProfileEditCtrl($auth, User, $state, $scope, $rootScope, API_URL, $http
   // });
 
   function userUpdate() {
-    User
-    .update($state.params, vm.user)
-    .$promise
-    .then(() => {
+    if (vm.editprofileForm.$valid){
+      User
+      .update($state.params, vm.user)
+      .$promise
+      .then(() => {
 
-      $http.get(`${API_URL}/refresh`)
-      .then((response) => {
-        console.log(response);
-        var refreshToken = response.data.token;
-        $auth.setToken(refreshToken);
-        $state.go('profile', $state.params);
+        $http.get(`${API_URL}/refresh`)
+        .then((response) => {
+          console.log(response);
+          var refreshToken = response.data.token;
+          $auth.setToken(refreshToken);
+          $state.go('profile', $state.params);
+        });
       });
-    });
+    }
   }
+
+  function deleteUser() {
+    User
+    .delete({ id: vm.user.id})
+    .$promise
+    .then(() =>
+    $state.go('login'));
+
+  }
+
+  vm.deleteUser = deleteUser;
 
 
 
@@ -163,12 +177,12 @@ function ConversationCtrl(Conversation, Message, $scope) {
       vm.conversationId = conversation.id;
       vm.index = index;
       Message
-        .get({ id: vm.conversationId })
-        .$promise
-        .then((response) => {
-          console.log('From index messages', response);
-          // .. update Angular
-        });
+      .get({ id: vm.conversationId })
+      .$promise
+      .then((response) => {
+        console.log('From index messages', response);
+        // .. update Angular
+      });
 
     });
   }

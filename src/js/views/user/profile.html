@@ -21,6 +21,10 @@
         <h1 class="marginBottomMd">{{ profile.user.firstname }} {{ profile.user.lastname }}</h1>
         <h6 ng-if="main.currentUser.is_dev">Skills: {{ profile.user.tech_stack }}</h6>
         <h6 ng-if="profile.user.portfolio_url"><a href="{{ profile.user.portfolio_url }}" target="_blank">{{profile.user.portfolio_url}}</a></h6>
+
+        <h6 ng-if="profile.user.facebook_url"><a href="{{ profile.user.facebook_url }}" target="_blank">{{profile.user.facebook_url}}</a></h6>
+
+        <h6 ng-if="profile.user.github_url"><a href="{{ profile.user.github_url }}" target="_blank">{{profile.user.github_url}}</a></h6>
       </div>
 
       <a ng-if="main.currentUser.id !== profile.user.id" ui-sref="conversations">Message {{profile.user.firstname}}</a>
@@ -61,23 +65,38 @@
 
   <div class="col-5">
     <h2>Reviews</h2>
-    <div ng-if="profile.user.reviews_received.length === 0" class="profileCards shadow-1">
-      <h1>You currently have no reviews</h1>
+    <div class="profileCards shadow-1">
+
+      <h1 ng-if="main.currentUser.id === profile.user.id" >You have recieved {{profile.user.reviews_received.length}} reviews </h1>
+
+      <h1 ng-if="main.currentUser.id !== profile.user.id" >This user has received {{ profile.user.reviews_received.length }}  reviews</h1>
+
     </div>
+
     <div ng-repeat="review in profile.user.reviews_received" class="profileCards shadow-1">
       <p>{{ review.body }}</p>
       <p>Rating: {{ review.rating }}</p>
       <p>{{ review.creator.username }}</p>
+
+        <button ng-if="main.currentUser.id === review.user.id" ng-click="profile.deleteReview(review)" >Remove your review of this user</button>
+
     </div>
+
+
+
+  <div ng-if="main.currentUser.id !== profile.user.id" >
+
 
     <form ng-submit="profile.addReview()">
       <div class="form-group">
         <textarea placeholder="Write a user review" ng-model="profile.newReview.body" class="form-control"></textarea>
       </div>
+
       <div class="form-group">
         <input type="number" name="rating" ng-model="profile.newReview.rating" class="form-control">
         <button class="button primary marginTopMd">Post Review</button>
       </div>
     </form>
+   </div>
   </div>
 </div>

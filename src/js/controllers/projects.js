@@ -129,6 +129,19 @@ function ProjectShowCtrl (Project, User, $stateParams, $state, Conversation, Ten
   }
   vm.acceptBid = acceptBid;
 
+
+  function rejectBid(id) {
+    vm.project.tenders.map((tender) => {
+      if (tender.id === id) {
+        tender.status = 'rejected';
+        Tender.update({ id: tender.id }, tender);
+      }
+    });
+  }
+
+  vm.rejectBid = rejectBid;
+
+
   function tendersDelete(tender) {
     Tender
     .delete({ id: tender.id })

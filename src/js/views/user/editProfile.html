@@ -71,9 +71,9 @@
           <input type="text" ng-model="profileEdit.user.email" name="email" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
         </div>
         <!-- EMAIL VALIDATION/MESSAGES -->
-        <div ng-messages="auth.registerForm.email.$error" ng-show="auth.registerForm.$submitted || auth.registerForm.email.$touched">
+        <div ng-messages="profileEdit.editProfileForm.email.$error" ng-show="profileEdit.editProfileForm.$submitted || profileEdit.editProfileForm.email.$touched">
           <div ng-message="required" class="errorMessage">An email address is required</div>
-          <div ng-message="pattern" ng-show="register.registrationForm.$submitted || register.registrationForm.email.$touched" class="notificationThin" >This Email is not valid</div>
+          <div ng-message="pattern" class="errorMessage" >This Email is not valid</div>
         </div>
 
 

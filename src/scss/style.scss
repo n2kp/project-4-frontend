@@ -369,6 +369,9 @@ nav ul li a{
   width: 15%;
   top: 48px;
 }
+.bidAccepted {
+  background-color: green;
+}
 
 .projectCards{
   margin: 16px 0px;
@@ -376,6 +379,9 @@ nav ul li a{
   word-wrap: break-word;
   background-color: white;
   border: 1px solid #efefef;
+
+
+
   &.projectCards:hover{
   }
 }
@@ -689,6 +695,10 @@ input[type=radio]:checked + label {
 .profileCards{
   padding: 16px;
   margin: 16px 0px;
+}
+
+.bidRejected {
+  background: red;
 }
 
 

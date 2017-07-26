@@ -62,7 +62,7 @@ function MainCtrl($rootScope, $scope, $state, API_URL, $auth, $transitions, User
     console.log('received this', data); // 'Some data'
   });
 
-  const protectedStates = ['projectsNew', 'projectsEdit', 'projectsShow'];
+  const protectedStates = ['projectsNew', 'projectsEdit', 'projectsShow', 'conversations'];
 
   $transitions.onSuccess({}, (transition) => {
 

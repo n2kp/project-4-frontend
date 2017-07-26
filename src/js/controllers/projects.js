@@ -104,13 +104,16 @@ function ProjectShowCtrl (Project, User, $stateParams, $state, Conversation, Ten
     });
   }
 
-  // function tenderUpdate() {
-  //   Tender
-  //   .update({ id: vm.tender.id }, vm.tender)
-  //   .$promise
-  //   .then(() =>  );
-  // }
-  // vm.update = tenderUpdate;
+  function tenderUpdate() {
+    Tender
+    .update({ id: vm.tender.id }, vm.tender)
+    .$promise
+    .then(()=> {
+      $state.go('projectsIndex');
+    });
+  }
+  vm.tenderUpdate = tenderUpdate;
+  
 
   function acceptBid(id) {
     vm.project.tenders.map((tender) => {

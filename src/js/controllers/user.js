@@ -10,6 +10,7 @@ function ProfileCtrl($auth, User, $state, Review, Project) {
 
   vm.reviews = Review.query();
   vm.user = User.get($state.params);
+  vm.projects = Project.query();
 
   Project.query()
   .$promise
@@ -34,8 +35,8 @@ function ProfileCtrl($auth, User, $state, Review, Project) {
     $auth.logout();
     $state.go('login');
   }
-  vm.logout = logout;
 
+  vm.logout = logout;
   vm.newReview = {};
 
 
@@ -47,7 +48,7 @@ function ProfileCtrl($auth, User, $state, Review, Project) {
     .save(vm.newReview)
     .$promise
     .then((newReview) => {
-      vm.reviews.push(newReview);
+      vm.user.reviews_received.push(newReview);
     });
   }
   vm.addReview = addReview;

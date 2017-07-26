@@ -13,7 +13,6 @@ function ProjectIndexCtrl (Project, moment, filterFilter, $scope) {
   Project.query()
   .$promise
   .then((projects) => {
-    console.log(projects);
     vm.all = projects;
     filterProjects();
   });
@@ -22,7 +21,7 @@ function ProjectIndexCtrl (Project, moment, filterFilter, $scope) {
 
 
   function filterProjects() {
-    const params = { title: vm.q, tech_stack: vm.q };
+    const params = { title: vm.q };
 
     if(vm.useBudget) params.budget = vm.budget;
     if(vm.useDeadline) params.deadline = vm.bid_deadline;
@@ -45,10 +44,6 @@ function ProjectIndexCtrl (Project, moment, filterFilter, $scope) {
       return function(project) {
         const chosenEndDate = moment().add(val, 'day')._d;
         const bidEndDate = moment(project[prop])._d;
-        console.log('Chosen end date: ', chosenEndDate);
-        console.log('Project end date: ', moment(project[prop])._d);
-        // console.log(chosenEndDate._d);
-        console.log(chosenEndDate > bidEndDate);
         if (chosenEndDate > bidEndDate) return true;
       };
     }

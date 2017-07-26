@@ -1,73 +1,77 @@
-<div class="main">
+<div class="row justify-content-md-center">
+  <div class="profileGreen col-10 justify-content-md-center">
+
+    <a ng-if="main.currentUser.id === profile.user.id" ui-sref="profileEdit({ id: profile.user.id })" class="updateProfileButton">Update your profile</a>
 
 
-
-{{ profile.user.image_src }}
-  <h1>Profile </h1>
-  <div class="row">
-    <div class="col s5">
-      <img ng-src="{{ profile.user.image_src }}">
-      <h6>{{ profile.user.username }}</h6>
-      <h6>{{ profile.user.firstname }} {{ profile.user.lastname }}</h6>
-      <h6>{{ profile.user.email }}</h6>
-      <h6 ng-if="main.currentUser.is_dev" >Skills: {{ profile.user.tech_stack }}</h6>
-      <div ng-if="main.currentUser.is_dev">
-        <h6>Portfolio: {{ profile.user.portfolio_url }}</h6>
-        <h6>LinkedIn: {{ profile.user.linkedin_url }}</h6>
-        <h6>Github: {{ profile.user.github_url }}</h6>
-      </div>
-
-      <a ng-if="main.currentUser.id !== profile.user.id" ui-sref="conversations">Message {{profile.user.firstname}}</a>
-      <a ng-if="main.currentUser.id === profile.user.id" ui-sref="profileEdit({ id: profile.user.id })">Update your profile</a>
-
-      <div ng-if="main.currentUser.is_dev">
-        <h2>Current Bid <em ng-if="profile.user.tenders.length > 1">'s</em> made -</h2>
-        <div ng-repeat="tender in profile.user.tenders">
-          <br>
-          {{tender.project_id}}
-          {{profile.projects[tender.project_id].title}}
-          <p>Bid made: {{ tender.bid | currency : '£' : 0 }}</p>
-          <p>Your pitch: {{ tender.pitch }}</p>
-          <p>Current Status: {{ tender.status }}</p>
-        </div>
-      </div>
-
-      <div ng-if="!main.currentUser.is_dev">
-        <h1>Current Project <em ng-if="profile.user.projects.length > 1">'s</em> listed -</h1>
-        <div ng-repeat="project in profile.user.projects">
-          <br>
-          <h3> {{ project.title }}</h3>
-          <p>{{ project.description }}</p>
-          <p>{{ project.project_deadline | date }}</p>
-          <p>{{ project.bid_deadline | amDifference : null : 'days' }} days </p>
-          <p>{{ project.tech_stack }}</p>
-          <p>{{ project.budget | currency : '£' : 0}}</p>
-
-          <h5>You currently have {{ project.tenders.length }} bids on this project, <a ui-sref="projectsShow({ id: project.id })">click here</a> to view your project </h5>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="col s5">
-      <div ng-repeat="review in profile.reviews">
-        <p>{{ review.body }}</p>
-        <p>{{ review.rating }}</p>
-      </div>
-
-
-
-
-      <form ng-submit="profile.addReview()">
-        <textarea  placeholder="Write a user review" ng-model="profile.newReview.body"></textarea>
-        <input type="number" name="rating" ng-model="profile.newReview.rating">
-        <button class="button primary marginTop">Post Review</button>
-      </form>
-
+    <div class="social">
+      <ul>
+        <li ng-if="profile.user.linkedin_url"><a href="{{ profile.user.linkedin_url }}" target="_blank"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
+        <li ng-if="profile.user.github_url"><a href="{{ profile.user.github_url }}" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+      </ul>
     </div>
   </div>
 
-  <div>
+  <div class="col-10">
+    <div class="row">
+      <div class="col-2">
+        <img ng-src="{{ profile.user.image_src }}" class="profilePageImage">
+      </div>
+      <div class="col-4 profileName">
+        <h1 class="marginBottomMd">{{ profile.user.firstname }} {{ profile.user.lastname }}</h1>
+        <h6 ng-if="main.currentUser.is_dev">Skills: {{ profile.user.tech_stack }}</h6>
+        <h6 ng-if="profile.user.portfolio_url"><a href="{{ profile.user.portfolio_url }}" target="_blank">{{profile.user.portfolio_url}}</a></h6>
+      </div>
 
+      <a ng-if="main.currentUser.id !== profile.user.id" ui-sref="conversations">Message {{profile.user.firstname}}</a>
+    </div>
+  </div>
 </div>
+
+
+<div class="row justify-content-md-center">
+  <div class="col-5">
+
+    <div ng-if="main.currentUser.is_dev">
+      <h2>Current Bid <em ng-if="profile.user.tenders.length > 1">'s</em> made</h2>
+      <div ng-repeat="tender in profile.user.tenders" class="profileBids shadow-1">
+        <h2>{{ profile.projects[tender.project_id].title }}</h2>
+        <p>Bid made: {{ tender.bid | currency : '£' : 0 }}</p>
+        <p>Your pitch: {{ tender.pitch }}</p>
+        <p>Current Status: {{ tender.status }}</p>
+
+        <a ui-sref="projectsShow({ id: tender.project_id })">click here to view your project</a>
+
+      </div>
+    </div>
+
+    <div ng-if="!main.currentUser.is_dev">
+      <h1>Current Project <em ng-if="profile.user.projects.length > 1">'s</em> listed -</h1>
+      <div ng-repeat="project in profile.user.projects">
+        <br>
+        <h3>{{ project.title }}</h3>
+        <p>{{ project.description }}</p>
+        <p>{{ project.project_deadline | date }}</p>
+        <p>{{ project.bid_deadline | amDifference : null : 'days' }} days </p>
+        <p>{{ project.tech_stack }}</p>
+        <p>{{ project.budget | currency : '£' : 0}}</p>
+
+        <h5>You currently have {{ project.tenders.length }} bids on this project, <a ui-sref="projectsShow({ id: project.id })">click here</a> to view your project </h5>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-5">
+    <h2>Review <em ng-if="profile.user.reviews.length > 1">'s</em></h2>
+    <div ng-repeat="review in profile.user.reviews_received" class="shadow-1">
+      <p>{{ review.body }}</p>
+      <p>{{ review.rating }}</p>
+      <p>{{ review.creator.username }}</p>
+    </div>
+    <form ng-submit="profile.addReview()">
+      <textarea  placeholder="Write a user review" ng-model="profile.newReview.body"></textarea>
+      <input type="number" name="rating" ng-model="profile.newReview.rating">
+      <button class="button primary marginTop">Post Review</button>
+    </form>
+  </div>
 </div>

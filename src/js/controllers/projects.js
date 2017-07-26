@@ -5,13 +5,15 @@ angular
 .controller('ProjectShowCtrl', ProjectShowCtrl)
 .controller('ProjectEditCtrl', ProjectEditCtrl);
 
-ProjectIndexCtrl.$inject = ['Project', 'moment', 'filterFilter', '$scope'];
+ProjectIndexCtrl.$inject = ['Project', 'moment', 'filterFilter', '$scope', 'orderByFilter'];
 function ProjectIndexCtrl (Project, moment, filterFilter, $scope) {
   const vm = this;
+  vm.all = [];
 
   Project.query()
   .$promise
   .then((projects) => {
+    console.log(projects);
     vm.all = projects;
     filterProjects();
   });
@@ -56,7 +58,9 @@ function ProjectIndexCtrl (Project, moment, filterFilter, $scope) {
 
   //create a watch group to listen out for changes and then running the function
   $scope.$watchGroup([
-    () => vm.q
+    () => vm.q,
+    () => vm.lowerThan,
+    () => vm.dateFilter
   ], filterProjects);
 }
 
@@ -74,8 +78,10 @@ function ProjectNewCtrl (Project, User, $stateParams, $state ){
     Project
     .save(vm.project)
     .$promise
-    .then(() =>
-    $state.go('projectsIndex'));
+    .then((project) => {
+      console.log(project);
+      $state.go('projectsShow', { id: project.id });
+    });
   }
   vm.create = projectsCreate;
 }

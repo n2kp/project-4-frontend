@@ -2,8 +2,8 @@ angular
 .module('justo')
 .controller('MainCtrl', MainCtrl);
 
-MainCtrl.$inject = ['$rootScope', '$scope', '$state', 'API_URL', '$auth', '$transitions', 'User'];
-function MainCtrl($rootScope, $scope, $state, API_URL, $auth, $transitions, User) {
+MainCtrl.$inject = ['$rootScope', '$scope', '$state', 'API_URL', '$auth', '$transitions', 'User', 'Conversation'];
+function MainCtrl($rootScope, $scope, $state, API_URL, $auth, $transitions, User, Conversation) {
   const vm = this;
   vm.isAuthenticated = $auth.isAuthenticated;
   console.log(vm);
@@ -18,9 +18,45 @@ function MainCtrl($rootScope, $scope, $state, API_URL, $auth, $transitions, User
     }
   });
 
-  // $rootScope.$on('isDev', (e, data) => {
-  //   console.log(data.isDev);
-  // });
+  // Chat notifications
+  vm.conversations = Conversation.query();
+  // vm.unreadMessages = 0;
+  // console.log('VM', vm);
+
+
+  function getUnread(currentUserId) {
+
+    // vm.unreadMessages = 0;
+    let count = 0;
+
+    Conversation
+    .query()
+    .$promise
+    .then((conversations) => {
+      vm.unreadMessages = 0;
+      conversations.forEach((conversation) => {
+        conversation.messages.forEach((message) => {
+
+          if (message.user_id !== currentUserId && !message.read) {
+            return count += 1;
+          }
+
+        });
+
+        vm.unreadMessages += count;
+        count = 0;
+        console.log('vm message', vm.unreadMessages);
+      });
+      return vm.unreadMessages;
+
+    });
+  }
+
+  vm.getUnread = getUnread;
+
+
+  /////////////////////////
+
 
   $scope.$on('child', (event, data) => {
     console.log('received this', data); // 'Some data'
@@ -35,7 +71,16 @@ function MainCtrl($rootScope, $scope, $state, API_URL, $auth, $transitions, User
     if($auth.getPayload()) {
       vm.currentUserPayload = $auth.getPayload();
       const id = vm.currentUserPayload.id;
-      vm.currentUser = User.get({id: id});
+      User
+       .get({id: id})
+       .$promise
+       .then((payload) => {
+         vm.currentUser = payload;
+         // Always 0
+         vm.unreadMessages = getUnread(id);
+         console.log('VM Messages', vm.unreadMessages);
+       });
+
 
       if($auth.getPayload() && $auth.getPayload().is_dev === undefined) {
         vm.message = 'Fill in your profile.';

@@ -13,7 +13,7 @@
   </div>
 
   <div class="col-10">
-    <div class="row">
+    <div class="row marginBottomXLg">
       <div class="col-2">
         <img ng-src="{{ profile.user.image_src }}" class="profilePageImage">
       </div>
@@ -34,44 +34,49 @@
 
     <div ng-if="main.currentUser.is_dev">
       <h2>Current Bid <em ng-if="profile.user.tenders.length > 1">'s</em> made</h2>
-      <div ng-repeat="tender in profile.user.tenders" class="profileBids shadow-1">
+      <div ng-repeat="tender in profile.user.tenders" class="profileCards shadow-1">
         <h2>{{ profile.projects[tender.project_id].title }}</h2>
         <p>Bid made: {{ tender.bid | currency : '£' : 0 }}</p>
         <p>Your pitch: {{ tender.pitch }}</p>
         <p>Current Status: {{ tender.status }}</p>
-
-        <a ui-sref="projectsShow({ id: tender.project_id })">click here to view your project</a>
-
+        <a ui-sref="projectsShow({ id: tender.project_id })">View project</a>
       </div>
     </div>
 
     <div ng-if="!main.currentUser.is_dev">
-      <h1>Current Project <em ng-if="profile.user.projects.length > 1">'s</em> listed -</h1>
-      <div ng-repeat="project in profile.user.projects">
-        <br>
+      <h2>Current Project <em ng-if="profile.user.projects.length > 1">'s</em> listed</h2>
+      <div ng-repeat="project in profile.user.projects" class="profileCards shadow-1">
         <h3>{{ project.title }}</h3>
         <p>{{ project.description }}</p>
         <p>{{ project.project_deadline | date }}</p>
         <p>{{ project.bid_deadline | amDifference : null : 'days' }} days </p>
         <p>{{ project.tech_stack }}</p>
         <p>{{ project.budget | currency : '£' : 0}}</p>
-
         <h5>You currently have {{ project.tenders.length }} bids on this project, <a ui-sref="projectsShow({ id: project.id })">click here</a> to view your project </h5>
       </div>
     </div>
+
   </div>
 
   <div class="col-5">
     <h2>Review <em ng-if="profile.user.reviews.length > 1">'s</em></h2>
-    <div ng-repeat="review in profile.user.reviews_received" class="shadow-1">
+    <div ng-repeat="review in profile.user.reviews_received" class="profileCards shadow-1">
       <p>{{ review.body }}</p>
-      <p>{{ review.rating }}</p>
+      <p>Rating: {{ review.rating }}</p>
       <p>{{ review.creator.username }}</p>
     </div>
+
     <form ng-submit="profile.addReview()">
-      <textarea  placeholder="Write a user review" ng-model="profile.newReview.body"></textarea>
-      <input type="number" name="rating" ng-model="profile.newReview.rating">
-      <button class="button primary marginTop">Post Review</button>
+      <div class="form-group">
+
+
+      <textarea  placeholder="Write a user review" ng-model="profile.newReview.body" class="form-control"></textarea>
+      </div>
+      <div class="form-group">
+      <input type="number" name="rating" ng-model="profile.newReview.rating" class="form-control">
+      <button class="button primary marginTopMd">Post Review</button>
+    </div>
     </form>
+
   </div>
 </div>

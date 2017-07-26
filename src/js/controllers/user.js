@@ -4,12 +4,20 @@ angular
 .controller('ProfileEditCtrl', ProfileEditCtrl)
 .controller('ConversationCtrl', ConversationCtrl);
 
-ProfileCtrl.$inject = ['$auth', 'User', '$state', 'Review'];
-function ProfileCtrl($auth, User, $state, Review) {
+ProfileCtrl.$inject = ['$auth', 'User', '$state', 'Review', 'Project'];
+function ProfileCtrl($auth, User, $state, Review, Project) {
   const vm = this;
 
   vm.reviews = Review.query();
   vm.user = User.get($state.params);
+
+  Project.query()
+  .$promise
+  .then((projects) =>{
+    console.log(projects);
+    vm.projects = projects;
+  });
+
 
   // Trying to prepend the url with http
   // function checkUrl(url) {

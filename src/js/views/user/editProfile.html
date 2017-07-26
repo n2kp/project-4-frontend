@@ -19,11 +19,10 @@
               <label for="username">Username</label>
               <input type="text" name="username" id="username" ng-model="profileEdit.user.username" unique required>
               <!-- USERNAME VALIDATION/MESSAGES -->
-
-              <!-- <div ng-messages="profileEdit.editProfileForm.username.$error" ng-show="profileEdit.editProfileForm.$submitted || profileEdit.editProfileForm.username.$touched">
+               <div ng-messages="profileEdit.editProfileForm.username.$error" ng-show="profileEdit.editProfileForm.$submitted || profileEdit.editProfileForm.username.$touched">
               <div ng-message="required" class="errorMessage">A username is required</div>
               <div ng-message="unique" class="errorMessage">Please choose a different username, this one was already been taken</div>
-            </div> -->
+            </div> 
           </div>
 
           <div class="row">
@@ -50,10 +49,10 @@
           <input type="text" name="username" id="username" ng-model="profileEdit.user.username" unique required>
           <!-- USERNAME VALIDATION/MESSAGES -->
 
-          <!-- <div ng-messages="profileEdit.editProfileForm.username.$error" ng-show="profileEdit.editProfileForm.$submitted || profileEdit.editProfileForm.username.$touched">
+          <div ng-messages="profileEdit.editProfileForm.username.$error" ng-show="profileEdit.editProfileForm.$submitted || profileEdit.editProfileForm.username.$touched">
           <div ng-message="required" class="errorMessage">A username is required</div>
           <div ng-message="unique" class="errorMessage">Please choose a different username, this one was already been taken</div>
-        </div> -->
+        </div>
       </div>
 
 
@@ -63,9 +62,9 @@
         <input type="text" ng-model="profileEdit.user.firstname" name="firstname" id="firstname" required>
       </div>
       <!-- FIRST NAME VALIDATION/MESSAGES -->
-      <!-- <div ng-messages="profileEdit.editProfileForm.firstname.$error" ng-show="profileEdit.editProfileForm.$submitted || profileEdit.editProfileForm.firstname.$touched">
+      <div ng-messages="profileEdit.editProfileForm.firstname.$error" ng-show="profileEdit.editProfileForm.$submitted || profileEdit.editProfileForm.firstname.$touched">
       <div ng-message="required" class="errorMessage">You forgot to provide us with you first name</div>
-    </div> -->
+    </div>
 
 
     <!--LAST NAME INPUT  -->
@@ -74,9 +73,9 @@
       <input type="text" ng-model="profileEdit.user.lastname" name="lastname" id="lastname" required>
     </div>
     <!-- LAST NAME VALIDATION/MESSAGES -->
-    <!-- <div ng-messages="profileEdit.editProfileForm.lastname.$error" ng-show="profileEdit.editProfileForm.$submitted || profileEdit.editProfileForm.lastname.$touched">
+    <div ng-messages="profileEdit.editProfileForm.lastname.$error" ng-show="profileEdit.editProfileForm.$submitted || profileEdit.editProfileForm.lastname.$touched">
     <div ng-message="required" class="errorMessage">You forgot to provide us with you last name</div>
-  </div> -->
+  </div>
 
 
   <!--EMAIL INPUT  -->
@@ -84,6 +83,9 @@
     <label for="email">Email</label>
     <input type="text" ng-model="profileEdit.user.email" name="email" id="email" required>
   </div>
+
+
+
 
   <div ng-if="main.currentUser.is_dev">
 
@@ -94,15 +96,17 @@
     </div>
 
 
+
     <!--PORTFOLIO WEBSITE INPUT  -->
     <div>
       <label for="portfolio_url">Portfolio Site</label>
       <input type="text" ng-model="profileEdit.user.portfolio_url" name="portfolio_url" id="portfolio_url" ng-pattern="(@'^(http|https)://.*$')" >
     </div>
     <!-- PORTFOLIO WEBSITE VALIDATION/MESSAGES -->
-    <!-- <div ng-messages="profileEdit.editProfileForm.portfolio_url.$error" ng-show="profileEdit.editProfileForm.$submitted || profileEdit.editProfileForm.portfolio_url.$touched">
+    <div ng-messages="profileEdit.editProfileForm.portfolio_url.$error" ng-show="profileEdit.editProfileForm.$submitted || profileEdit.editProfileForm.portfolio_url.$touched">
     <div ng-message="pattern" class="errorMessage">The URL must start with 'http://' or 'https://'</div>
-  </div> -->
+  </div>
+
 
 
     <!--LINKED IN INPUT  -->
@@ -111,9 +115,10 @@
       <input type="text" ng-model="profileEdit.user.linkedin_url" name="linkedin_url" id="linkedin_url" ng-pattern="(@'^(http|https)://.*$')">
     </div>
     <!-- LINKED IN VALIDATION/MESSAGES -->
-    <!-- <div ng-messages="profileEdit.editProfileForm.linkedin_url.$error" ng-show="profileEdit.editProfileForm.$submitted || profileEdit.editProfileForm.linkedin_url.$touched">
+    <div ng-messages="profileEdit.editProfileForm.linkedin_url.$error" ng-show="profileEdit.editProfileForm.$submitted || profileEdit.editProfileForm.linkedin_url.$touched">
     <div ng-message="pattern" class="errorMessage">The URL must start with 'http://' or 'https://'</div>
-  </div> -->
+  </div>
+
 
 
     <!--GITHUB INPUT  -->
@@ -122,9 +127,9 @@
       <input type="text" ng-model="profileEdit.user.github_url" name="github_url" id="github_url" ng-pattern="(@'^(http|https)://.*$')">
     </div>
     <!-- GITHUB VALIDATION/MESSAGES -->
-    <!-- <div ng-messages="profileEdit.editProfileForm.github_url.$error" ng-show="profileEdit.editProfileForm.$submitted || profileEdit.editProfileForm.github_url.$touched">
+    <div ng-messages="profileEdit.editProfileForm.github_url.$error" ng-show="profileEdit.editProfileForm.$submitted || profileEdit.editProfileForm.github_url.$touched">
     <div ng-message="pattern" class="errorMessage">The URL must start with 'http://' or 'https://'</div>
-  </div> -->
+  </div>
 
   </div>
 
@@ -133,11 +138,6 @@
     <label for="base64">Profile Picture</label>
     <input type="file" base64 ng-model="profileEdit.user.base64" name="base64" id="base64">
   </div>
-  <!-- IMAGE VALIDATION/MESSAGES -->
-  <!-- <div ng-messages="profileEdit.editProfileForm.lastname.$error" ng-show="profileEdit.editProfileForm.$submitted || profileEdit.editProfileForm.lastname.$touched">
-  <div ng-message="required" class="errorMessage">You forgot to provide us with you last name</div>
-</div> -->
-
 
 <button>Update your Profile</button>
 </form>

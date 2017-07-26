@@ -1,5 +1,7 @@
 <div class="main">
 
+
+
 {{ profile.user.image_src }}
   <h1>Profile </h1>
   <div class="row">
@@ -22,6 +24,8 @@
         <h2>Current Bid <em ng-if="profile.user.tenders.length > 1">'s</em> made -</h2>
         <div ng-repeat="tender in profile.user.tenders">
           <br>
+          {{tender.project_id}}
+          {{profile.projects[tender.project_id].title}}
           <p>Bid made: {{ tender.bid | currency : '£' : 0 }}</p>
           <p>Your pitch: {{ tender.pitch }}</p>
           <p>Current Status: {{ tender.status }}</p>
@@ -64,16 +68,6 @@
   </div>
 
   <div>
-      <h4>Default</h4>
-      <span uib-rating ng-model="rating" max="max" read-only="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></span>
-      <span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !isReadonly">{{percent}}%</span>
-
-      <pre style="margin:15px 0;">Rate: <b>{{rate}}</b> - Readonly is: <i>{{isReadonly}}</i> - Hovering over: <b>{{overStar || "none"}}</b></pre>
-
-      <button type="button" class="btn btn-sm btn-danger" ng-click="rate = 0" ng-disabled="isReadonly">Clear</button>
-      <button type="button" class="btn btn-sm btn-default" ng-click="isReadonly = ! isReadonly">Toggle Readonly</button>
-      <hr />
-
 
 </div>
 </div>

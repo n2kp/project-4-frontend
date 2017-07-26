@@ -2,28 +2,29 @@
 <div class="main">
 
 
-  <div class="row">
-    <div class="col offset-s1 s5">
-      <div class="projectInfo">
-
-        <h1> {{ projectsShow.project.title }}</h1>
+  <div class="row justify-content-center">
+    <div class="col-5  ">
+      <div class="projectInfo projectCards">
+        <p> Posted by {{ projectsShow.project.user.username }}</p>
+        <h2 class="marginBottomMd"> {{ projectsShow.project.title }}</h2>
         <p>{{ projectsShow.project.description }}</p>
-        <p>{{ projectsShow.project.project_deadline | date }}</p>
-        <p>{{ projectsShow.project.bid_deadline | amDifference : null : 'days' }} days </p>
-        <p>{{ projectsShow.project.tech_stack }}</p>
-        <p>{{ projectsShow.project.budget | currency : '£' : 0}}</p>
+        <p><span> Project deadline: </span> {{ projectsShow.project.project_deadline | date }}</p>
+        <p><span> Time left to bid: </span>{{ projectsShow.project.bid_deadline | amDifference : null : 'days' }} days </p>
+        <p><span> Tech Stack </span>{{ projectsShow.project.tech_stack }}</p>
+        <p><span> Budget: </span>{{ projectsShow.project.budget | currency : '£' : 0}}</p>
         <br>
+
         <button ng-click="projectsShow.contactCreator(main.currentUser.id, projectsShow.project.user.id)" class="button primary">
           Message {{ projectsShow.project.user.username}}</button>
 
-          <button ng-click="profile({ id: projectsShow.project.user.id })" class="button primary">Posted by {{ projectsShow.project.user.username }}</button>
+
 
           <button ui-sref="projectsEdit({ id: projectsShow.project.id})" ng-if="main.currentUser.id === projectsShow.project.user.id">Edit</button>
 
         </div>
       </div>
 
-      <div class="col s5 marginTopLg">
+      <div class="col-5 marginTopLg">
         <form ng-if="!projectsShow.findUsersTender(main.currentUser.id) && main.currentUser.is_dev" ng-submit="projectsShow.tenderCreate()">
 
           <h3>There are currently {{ projectsShow.project.tenders.length }} bids on this project, make your offer here...</h3>
@@ -43,7 +44,7 @@
 
 
         <h1>Current Bids</h1>
-        <div  ng-repeat="tender in projectsShow.project.tenders">
+        <div ng-repeat="tender in projectsShow.project.tenders" class="projectCards">
 
           <div ng-if="main.currentUser.id === tender.user.id || main.currentUser.id === projectsShow.project.user.id">
 

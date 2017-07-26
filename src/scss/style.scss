@@ -51,6 +51,27 @@ main {
   cursor: pointer;
 }
 
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 50px;
+    right: 8px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    text-align: right;
+}
+
 // SNAZZY LINIKS
 
 .nav-button a {
@@ -123,6 +144,10 @@ p{
 
 .marginBottomLg{
   margin-bottom: 48px;
+}
+
+.marginBottomXLg{
+  margin-bottom: 64px;
 }
 
 .marginBottomMd{
@@ -604,7 +629,7 @@ input[type=radio]:checked + label {
   }
 }
 
-.profileBids{
+.profileCards{
   padding: 16px;
   margin: 16px 0px;
 }

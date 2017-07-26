@@ -11,8 +11,6 @@ function AuthCtrl($auth, $state, $rootScope, User) {
     .then(() => $state.go('login'));
 
 
-    console.log(vm.user);
-
   }
 
   vm.register = register;

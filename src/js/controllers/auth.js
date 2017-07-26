@@ -35,17 +35,17 @@ function AuthCtrl($auth, $state, $rootScope, User) {
   // vm.authenticate = authenticate;
 
   function authenticate(provider) {
-      $auth.authenticate(provider)
-        .then((res) => {
-          if ($auth.getPayload().is_dev === null) {
-            // console.log('You must complete your profile', !user.is_dev);
-            return $state.go('profileEdit', { id: id });
-          } else {
-            $state.go('projectsIndex');
-          }
+    $auth.authenticate(provider)
+    .then((res) => {
+      if ($auth.getPayload().is_dev === null) {
+        // console.log('You must complete your profile', !user.is_dev);
+        return $state.go('profileEdit', { id: id });
+      } else {
+        $state.go('projectsIndex');
+      }
 
-        });
-    }
-    vm.authenticate = authenticate;
+    });
+  }
+  vm.authenticate = authenticate;
 
 }

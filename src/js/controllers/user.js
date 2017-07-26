@@ -53,6 +53,7 @@ function ProfileCtrl($auth, User, $state, Review, Project) {
   }
   vm.addReview = addReview;
 
+
   function deleteReview(review) {
     Review
     .delete({ user_id: vm.user.id, id: review.id })

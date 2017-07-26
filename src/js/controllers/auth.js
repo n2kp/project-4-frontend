@@ -7,9 +7,10 @@ function AuthCtrl($auth, $state, $rootScope, User) {
   const vm = this;
   vm.show = 1;
   function register() {
-    $auth.signup(vm.user)
-    .then(() => $state.go('login'));
-
+    if (vm.registerForm.$valid){
+      $auth.signup(vm.user)
+      .then(() => $state.go('login'));
+    }
 
   }
 

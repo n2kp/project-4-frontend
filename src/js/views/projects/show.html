@@ -43,17 +43,19 @@
         </form>
 
 
-        <h1>Current Bids</h1>
+        <h1>Current Bids on this project</h1>
         <div ng-repeat="tender in projectsShow.project.tenders" class="projectCards">
 
-          <div ng-if="main.currentUser.id === tender.user.id || main.currentUser.id === projectsShow.project.user.id">
+          <div ng-if="main.currentUser.id === tender.user.id || main.currentUser.id === projectsShow.project.user.id || !main.currentUser.is_dev">
 
             <h1 ng-if="main.currentUser.id === tender.user.id ">Your current bid</h1>
             <h5>{{ tender.bid }}</h5>
             <h5>{{ tender.pitch }}</h5>
             <h5>{{ tender.status }}</h5>
-            <h5>{{ tender.user.username }}</h5>
+
             <h5>{{ tender.user.status }}</h5>
+
+              <h5 ui-sref="profile({id: tender.user.id})" >{{ tender.user.username }} -</h5>  <p>has made a bid on this project</p>
             <img ng-src="{{ tender.image_src }}">
 
             <div>

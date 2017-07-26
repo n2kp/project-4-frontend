@@ -20,13 +20,12 @@ function ProjectIndexCtrl (Project, moment, filterFilter, $scope) {
 
 
   function filterProjects() {
-    const params = { title: vm.q, tech_stack: vm.q };
+    const params = { title: vm.q };
 
     if(vm.useBudget) params.budget = vm.budget;
     if(vm.useDeadline) params.deadline = vm.bid_deadline;
 
     vm.filtered = filterFilter(vm.all, params);
-    // vm.filtered = orderByFilter(vm.filtered);
     console.log(vm.filtered);
     console.log(vm.budget);
   }

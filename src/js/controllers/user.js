@@ -15,8 +15,8 @@ function ProfileCtrl($auth, User, $state, Review) {
     $auth.logout();
     $state.go('login');
   }
-  vm.logout = logout;
 
+  vm.logout = logout;
   vm.newReview = {};
 
   function addReview() {
@@ -26,7 +26,7 @@ function ProfileCtrl($auth, User, $state, Review) {
     .save(vm.newReview)
     .$promise
     .then((newReview) => {
-      vm.reviews.push(newReview);
+      vm.user.reviews_received.push(newReview);
     });
   }
   vm.addReview = addReview;

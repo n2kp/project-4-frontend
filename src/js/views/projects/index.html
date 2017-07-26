@@ -29,14 +29,19 @@
     | filter: projectsIndex.dateFilter('bid_deadline', projectsIndex.bid_deadline)"
     class="projectCards z-depth-1 cursor" ui-sref="projectsShow({ id: project.id })">
 
-      <p class="marginBottomXXSm"> <span>Posted by</span> {{ project.user.username }} </p>
-      <h2 class="marginBottomMd"> {{project.title }}</h2>
+      <p class="marginBottomXXSm"><span>Posted by</span>{{ project.user.username }}</p>
+      <h2 class="marginBottomMd">{{project.title }}</h2>
 
-      <p class="marginBottomMd"> {{project.description | limitTo: 150 }}...</p>
+      <p class="marginBottomMd">{{project.description | limitTo: 150 }}...</p>
 
-      <p class="marginBottomSm"> <span>Project Deadline</span> {{project.project_deadline | date}}</p>
+      <p class="marginBottomSm">
+        <span>Project Deadline</span>{{project.project_deadline | date}}
+      </p>
 
-      <p class="marginBottomSm">      <span>Tech Stack</span> {{ project.tech_stack }}</p>
+      <p class="marginBottomSm">
+        <span>Tech Stack</span>
+        <span class="tech-tag" ng-repeat="tech in project.tech_stack.split(',')">{{ tech }}</span>
+      </p>
 
         <p class="marginBottomXSm">
           <span>Budget</span> {{ project.budget | currency : '£' : 0 }}</p>

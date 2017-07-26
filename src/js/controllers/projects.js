@@ -181,6 +181,7 @@ function ProjectEditCtrl (Project, User, $stateParams, $state) {
     .then(() =>
     $state.go('projectsShow', { id: vm.project.id }));
   }
+  
   vm.update = projectUpdate;
 
   function projectsDelete() {

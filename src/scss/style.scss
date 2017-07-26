@@ -117,6 +117,10 @@ p{
   margin-top: 48px;
 }
 
+.marginTopMd{
+  margin-top: 24px;
+}
+
 .marginBottomLg{
   margin-bottom: 48px;
 }
@@ -152,11 +156,13 @@ p{
 
 .button{
   background-color: white;
-  padding: 16px 32px;
+  padding: 8px 32px;
   border-radius: 100px;
   width: 200px;
   text-align: center;
   display: inline-block;
+  border: none;
+  cursor: pointer;
 }
 
 .primary{
@@ -422,6 +428,7 @@ nav ul li a{
 #chatSidebarMessages{
   padding: 16px 0px;
   background-color: white;
+  word-wrap: break-word;
   &#chatSidebarMessages:hover {
     background-color: #efefef;
   }
@@ -447,6 +454,7 @@ nav ul li a{
   margin: 16px 16px;
   max-width: 60%;
   display: inline-block;
+  word-wrap: break-word;
 }
 
 .speech-bubble-sent {
@@ -458,6 +466,7 @@ nav ul li a{
   margin: 16px 16px;
   display: inline-block;
   float: right;
+  word-wrap: break-word;
 }
 
 

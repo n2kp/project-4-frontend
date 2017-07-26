@@ -6,24 +6,23 @@
     <div class="col s6 offset-s3 z-depth-1">
 
       <h1>Update your Profile</h1>
-      <form ng-submit="profileEdit.update()">
+      <form ng-submit="profileEdit.update()" novalidate name="profileEdit.editProfileForm">
 
         <div ng-if="profileEdit.user.is_dev === null">
           <h2> How would you like to use Justo? </h2>
 
           <h1>Update your Profile</h1>
-          <form ng-submit="profileEdit.update()" name="auth.registerForm" novalidate>
+          
 
             <div>
               <!--USERNAME INPUT  -->
               <label for="username">Username</label>
               <input type="text" name="username" id="username" ng-model="profileEdit.user.username" unique required>
               <!-- USERNAME VALIDATION/MESSAGES -->
-
-              <!-- <div ng-messages="auth.registerForm.username.$error" ng-show="auth.registerForm.$submitted || auth.registerForm.username.$touched">
+               <div ng-messages="profileEdit.editProfileForm.username.$error" ng-show="profileEdit.editProfileForm.$submitted || profileEdit.editProfileForm.username.$touched">
               <div ng-message="required" class="errorMessage">A username is required</div>
               <div ng-message="unique" class="errorMessage">Please choose a different username, this one was already been taken</div>
-            </div> -->
+            </div>
           </div>
 
           <div class="row">
@@ -43,14 +42,7 @@
           </div>
         </div>
 
-        <div class="">
-          user
-          {{ profileEdit.user }}
-        </div>
-        <div class="">
-          current user
-          {{ main.currentUser }}
-        </div>
+
 
         <div>
           <!--USERNAME INPUT  -->
@@ -58,10 +50,10 @@
           <input type="text" name="username" id="username" ng-model="profileEdit.user.username" unique required>
           <!-- USERNAME VALIDATION/MESSAGES -->
 
-          <!-- <div ng-messages="auth.registerForm.username.$error" ng-show="auth.registerForm.$submitted || auth.registerForm.username.$touched">
+          <div ng-messages="profileEdit.editProfileForm.username.$error" ng-show="profileEdit.editProfileForm.$submitted || profileEdit.editProfileForm.username.$touched">
           <div ng-message="required" class="errorMessage">A username is required</div>
           <div ng-message="unique" class="errorMessage">Please choose a different username, this one was already been taken</div>
-        </div> -->
+        </div>
       </div>
 
 
@@ -71,9 +63,9 @@
         <input type="text" ng-model="profileEdit.user.firstname" name="firstname" id="firstname" required>
       </div>
       <!-- FIRST NAME VALIDATION/MESSAGES -->
-      <!-- <div ng-messages="auth.registerForm.firstname.$error" ng-show="auth.registerForm.$submitted || auth.registerForm.firstname.$touched">
+      <div ng-messages="profileEdit.editProfileForm.firstname.$error" ng-show="profileEdit.editProfileForm.$submitted || profileEdit.editProfileForm.firstname.$touched">
       <div ng-message="required" class="errorMessage">You forgot to provide us with you first name</div>
-    </div> -->
+    </div>
 
 
     <!--LAST NAME INPUT  -->
@@ -82,16 +74,24 @@
       <input type="text" ng-model="profileEdit.user.lastname" name="lastname" id="lastname" required>
     </div>
     <!-- LAST NAME VALIDATION/MESSAGES -->
-    <!-- <div ng-messages="auth.registerForm.lastname.$error" ng-show="auth.registerForm.$submitted || auth.registerForm.lastname.$touched">
+    <div ng-messages="profileEdit.editProfileForm.lastname.$error" ng-show="profileEdit.editProfileForm.$submitted || profileEdit.editProfileForm.lastname.$touched">
     <div ng-message="required" class="errorMessage">You forgot to provide us with you last name</div>
-  </div> -->
+  </div>
 
 
   <!--EMAIL INPUT  -->
   <div>
     <label for="email">Email</label>
-    <input type="text" ng-model="profileEdit.user.email" name="email" id="email" required>
+    <input type="text" ng-model="profileEdit.user.email" name="email" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
   </div>
+  <!-- EMAIL VALIDATION/MESSAGES -->
+  <div ng-messages="auth.registerForm.email.$error" ng-show="auth.registerForm.$submitted || auth.registerForm.email.$touched">
+  <div ng-message="required" class="errorMessage">An email address is required</div>
+  <div ng-message="pattern" ng-show="register.registrationForm.$submitted || register.registrationForm.email.$touched" class="notificationThin" >This Email is not valid</div>
+</div>
+
+
+
 
   <div ng-if="main.currentUser.is_dev">
 
@@ -101,23 +101,42 @@
       <input type="text" ng-model="profileEdit.user.tech_stack" name="tech_stack" id="tech_stack">
     </div>
 
+
+
     <!--PORTFOLIO WEBSITE INPUT  -->
     <div>
       <label for="portfolio_url">Portfolio Site</label>
-      <input type="text" ng-model="profileEdit.user.portfolio_url" name="portfolio_url" id="portfolio_url" required>
+      <input type="text" ng-model="profileEdit.user.portfolio_url" name="portfolio_url" id="portfolio_url" ng-pattern="(@'^(http|https)://.*$')" >
     </div>
+    <!-- PORTFOLIO WEBSITE VALIDATION/MESSAGES -->
+    <div ng-messages="profileEdit.editProfileForm.portfolio_url.$error" ng-show="profileEdit.editProfileForm.$submitted || profileEdit.editProfileForm.portfolio_url.$touched">
+    <div ng-message="pattern" class="errorMessage">The URL must start with 'http://' or 'https://'</div>
+  </div>
+
+
 
     <!--LINKED IN INPUT  -->
     <div>
       <label for="linkedin_url">LinkedIn URL</label>
-      <input type="text" ng-model="profileEdit.user.linkedin_url" name="linkedin_url" id="linkedin_url" required>
+      <input type="text" ng-model="profileEdit.user.linkedin_url" name="linkedin_url" id="linkedin_url" ng-pattern="(@'^(http|https)://.*$')">
     </div>
+    <!-- LINKED IN VALIDATION/MESSAGES -->
+    <div ng-messages="profileEdit.editProfileForm.linkedin_url.$error" ng-show="profileEdit.editProfileForm.$submitted || profileEdit.editProfileForm.linkedin_url.$touched">
+    <div ng-message="pattern" class="errorMessage">The URL must start with 'http://' or 'https://'</div>
+  </div>
+
+
 
     <!--GITHUB INPUT  -->
     <div>
       <label for="github_url">Github URL</label>
-      <input type="text" ng-model="profileEdit.user.github_url" name="github_url" id="github_url" required>
+      <input type="text" ng-model="profileEdit.user.github_url" name="github_url" id="github_url" ng-pattern="(@'^(http|https)://.*$')" required>
     </div>
+    <!-- GITHUB VALIDATION/MESSAGES -->
+    <div ng-messages="profileEdit.editProfileForm.github_url.$error" ng-show="profileEdit.editProfileForm.$submitted || profileEdit.editProfileForm.github_url.$touched">
+    <div ng-message="pattern" class="errorMessage">The URL must start with 'http://' or 'https://'</div>
+    <div ng-message="required" class="errorMessage">The URL must start with 'http://' or 'https://'</div>
+  </div>
 
   </div>
 
@@ -126,13 +145,9 @@
     <label for="base64">Profile Picture</label>
     <input type="file" base64 ng-model="profileEdit.user.base64" name="base64" id="base64">
   </div>
-  <!-- IMAGE VALIDATION/MESSAGES -->
-  <!-- <div ng-messages="auth.registerForm.lastname.$error" ng-show="auth.registerForm.$submitted || auth.registerForm.lastname.$touched">
-  <div ng-message="required" class="errorMessage">You forgot to provide us with you last name</div>
-</div> -->
-
 
 <button>Update your Profile</button>
+
 </form>
 </div>
 </div>

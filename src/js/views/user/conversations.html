@@ -7,10 +7,8 @@
 
       <div class="col-3 chatList">
         <div class="chatHeading">
-
           <img ng-src="{{ main.currentUser.image_src }}" alt="profile.user.image" class="NavProfileImage">
         </div>
-
         <div ng-repeat="conversation in conversations.conversations track by $index">
 
           <div class="col-sm-12" id="chatSidebarMessages">
@@ -26,7 +24,7 @@
                   <div ng-repeat="message in conversation.messages track by $index">
 
                     <div ng-if="(conversation.messages.length-1) === $index">
-                      <p id="greyText"> {{ message.body | limitTo: 55 }}... </p>
+                      <p id="greyText"> {{ message.body | limitTo: 25 }}... </p>
                       <small> {{ message.created_at | date : 'shortTime' }} </small>
                     </div>
                   </div>
@@ -56,6 +54,7 @@
             <div ng-class="{true:'speech-bubble-sent', false:'speech-bubble-received'}[main.currentUser.id === message.user_id]">
               <div class="body">
                 <p>  {{ message.body }} </p>
+                <p><strong>{{ message.read }}</strong></p>
               </div><div class="small">{{ message.created_at | date : 'shortTime' }} </div>
             </div>
           </div>
@@ -66,7 +65,7 @@
 
 
 
-          <form ng-show="conversations.index !== null" ng-submit="conversations.addMessage(conversations.message)" name="conversations.messageForm">
+          <form autocomplete="off" ng-show="conversations.index !== null" ng-submit="conversations.addMessage(conversations.message)" name="conversations.messageForm">
 
             <div class="col-12 chatInput">
               <div class="chatPadding">

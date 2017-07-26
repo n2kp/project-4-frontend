@@ -4,20 +4,42 @@ angular
 .controller('ProfileEditCtrl', ProfileEditCtrl)
 .controller('ConversationCtrl', ConversationCtrl);
 
-ProfileCtrl.$inject = ['$auth', 'User', '$state', 'Review'];
-function ProfileCtrl($auth, User, $state, Review) {
+ProfileCtrl.$inject = ['$auth', 'User', '$state', 'Review', 'Project'];
+function ProfileCtrl($auth, User, $state, Review, Project) {
   const vm = this;
 
   vm.reviews = Review.query();
   vm.user = User.get($state.params);
+  vm.projects = Project.query();
+
+  Project.query()
+  .$promise
+  .then((projects) =>{
+    console.log(projects);
+    vm.projects = projects;
+  });
+
+
+  // Trying to prepend the url with http
+  // function checkUrl(url) {
+  //   if (!/^https?:\/\//i.test(url)) {
+  //     url = 'http://' + url;
+  //   }
+  // }
+  // vm.checkUrl = checkUrl;
+  //
+  // console.log(vm.checkUrl);
+
 
   function logout() {
     $auth.logout();
     $state.go('login');
   }
-  vm.logout = logout;
 
+  vm.logout = logout;
   vm.newReview = {};
+
+
 
   function addReview() {
     vm.newReview.receiver_id = vm.user.id;
@@ -26,7 +48,7 @@ function ProfileCtrl($auth, User, $state, Review) {
     .save(vm.newReview)
     .$promise
     .then((newReview) => {
-      vm.reviews.push(newReview);
+      vm.user.reviews_received.push(newReview);
     });
   }
   vm.addReview = addReview;
@@ -50,6 +72,8 @@ function ProfileEditCtrl($auth, User, $state, $scope, $rootScope, API_URL, $http
   vm.user = User.get($state.params);
   vm.update = userUpdate;
 
+
+
   // $scope.$watch(vm.user.is_dev, () => {
   //   console.log('changed');
   //   // $rootScope.$broadcast('isDev', { isDev: vm.profile.is_dev });
@@ -63,18 +87,21 @@ function ProfileEditCtrl($auth, User, $state, $scope, $rootScope, API_URL, $http
     .then(() => {
 
       $http.get(`${API_URL}/refresh`)
-        .then((response) => {
-          console.log(response);
-          var refreshToken = response.data.token;
-          $auth.setToken(refreshToken);
-          $state.go('profile', $state.params);
-        });
+      .then((response) => {
+        console.log(response);
+        var refreshToken = response.data.token;
+        $auth.setToken(refreshToken);
+        $state.go('profile', $state.params);
+      });
     });
   }
+
+
+
 }
 
-ConversationCtrl.$inject = ['Conversation', 'Message'];
-function ConversationCtrl(Conversation, Message) {
+ConversationCtrl.$inject = ['Conversation', 'Message', '$scope'];
+function ConversationCtrl(Conversation, Message, $scope) {
   const vm = this;
 
   vm.conversations = Conversation.query();
@@ -83,7 +110,6 @@ function ConversationCtrl(Conversation, Message) {
   vm.conversationId = null;
   vm.index = null;
 
-
   function addMessage() {
     vm.message.conversation_id = vm.conversationId;
 
@@ -91,9 +117,14 @@ function ConversationCtrl(Conversation, Message) {
     .save({ id: vm.conversationId }, vm.message)
     .$promise
     .then((response) => {
-      console.log(response);
-      const newMessage = response.conversation.messages.pop();
+      console.log('Message saved', response);
+      function findMessage(message) {
+        return message.body === response.body;
+      }
+
+      const newMessage = response.conversation.messages.find(findMessage);
       vm.conversations[vm.index].messages.push(newMessage);
+      console.log(newMessage);
       vm.message = {};
     });
   }
@@ -101,34 +132,43 @@ function ConversationCtrl(Conversation, Message) {
   function getUnread(currentUserId) {
     let count = 0;
     vm.conversations.forEach((conversation) => {
-      return conversation.messages.map((message) => {
+      conversation.messages.forEach((message) => {
         if (message.user_id !== currentUserId && !message.read) {
           return count += 1;
         }
-        console.log('Count: ', count);
       });
+      console.log('Count: ', count);
+      count = 0;
     });
-
   }
 
   vm.getUnread = getUnread;
 
   function selectConversation(conversation, index, currentUserId) {
 
-    conversation.messages.forEach((message) => {
-      if (message.user_id !== currentUserId) {
-        message.read = true;
-      }
-    });
+    // Set messages to read in Angular
+    // conversation.messages.forEach((message) => {
+    //   if (message.user_id !== currentUserId) {
+    //     message.read = true;
+    //   }
+    // });
 
     console.log(conversation.messages);
     Conversation
     .get({ id: conversation.id })
     .$promise
     .then((conversation) => {
-      console.log(conversation);
+      console.log('Backend', conversation);
+      $scope.conversations.getUnread(currentUserId);
       vm.conversationId = conversation.id;
       vm.index = index;
+      Message
+        .get({ id: vm.conversationId })
+        .$promise
+        .then((response) => {
+          console.log('From index messages', response);
+          // .. update Angular
+        });
 
     });
   }

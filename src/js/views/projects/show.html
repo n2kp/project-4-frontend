@@ -2,81 +2,93 @@
 <div class="main">
 
 
-<div class="row">
-  <div class="col offset-s1 s5">
-    <div class="projectInfo">
+  <div class="row">
+    <div class="col offset-s1 s5">
+      <div class="projectInfo">
 
-      <h1> {{ projectsShow.project.title }}</h1>
-      <p>{{ projectsShow.project.description }}</p>
-      <p>{{ projectsShow.project.project_deadline | date }}</p>
-      <p>{{ projectsShow.project.bid_deadline | amDifference : null : 'days' }} days </p>
-      <p>{{ projectsShow.project.tech_stack }}</p>
-      <p>{{ projectsShow.project.budget | currency : '£' : 0}}</p>
-      <br>
-      <button ng-click="projectsShow.contactCreator(main.currentUser.id, projectsShow.project.user.id)" class="button primary">
-        Message {{ projectsShow.project.user.username}}</button>
+        <h1> {{ projectsShow.project.title }}</h1>
+        <p>{{ projectsShow.project.description }}</p>
+        <p>{{ projectsShow.project.project_deadline | date }}</p>
+        <p>{{ projectsShow.project.bid_deadline | amDifference : null : 'days' }} days </p>
+        <p>{{ projectsShow.project.tech_stack }}</p>
+        <p>{{ projectsShow.project.budget | currency : '£' : 0}}</p>
+        <br>
+        <button ng-click="projectsShow.contactCreator(main.currentUser.id, projectsShow.project.user.id)" class="button primary">
+          Message {{ projectsShow.project.user.username}}</button>
 
-      <button ng-click="profile({ id: projectsShow.project.user.id })" class="button primary">Posted by {{ projectsShow.project.user.username }}</button>
+          <button ng-click="profile({ id: projectsShow.project.user.id })" class="button primary">Posted by {{ projectsShow.project.user.username }}</button>
 
-        <button ui-sref="projectsEdit({ id: projectsShow.project.id})" ng-if="main.currentUser.id === projectsShow.project.user.id">Edit</button>
+          <button ui-sref="projectsEdit({ id: projectsShow.project.id})" ng-if="main.currentUser.id === projectsShow.project.user.id">Edit</button>
 
+        </div>
       </div>
-    </div>
 
-    <div class="col s5 marginTopLg">
-      <form ng-if="!projectsShow.findUsersTender(main.currentUser.id) && main.currentUser.is_dev" ng-submit="projectsShow.tenderCreate()">
+      <div class="col s5 marginTopLg">
+        <form ng-if="!projectsShow.findUsersTender(main.currentUser.id) && main.currentUser.is_dev" ng-submit="projectsShow.tenderCreate()">
 
-         <h3>There are currently {{ projectsShow.project.tenders.length }} bids on this project, make your offer here...</h3>
-
-
-        <label for="bid">Bid</label>
-        <input type="number" id="bid" name="bid" ng-model="projectsShow.tender.bid">
-
-        <label for="pitch">Pitch</label>
-        <input type="text" id="pitch" name="pitch" ng-model="projectsShow.tender.pitch">
-
-        <label for="base64">Image Upload</label>
-        <input type="file" base64 id="base64" name="base64" ng-model="projectsShow.tender.base64">
-
-        <button class="button primary">Submit Offer</button>
-      </form>
+          <h3>There are currently {{ projectsShow.project.tenders.length }} bids on this project, make your offer here...</h3>
 
 
-      <h1>Current Bids</h1>
-      <div  ng-repeat="tender in projectsShow.project.tenders">
+          <label for="bid">Bid</label>
+          <input type="number" id="bid" name="bid" ng-model="projectsShow.tender.bid">
 
-        <div ng-if="main.currentUser.id === tender.user.id || main.currentUser.id === projectsShow.project.user.id">
+          <label for="pitch">Pitch</label>
+          <input type="text" id="pitch" name="pitch" ng-model="projectsShow.tender.pitch">
 
-          <h1 ng-if="main.currentUser.id === tender.user.id ">Your current bid</h1>
-          <h5>{{ tender.bid }}</h5>
-          <h5>{{ tender.pitch }}</h5>
-          <h5>{{ tender.status }}</h5>
-          <h5>{{ tender.user.username }}</h5>
-          <h5>{{ tender.user.status }}</h5>
-          <img ng-src="{{ tender.image_src }}">
+          <label for="base64">Image Upload</label>
+          <input type="file" base64 id="base64" name="base64" ng-model="projectsShow.tender.base64">
 
-            <!-- <form ng-submit="projectsShow.update()">
+          <button class="button primary">Submit Offer</button>
+        </form>
 
-              <label for="bid">Bid</label>
-              <input type="number" id="bid" name="bid" ng-model="projectsShow.tender.bid">
 
-              <label for="pitch">Pitch</label>
-              <input type="text" id="pitch" name="pitch" ng-model="projectsShow.tender.pitch">
+        <h1>Current Bids</h1>
+        <div  ng-repeat="tender in projectsShow.project.tenders">
 
-              <label for="image_src">Image Upload</label>
-              <input type="text" id="image_src" name="image_src" ng-model="projectsShow.tender.image_src">
+          <div ng-if="main.currentUser.id === tender.user.id || main.currentUser.id === projectsShow.project.user.id">
 
-              <button class="button primary">Submit Offer</button>
-            </form> -->
-            <button ng-if="main.currentUser.id === tender.user.id" >Alter your bid</button>
+            <h1 ng-if="main.currentUser.id === tender.user.id ">Your current bid</h1>
+            <h5>{{ tender.bid }}</h5>
+            <h5>{{ tender.pitch }}</h5>
+            <h5>{{ tender.status }}</h5>
+            <h5>{{ tender.user.username }}</h5>
+            <h5>{{ tender.user.status }}</h5>
+            <img ng-src="{{ tender.image_src }}">
+
+            <div>
+
+
+              <button ng-if="main.currentUser.id === tender.user.id"  ng-click="projectsShow.show = 1">Alter your bid</button>
+
+              <div ng-show="projectsShow.show == 1">
+                <form ng-submit="projectsShow.tenderUpdate()">
+
+                  <label for="bid">Bid</label>
+                  <input type="number" id="bid" name="bid" ng-model="tender.bid">
+
+                  <label for="pitch">Pitch</label>
+                  <input type="text" id="pitch" name="pitch" ng-model="tender.pitch">
+
+                  <label for="image_src">Image Upload</label>
+                  <input type="text" id="image_src" name="image_src" ng-model="tender.image_src">
+
+                  <button class="button primary">Submit Offer</button>
+
+                </form>
+                <button ng-click="projectsShow.show = 0" class="button primary">Cancel</button>
+              </div>
+
+            </div>
+
+
 
             <button ng-if="main.currentUser.id === projectsShow.project.user.id" ng-click="projectsShow.acceptBid(tender.id) ; contactCreator(main.currentUser.id, projectsShow.tender.user.id)">Accept this bid</button>
 
             <button ng-if="main.currentUser.id === tender.user.id" ng-click="projectsShow.delete(tender)" >Retract your bid</button>
 
             <button ng-if="main.currentUser.id === projectsShow.project.user.id" ng-click="projectsShow.delete(tender)">Reject this bid</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>

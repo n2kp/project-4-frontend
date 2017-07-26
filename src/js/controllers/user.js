@@ -73,8 +73,8 @@ function ProfileEditCtrl($auth, User, $state, $scope, $rootScope, API_URL, $http
   }
 }
 
-ConversationCtrl.$inject = ['Conversation', 'Message'];
-function ConversationCtrl(Conversation, Message) {
+ConversationCtrl.$inject = ['Conversation', 'Message', '$scope'];
+function ConversationCtrl(Conversation, Message, $scope) {
   const vm = this;
 
   vm.conversations = Conversation.query();
@@ -83,7 +83,6 @@ function ConversationCtrl(Conversation, Message) {
   vm.conversationId = null;
   vm.index = null;
 
-
   function addMessage() {
     vm.message.conversation_id = vm.conversationId;
 
@@ -91,9 +90,14 @@ function ConversationCtrl(Conversation, Message) {
     .save({ id: vm.conversationId }, vm.message)
     .$promise
     .then((response) => {
-      console.log(response);
-      const newMessage = response.conversation.messages.pop();
+      console.log('Message saved', response);
+      function findMessage(message) {
+        return message.body === response.body;
+      }
+
+      const newMessage = response.conversation.messages.find(findMessage);
       vm.conversations[vm.index].messages.push(newMessage);
+      console.log(newMessage);
       vm.message = {};
     });
   }
@@ -101,34 +105,43 @@ function ConversationCtrl(Conversation, Message) {
   function getUnread(currentUserId) {
     let count = 0;
     vm.conversations.forEach((conversation) => {
-      return conversation.messages.map((message) => {
+      conversation.messages.forEach((message) => {
         if (message.user_id !== currentUserId && !message.read) {
           return count += 1;
         }
-        console.log('Count: ', count);
       });
+      console.log('Count: ', count);
+      count = 0;
     });
-
   }
 
   vm.getUnread = getUnread;
 
   function selectConversation(conversation, index, currentUserId) {
 
-    conversation.messages.forEach((message) => {
-      if (message.user_id !== currentUserId) {
-        message.read = true;
-      }
-    });
+    // Set messages to read in Angular
+    // conversation.messages.forEach((message) => {
+    //   if (message.user_id !== currentUserId) {
+    //     message.read = true;
+    //   }
+    // });
 
     console.log(conversation.messages);
     Conversation
     .get({ id: conversation.id })
     .$promise
     .then((conversation) => {
-      console.log(conversation);
+      console.log('Backend', conversation);
+      $scope.conversations.getUnread(currentUserId);
       vm.conversationId = conversation.id;
       vm.index = index;
+      Message
+        .get({ id: vm.conversationId })
+        .$promise
+        .then((response) => {
+          console.log('From index messages', response);
+          // .. update Angular
+        });
 
     });
   }

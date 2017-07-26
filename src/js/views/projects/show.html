@@ -13,11 +13,10 @@
       <p>{{ projectsShow.project.tech_stack }}</p>
       <p>{{ projectsShow.project.budget | currency : '£' : 0}}</p>
       <br>
-      {{projectsShow.project}}
       <button ng-click="projectsShow.contactCreator(main.currentUser.id, projectsShow.project.user.id)" class="button primary">
         Message {{ projectsShow.project.user.username}}</button>
 
-      <button><a ui-sref="profile({ id: projectsShow.project.user.id })" class="button primary">Posted by {{ projectsShow.project.user.username }}</a></button>
+      <button ng-click="profile({ id: projectsShow.project.user.id })" class="button primary">Posted by {{ projectsShow.project.user.username }}</button>
 
         <button ui-sref="projectsEdit({ id: projectsShow.project.id})" ng-if="main.currentUser.id === projectsShow.project.user.id">Edit</button>
 

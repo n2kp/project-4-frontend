@@ -34,6 +34,7 @@
       <li ng-if="main.isAuthenticated()"><a ui-sref="projectsNew">Post a Job</a></li>
 
       <li ng-if="main.isAuthenticated()"><a ui-sref="conversations">Chat</a></li>
+      <li ng-model="main.unreadMessages" ng-if="main.isAuthenticated() && main.unreadMessages">{{ main.unreadMessages }}</li>
 
       <li ng-if="main.isAuthenticated()"> <div class="dropdown">
         {{ main.currentUser.username }} <i class="material-icons">arrow_drop_down</i>

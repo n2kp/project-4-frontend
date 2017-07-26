@@ -27,8 +27,6 @@ function ProjectIndexCtrl (Project, moment, filterFilter, $scope) {
 
     vm.filtered = filterFilter(vm.all, params);
 
-    console.log(vm.filtered);
-    console.log(vm.budget);
   }
 
   function lowerThan(prop, val){

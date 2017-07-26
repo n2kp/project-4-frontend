@@ -10,6 +10,7 @@ function MainCtrl($rootScope, $scope, $state, API_URL, $auth, $transitions, User
 
   $rootScope.$on('error', (e, err) => {
     vm.message = err.data.errors.join('; ');
+    console.log(vm.message);
 
     if(err.status === 401 && vm.pageName !== 'login') {
       vm.stateHasChanged = false;

@@ -12,6 +12,25 @@ function ProfileCtrl($auth, User, $state, Review, Project) {
   vm.user = User.get($state.params);
   vm.projects = Project.query();
 
+  Project.query()
+  .$promise
+  .then((projects) =>{
+    console.log(projects);
+    vm.projects = projects;
+  });
+
+
+  // Trying to prepend the url with http
+  // function checkUrl(url) {
+  //   if (!/^https?:\/\//i.test(url)) {
+  //     url = 'http://' + url;
+  //   }
+  // }
+  // vm.checkUrl = checkUrl;
+  //
+  // console.log(vm.checkUrl);
+
+
   function logout() {
     $auth.logout();
     $state.go('login');
@@ -19,6 +38,8 @@ function ProfileCtrl($auth, User, $state, Review, Project) {
 
   vm.logout = logout;
   vm.newReview = {};
+
+
 
   function addReview() {
     vm.newReview.receiver_id = vm.user.id;
@@ -51,6 +72,8 @@ function ProfileEditCtrl($auth, User, $state, $scope, $rootScope, API_URL, $http
   vm.user = User.get($state.params);
   vm.update = userUpdate;
 
+
+
   // $scope.$watch(vm.user.is_dev, () => {
   //   console.log('changed');
   //   // $rootScope.$broadcast('isDev', { isDev: vm.profile.is_dev });
@@ -64,14 +87,17 @@ function ProfileEditCtrl($auth, User, $state, $scope, $rootScope, API_URL, $http
     .then(() => {
 
       $http.get(`${API_URL}/refresh`)
-        .then((response) => {
-          console.log(response);
-          var refreshToken = response.data.token;
-          $auth.setToken(refreshToken);
-          $state.go('profile', $state.params);
-        });
+      .then((response) => {
+        console.log(response);
+        var refreshToken = response.data.token;
+        $auth.setToken(refreshToken);
+        $state.go('profile', $state.params);
+      });
     });
   }
+
+
+
 }
 
 ConversationCtrl.$inject = ['Conversation', 'Message', '$scope'];

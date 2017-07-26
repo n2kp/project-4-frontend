@@ -32,7 +32,8 @@
           </div>
         </div>
         <div class="row justify-content-center">
-          <a class=" col-sm-2 button primary cursor" ng-click="auth.show = 2" >Next</a>
+          <a ng-if="!auth.user.is_dev === false" class=" col-sm-2 button primary cursor" ng-click="auth.show = 2" >Next</a>
+          <a ng-if="auth.user.is_dev === false" class=" col-sm-2 button primary cursor" ng-click="auth.show = 2" >Next</a>
         </div>
       </div>
     </div>
@@ -58,13 +59,14 @@
       <!--EMAIL INPUT  -->
       <div>
         <label for="email">Email</label>
-        <input type="text" ng-model="auth.user.email" name="email" id="email"  ng-pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
+        <input type="text" ng-model="auth.user.email" name="email" id="email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
       </div>
       <!-- EMAIL VALIDATION/MESSAGES -->
       <div ng-messages="auth.registerForm.email.$error" ng-show="auth.registerForm.$submitted || auth.registerForm.email.$touched">
       <div ng-message="required" class="errorMessage">An email address is required</div>
-      <div ng-message="pattern" ng-show="register.registrationForm.$submitted || register.registrationForm.email.$touched" class="notificationThin" >This Email is not valid</div>
+      <div ng-message="pattern" ng-show="auth.registerForm.$submitted || auth.registerForm.email.$touched" class="errorMessage" ></div>
     </div>
+
 
     <!--PASSWORD INPUT  -->
     <div>
@@ -87,20 +89,18 @@
   <div ng-message="required" class="errorMessage">Password confirmation is required</div>
   <div ng-message="match-password" class="errorMessage">Password's do not match</div>
 </div>
-<button ng-click="auth.show = 3">Next</button>
+<button ng-if="(auth.user.email && auth.user.username  && auth.user.password && auth.user.password_confirmation)" ng-click="auth.show = 3">Next</button>
 </div>
 
 
-<div class="form3" ng-show="auth.show==3">
-
-
+<div class="form3" ng-show="auth.show == 3">
   <!--FIRST NAME INPUT  -->
   <div>
     <label for="firstname">First Name</label>
     <input type="text" ng-model="auth.user.firstname" name="firstname" id="firstname" required>
   </div>
   <!-- FIRST NAME VALIDATION/MESSAGES -->
-  <div ng-messages="auth.registerForm.firstname.$error" ng-show="auth.registerForm.$submitted || auth.registerForm.firstname.$touched">
+  <div ng-messages="auth.registerForm.firstname.$error" ng-show="auth.registerForm.$submitted && auth.registerForm.firstname.$touched">
   <div ng-message="required" class="errorMessage">You forgot to provide us with you first name</div>
 </div>
 
@@ -111,7 +111,7 @@
   <input type="text" ng-model="auth.user.lastname" name="lastname" id="lastname" required>
 </div>
 <!-- LAST NAME VALIDATION/MESSAGES -->
-<div ng-messages="auth.registerForm.lastname.$error" ng-show="auth.registerForm.$submitted || auth.registerForm.lastname.$touched">
+<div ng-messages="auth.registerForm.lastname.$error" ng-show="auth.registerForm.$submitted && auth.registerForm.lastname.$touched">
 <div ng-message="required" class="errorMessage">You forgot to provide us with your last name</div>
 </div>
 
@@ -126,7 +126,5 @@
 
 
 </form>
-</div>
-</div>
 </div>
 </div>

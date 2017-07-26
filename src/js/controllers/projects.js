@@ -5,9 +5,10 @@ angular
 .controller('ProjectShowCtrl', ProjectShowCtrl)
 .controller('ProjectEditCtrl', ProjectEditCtrl);
 
-ProjectIndexCtrl.$inject = ['Project', 'moment', 'filterFilter', '$scope'];
+ProjectIndexCtrl.$inject = ['Project', 'moment', 'filterFilter', '$scope', 'orderByFilter'];
 function ProjectIndexCtrl (Project, moment, filterFilter, $scope) {
   const vm = this;
+  vm.all = [];
 
   Project.query()
   .$promise
@@ -44,10 +45,6 @@ function ProjectIndexCtrl (Project, moment, filterFilter, $scope) {
       return function(project) {
         const chosenEndDate = moment().add(val, 'day')._d;
         const bidEndDate = moment(project[prop])._d;
-        console.log('Chosen end date: ', chosenEndDate);
-        console.log('Project end date: ', moment(project[prop])._d);
-        // console.log(chosenEndDate._d);
-        console.log(chosenEndDate > bidEndDate);
         if (chosenEndDate > bidEndDate) return true;
       };
     }
@@ -57,7 +54,9 @@ function ProjectIndexCtrl (Project, moment, filterFilter, $scope) {
 
   //create a watch group to listen out for changes and then running the function
   $scope.$watchGroup([
-    () => vm.q
+    () => vm.q,
+    () => vm.lowerThan,
+    () => vm.dateFilter
   ], filterProjects);
 }
 
@@ -75,8 +74,10 @@ function ProjectNewCtrl (Project, User, $stateParams, $state ){
     Project
     .save(vm.project)
     .$promise
-    .then(() =>
-    $state.go('projectsIndex'));
+    .then((project) => {
+      console.log(project);
+      $state.go('projectsShow', { id: project.id });
+    });
   }
   vm.create = projectsCreate;
 }
@@ -103,13 +104,16 @@ function ProjectShowCtrl (Project, User, $stateParams, $state, Conversation, Ten
     });
   }
 
-  // function tenderUpdate() {
-  //   Tender
-  //   .update({ id: vm.tender.id }, vm.tender)
-  //   .$promise
-  //   .then(() =>  );
-  // }
-  // vm.update = tenderUpdate;
+  function tenderUpdate() {
+    Tender
+    .update({ id: vm.tender.id }, vm.tender)
+    .$promise
+    .then(()=> {
+      $state.go('projectsIndex');
+    });
+  }
+  vm.tenderUpdate = tenderUpdate;
+  
 
   function acceptBid(id) {
     vm.project.tenders.map((tender) => {

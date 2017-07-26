@@ -7,11 +7,10 @@ function AuthCtrl($auth, $state, $rootScope, User) {
   const vm = this;
   vm.show = 1;
   function register() {
-    $auth.signup(vm.user)
-    .then(() => $state.go('login'));
-
-
-    console.log(vm.user);
+    if (vm.registerForm.$valid){
+      $auth.signup(vm.user)
+      .then(() => $state.go('login'));
+    }
 
   }
 
@@ -35,17 +34,17 @@ function AuthCtrl($auth, $state, $rootScope, User) {
   // vm.authenticate = authenticate;
 
   function authenticate(provider) {
-      $auth.authenticate(provider)
-        .then((res) => {
-          if ($auth.getPayload().is_dev === null) {
-            // console.log('You must complete your profile', !user.is_dev);
-            return $state.go('profileEdit', { id: id });
-          } else {
-            $state.go('projectsIndex');
-          }
+    $auth.authenticate(provider)
+    .then((res) => {
+      if ($auth.getPayload().is_dev === null) {
+        // console.log('You must complete your profile', !user.is_dev);
+        return $state.go('profileEdit', { id: id });
+      } else {
+        $state.go('projectsIndex');
+      }
 
-        });
-    }
-    vm.authenticate = authenticate;
+    });
+  }
+  vm.authenticate = authenticate;
 
 }

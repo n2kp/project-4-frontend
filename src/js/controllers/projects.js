@@ -33,7 +33,6 @@ function ProjectIndexCtrl (Project, moment, filterFilter, $scope) {
   function lowerThan(prop, val){
     if(vm.useBudget) {
       return function(project) {
-        console.log(project);
         if (project[prop] < val || project[prop] === undefined) return true;
       };
     }
@@ -75,7 +74,7 @@ function ProjectNewCtrl (Project, User, $stateParams, $state ){
     .save(vm.project)
     .$promise
     .then((project) => {
-      console.log(project);
+
       $state.go('projectsShow', { id: project.id });
     });
   }
@@ -113,7 +112,7 @@ function ProjectShowCtrl (Project, User, $stateParams, $state, Conversation, Ten
     });
   }
   vm.tenderUpdate = tenderUpdate;
-  
+
 
   function acceptBid(id) {
     vm.project.tenders.map((tender) => {
@@ -129,6 +128,19 @@ function ProjectShowCtrl (Project, User, $stateParams, $state, Conversation, Ten
     Project.update({ id: vm.project.id }, vm.project);
   }
   vm.acceptBid = acceptBid;
+
+
+  function rejectBid(id) {
+    vm.project.tenders.map((tender) => {
+      if (tender.id === id) {
+        tender.status = 'rejected';
+        Tender.update({ id: tender.id }, tender);
+      }
+    });
+  }
+
+  vm.rejectBid = rejectBid;
+
 
   function tendersDelete(tender) {
     Tender
@@ -185,7 +197,7 @@ function ProjectEditCtrl (Project, User, $stateParams, $state) {
     .then(() =>
     $state.go('projectsShow', { id: vm.project.id }));
   }
-  
+
   vm.update = projectUpdate;
 
   function projectsDelete() {

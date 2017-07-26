@@ -60,13 +60,10 @@
   </div>
 
   <div class="col-5">
-    <h2>Review's</h2>
-
+    <h2>Reviews</h2>
     <div ng-if="profile.user.reviews_received.length === 0" class="profileCards shadow-1">
-    <h1>  This user currently has no reviews </h1>
+      <h1>You currently have no reviews</h1>
     </div>
-
-
     <div ng-repeat="review in profile.user.reviews_received" class="profileCards shadow-1">
       <p>{{ review.body }}</p>
       <p>Rating: {{ review.rating }}</p>
@@ -75,15 +72,12 @@
 
     <form ng-submit="profile.addReview()">
       <div class="form-group">
-
-
-      <textarea  placeholder="Write a user review" ng-model="profile.newReview.body" class="form-control"></textarea>
+        <textarea placeholder="Write a user review" ng-model="profile.newReview.body" class="form-control"></textarea>
       </div>
       <div class="form-group">
-      <input type="number" name="rating" ng-model="profile.newReview.rating" class="form-control">
-      <button class="button primary marginTopMd">Post Review</button>
-    </div>
+        <input type="number" name="rating" ng-model="profile.newReview.rating" class="form-control">
+        <button class="button primary marginTopMd">Post Review</button>
+      </div>
     </form>
-
   </div>
 </div>

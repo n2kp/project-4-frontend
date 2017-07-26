@@ -33,10 +33,13 @@ $borderColor: #ececec;
 }
 
 .main{
-  margin-top: 80px;
+  margin-top: 64px;
+  background-color: #fafafa ;
 }
 
+
 main {
+
   .errorMessage {
     padding:-10px;
     color: $error;
@@ -61,7 +64,7 @@ main {
   position: absolute;
   background-color: white;
   min-width: 50px;
-  right: 8px;
+  right: 0px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   padding: 12px 16px;
   z-index: 1;
@@ -92,19 +95,19 @@ main {
 
 .MessageNumber{
   position: absolute;
-    right: 63px;
-    top: 12px;
-    background-color: red;
-    color: white;
-    height: 13px;
-    width: 0px;
-    line-height: 1.2;
-    font-size: 10px;
-    border-radius: 100px;
-    padding-left: 4px;
-    padding-right: 9px;
-    padding-top: 0px;
-    font-weight: bolder;
+  right: 63px;
+  top: 12px;
+  background-color: red;
+  color: white;
+  height: 13px;
+  width: 0px;
+  line-height: 1.2;
+  font-size: 10px;
+  border-radius: 100px;
+  padding-left: 4px;
+  padding-right: 9px;
+  padding-top: 0px;
+  font-weight: bolder;
 }
 
 
@@ -251,12 +254,13 @@ nav{
   background-color: white;
   // border-bottom: 1px solid $borderColor;
   color: $textColor;
-  height: 48px;
-  padding: 16px;
+  height: 64px;
+  padding: 16px 16px 24px 16px;
   width: 100%;
   margin: 0;
   margin-bottom: 10px;
   z-index: 50;
+  // box-shadow: -4px -7px 13px 8px rgba(0, 0, 0, 0.2);
 }
 
 .nav-logo-icon{
@@ -363,7 +367,8 @@ nav ul li a{
   margin: 16px 0px;
   padding: 16px;
   word-wrap: break-word;
-  border-bottom: 1px solid $borderColor;
+  background-color: white;
+  border: 1px solid #efefef;
   &.projectCards:hover{
   }
 }

@@ -1,4 +1,4 @@
-<!DOCTYPE html >
+<!DOCTYPE html>
 <div class="main">
 
 
@@ -24,14 +24,28 @@
           <input type="checkbox" id="bid_deadline" ng-model="projectsIndex.useDeadline">
           <label for="bid_deadline">Bid Deadline within {{ projectsIndex.bid_deadline }} days</label>
           <input class="range-slider__range" type="range" ng-model="projectsIndex.bid_deadline" min="0" max="180" ng-disabled="!projectsIndex.useDeadline">
+=======
+  <div class="row">
+    <div class="col-sm-2">
+      <div class="filter">
+        <p>FILTER SOME STUFF</p>
+        <input ng-model="projectsIndex.q" type="text" name="" value="">
+        <div class="filters">
+          <div>
+            <input type="checkbox" id="budget" ng-model="projectsIndex.useBudget">
+            <label for="budget">Budget less than {{ projectsIndex.budget | currency:'£':0 }}</label>
+            <input type="range" ng-model="projectsIndex.budget" step="2000" min="1000" max="100000" ng-disabled="!projectsIndex.useBudget">
+          </div>
+          <div class="">
+            <input type="checkbox" id="bid_deadline" ng-model="projectsIndex.useDeadline">
+            <label for="bid_deadline">Bid Deadline within {{ projectsIndex.bid_deadline }} days</label>
+            <input type="range" ng-model="projectsIndex.bid_deadline" min="0" max="180" ng-disabled="!projectsIndex.useDeadline">
+          </div>
+
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- <div class="range-slider">
-    <input class="range-slider__range" type="range" value="100" min="0" max="500">
-  </div> -->
 
 
 
@@ -41,9 +55,17 @@
     <div ng-if="project.is_priority && project.is_active" ng-repeat="project in projectsIndex.filtered
     | filter: projectsIndex.lowerThan('budget', projectsIndex.budget)
     | filter: projectsIndex.dateFilter('bid_deadline', projectsIndex.bid_deadline)"
-    class="projectCards z-depth-1 cursor" ui-sref="projectsShow({ id: project.id })">
 
-      <p class="marginBottomXXSm"><span>Posted by</span>{{ project.user.username }}</p>
+    <div class="col-sm-6">
+      <div ng-if="project.is_priority && project.is_active" ng-repeat="project in projectsIndex.filtered
+      | filter: projectsIndex.lowerThan('budget', projectsIndex.budget)
+      | filter: projectsIndex.dateFilter('bid_deadline', projectsIndex.bid_deadline)"
+      class="projectCards z-depth-1 cursor" ui-sref="projectsShow({ id: project.id })">
+
+
+      <p class="marginBottomXXSm">
+        <span>Posted by</span>{{ project.user.username }}
+      </p>
       <h2 class="marginBottomMd">{{project.title }}</h2>
 
       <p class="marginBottomMd">{{project.description | limitTo: 150 }}...</p>
@@ -57,34 +79,33 @@
         <span class="tech-tag" ng-repeat="tech in project.tech_stack.split(',')">{{ tech }}</span>
       </p>
 
-        <p class="marginBottomXSm">
-          <span>Budget</span> {{ project.budget | currency : '£' : 0 }}</p>
+      <p class="marginBottomXSm">
+        <span>Budget</span> {{ project.budget | currency : '£' : 0 }}</p>
 
-          <p class="marginBottomLg">
-            <span>Time left to submit a bid  </span>{{ project.bid_deadline | amDifference : null : 'days' }} days </p>
+        <p class="marginBottomLg">
+          <span>Time left to submit a bid</span>{{ project.bid_deadline | amDifference : null : 'days' }} days</p>
 
-          </div>
+        </div>
       </div>
 
 
-        <div class="col-sm-3">
-          <div ng-if="!project.is_priority && project.is_active " ng-repeat="project in projectsIndex.all" class=" projectCards cursor" ui-sref="projectsShow({ id: project.id })">
+      <div class="col-sm-3">
+        <div ng-if="!project.is_priority && project.is_active " ng-repeat="project in projectsIndex.all" class=" projectCards cursor" ui-sref="projectsShow({ id: project.id })">
 
-            <img ng-src="{{ project.user.image }}" alt="profile.user.imageSRC" class="paidImage">
+          <img ng-src="{{ project.user.image }}" alt="profile.user.imageSRC" class="paidImage">
 
-            <h2> {{project.title }}</h2>
-            <p> {{project.description }}</p>
-            <p> {{project.project_deadline }}</p>
-            <p> {{project.bid_deadline }}</p>
-            <p> {{project.tech_stack }}</p>
-            <p> {{project.budget }}</p>
+          <h2> {{project.title }}</h2>
+          <p> {{project.description }}</p>
+          <p> {{project.project_deadline }}</p>
+          <p> {{project.bid_deadline }}</p>
+          <p> {{project.tech_stack }}</p>
+          <p> {{project.budget }}</p>
 
-            <div class="paidPost">
-              <p class="marginBottomLg">Paid Post</p>
-            </div>
-            <!-- <button ng-if="main.isAuthenticated()" ui-sref="projectsShow({ id: project.id })" class="button primary" >View</button> -->
+          <div class="paidPost">
+            <p class="marginBottomLg">Paid Post</p>
           </div>
+          <!-- <button ng-if="main.isAuthenticated()" ui-sref="projectsShow({ id: project.id })" class="button primary">View</button> -->
         </div>
       </div>
     </div>
-</div>
+  </div>

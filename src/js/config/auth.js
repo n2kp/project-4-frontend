@@ -9,12 +9,12 @@ function Auth($authProvider, API_URL) {
 
 
   $authProvider.github({
-    clientId: '44079c6998fea867556d',
+    clientId: 'c68d6e6c5ebea060f449',
     url: `${API_URL}/oauth/github`
   });
 
   $authProvider.facebook({
-    clientId: '1177324765706974',
+    clientId: '1588611524543777',
     url: `${API_URL}/oauth/facebook`
   });
 }

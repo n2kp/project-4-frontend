@@ -52,24 +52,24 @@ main {
 }
 
 .dropdown {
-    position: relative;
-    display: inline-block;
+  position: relative;
+  display: inline-block;
 }
 
 .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: white;
-    min-width: 50px;
-    right: 8px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    padding: 12px 16px;
-    z-index: 1;
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 50px;
+  right: 8px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
 }
 
 .dropdown:hover .dropdown-content {
-    display: block;
-    text-align: right;
+  display: block;
+  text-align: right;
 }
 
 // SNAZZY LINIKS
@@ -89,6 +89,24 @@ main {
   cursor: pointer;
   color: #000;
 }
+
+.MessageNumber{
+  position: absolute;
+    right: 63px;
+    top: 12px;
+    background-color: red;
+    color: white;
+    height: 13px;
+    width: 0px;
+    line-height: 1.2;
+    font-size: 10px;
+    border-radius: 100px;
+    padding-left: 4px;
+    padding-right: 9px;
+    padding-top: 0px;
+    font-weight: bolder;
+}
+
 
 
 //FONT STYLES
@@ -166,6 +184,9 @@ p{
 .marginRightSm{
   margin-right: 16px;
 }
+.marginRightXSm{
+  margin-right: 8px;
+}
 
 .marginCenter{
   margin: 0 auto;
@@ -181,13 +202,14 @@ p{
 
 .button{
   background-color: white;
-  padding: 8px 32px;
-  border-radius: 100px;
-  width: 200px;
+  padding: 4px 32px;
+  border-radius: 4px;
   text-align: center;
   display: inline-block;
   border: none;
   cursor: pointer;
+  text-decoration: none;
+
 }
 
 .primary{
@@ -195,6 +217,29 @@ p{
   color: white;
   &.primary:hover {
     background-color: darken($highlight, 20%);
+    text-decoration: none;
+    color: white;
+  }
+}
+
+.facebook{
+  background-color: #3b5998;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  &.facebook:hover {
+    background-color: darken(#3b5998, 10%);
+
+  }
+}
+.github{
+  background-color: #24292e;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  &.github:hover {
+    background-color: lighten(#24292e, 10%);
+
   }
 }
 
@@ -204,7 +249,7 @@ nav{
   position: fixed;
   top: 0;
   background-color: white;
-  border-bottom: 1px solid $borderColor;
+  // border-bottom: 1px solid $borderColor;
   color: $textColor;
   height: 48px;
   padding: 16px;
@@ -602,8 +647,8 @@ input[type=radio]:checked + label {
   border: 1px solid white;
   padding: 4px 16px;
   border-radius: 4px;
-  position: fixed;
-  right: 10%;
+  position: relative;
+  left: 84%;
   top: 60px;
   color: white;
   text-decoration: none;
@@ -619,7 +664,7 @@ input[type=radio]:checked + label {
   text-decoration: none;
   position: relative;
   right: 0.4%;
-  top: 244px;
+  top: 220px;
   font-size: 24px;
   padding: 0px 8px;
   display: inline-block;

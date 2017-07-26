@@ -4,6 +4,7 @@
 
   <div class="row justify-content-center">
     <div class="col-5  ">
+
       <div class="projectInfo projectCards">
         <p> Posted by {{ projectsShow.project.user.username }}</p>
         <h2 class="marginBottomMd"> {{ projectsShow.project.title }}</h2>
@@ -48,8 +49,8 @@
 
         <div ng-repeat="tender in projectsShow.project.tenders" class="projectCards" id="noPaddingBottom">
 
-        <h1>Current Bids on this project</h1>
-        <div ng-repeat="tender in projectsShow.project.tenders" class="projectCards" >
+        
+
 
 
           <div ng-if="main.currentUser.id === tender.user.id || main.currentUser.id === projectsShow.project.user.id || !main.currentUser.is_dev">
@@ -76,18 +77,7 @@
             </div>
 
 
-            <h1 ng-if="main.currentUser.id === tender.user.id ">Your current bid</h1>
-            <h5>{{ tender.bid }}</h5>
-            <h5>{{ tender.pitch }}</h5>
-            <h5>{{ tender.status }}</h5>
 
-            <h5>{{ tender.user.status }}</h5>
-
-            <h5 ui-sref="profile({id: tender.user.id})" >{{ tender.user.username }} -</h5>  <p>has made a bid on this project</p>
-            <img ng-src="{{ tender.image_src }}">
-
-
-            <div>
 
 
               <button ng-if="main.currentUser.id === tender.user.id"  ng-click="projectsShow.show = 1">Alter your bid</button>

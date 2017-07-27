@@ -55,30 +55,27 @@
     <input type="text" id="tech_stack" name="tech_stack" ng-model="projectsEdit.project.tech_stack" required>
     <!-- TECH STACK VALIDATION/MESSAGES -->
     <div ng-messages="projectsEdit.projectForm.tech_stack.$error" ng-show="projectsEdit.projectForm.$submitted || projectsEdit.projectForm.tech_stack.$touched">
-    <div ng-message="required" class="errorMessage">Please supply at least one technology that you wish to be used in your project</div>
-  </div>
+      <div ng-message="required" class="errorMessage">Please supply at least one technology that you wish to be used in your project</div>
+    </div>
 
 
-  <!--BUDGET INPUT  -->
-  <label for="budget">Budget</label>
-  <input type="text" id="budget" name="budget" ng-model="projectsEdit.project.budget" required>
-  <!-- BUDGET VALIDATION/MESSAGES -->
-  <div ng-messages="projectsEdit.projectForm.budget.$error" ng-show="projectsEdit.projectForm.$submitted || projectsEdit.projectForm.budget.$touched">
-  <div ng-message="required" class="errorMessage">A maximum budget is required</div>
-</div>
+    <!--BUDGET INPUT  -->
+    <label for="budget">Budget</label>
+    <input type="text" id="budget" name="budget" ng-model="projectsEdit.project.budget" required>
+    <!-- BUDGET VALIDATION/MESSAGES -->
+    <div ng-messages="projectsEdit.projectForm.budget.$error" ng-show="projectsEdit.projectForm.$submitted || projectsEdit.projectForm.budget.$touched">
+      <div ng-message="required" class="errorMessage">A maximum budget is required</div>
+    </div>
 
 
-<div class="form-group">
-  <p>
-    <input type="checkbox" id="is_priority" name="is_priority" ng-model="projectEdit.project.is_priority"/>
-    <label for="is_priority">Priority Advertisment</label> - If this is selected your project will appear on the priority panel
-  </p>
-</div>
-<button ng-click="projectsEdit.update()" class="button primary">Update</button>
-<button ng-click="projectsEdit.delete()" class="button danger">Delete</button>
-</form>
+    <div class="form-group">
+      <p>
+        <input type="checkbox" id="is_priority" name="is_priority" ng-model="projectEdit.project.is_priority"/>
+        <label for="is_priority">Priority Advertisment</label> - If this is selected your project will appear on the priority panel
+      </p>
+    </div>
+    <button ng-click="projectsEdit.update()" class="button primary">Update</button>
+    <button ng-click="projectsEdit.delete()" class="button danger">Delete</button>
+  </form>
 
-</div>
-</div>
-</div>
 </div>

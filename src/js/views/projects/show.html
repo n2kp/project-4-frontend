@@ -69,7 +69,7 @@
             <div class="tenderInfo projectCards">
 
 
-              <h2 ng-if="main.currentUser.id !== tender.user.id " class="marginBottomMd">{{ tender.user.firstname }}'s offer</h2>
+              <a ui-sref="profile({ id: tender.user.id })"><h2  ng-if="main.currentUser.id !== tender.user.id " class="marginBottomMd">{{ tender.user.firstname }}'s<a/> offer</h2>
 
 
 

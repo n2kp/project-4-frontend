@@ -2,6 +2,7 @@ angular
 .module('justo')
 .controller('ProfileCtrl', ProfileCtrl)
 .controller('ProfileEditCtrl', ProfileEditCtrl)
+.controller('ProfileDeleteCtrl', ProfileDeleteCtrl)
 .controller('ConversationCtrl', ConversationCtrl);
 
 ProfileCtrl.$inject = ['$auth', 'User', '$state', 'Review', 'Project'];
@@ -19,7 +20,6 @@ function ProfileCtrl($auth, User, $state, Review, Project) {
     vm.projects = projects;
   });
 
-
   // Trying to prepend the url with http
   // function checkUrl(url) {
   //   if (!/^https?:\/\//i.test(url)) {
@@ -30,16 +30,12 @@ function ProfileCtrl($auth, User, $state, Review, Project) {
   //
   // console.log(vm.checkUrl);
 
-
   function logout() {
     $auth.logout();
     $state.go('login');
   }
-
   vm.logout = logout;
   vm.newReview = {};
-
-
 
   function addReview() {
     vm.newReview.receiver_id = vm.user.id;
@@ -53,7 +49,6 @@ function ProfileCtrl($auth, User, $state, Review, Project) {
   }
   vm.addReview = addReview;
 
-
   function deleteReview(review) {
     Review
     .delete({ user_id: vm.user.id, id: review.id })
@@ -66,14 +61,12 @@ function ProfileCtrl($auth, User, $state, Review, Project) {
   vm.deleteReview = deleteReview;
 }
 
-ProfileEditCtrl.$inject = ['$auth', 'User','$state', '$scope', '$rootScope', 'API_URL','$http'];
-function ProfileEditCtrl($auth, User, $state, $scope, $rootScope, API_URL, $http) {
+ProfileEditCtrl.$inject = ['$auth', 'User','$state', '$scope', '$rootScope', 'API_URL','$http', '$uibModal'];
+function ProfileEditCtrl($auth, User, $state, $scope, $rootScope, API_URL, $http, $uibModal) {
   const vm = this;
 
   vm.user = User.get($state.params);
   vm.update = userUpdate;
-
-
 
   // $scope.$watch(vm.user.is_dev, () => {
   //   console.log('changed');
@@ -99,18 +92,54 @@ function ProfileEditCtrl($auth, User, $state, $scope, $rootScope, API_URL, $http
     // }
   }
 
-  function deleteUser() {
-    User
-    .delete({ id: vm.user.id})
-    .$promise
-    .then(() =>
-    $state.go('login'));
+  // function deleteUser() {
+  //   User
+  //   .delete({ id: vm.user.id})
+  //   .$promise
+  //   .then(() =>
+  //   $state.go('login'));
+  // }
+  //
+  // vm.deleteUser = deleteUser;
 
+  function openModal() {
+    $uibModal.open({
+      templateUrl: 'js/views/partials/userDeleteModal.html',
+      controller: 'ProfileDeleteCtrl as profileDelete',
+      resolve: {
+        user: () => {
+          return vm.user;
+        }
+      }
+    });
   }
+  vm.open = openModal;
 
+}
+
+
+ProfileDeleteCtrl.$inject = ['$auth', '$uibModalInstance', 'user', '$state'];
+function ProfileDeleteCtrl($auth, $uibModalInstance, user, $state) {
+  const vm = this;
+  vm.user = user;
+
+  function closeModal() {
+    $uibModalInstance.close();
+  }
+  vm.close = closeModal;
+
+
+  function deleteUser() {
+    console.log(vm.user);
+    vm.user
+      .$remove()
+      .then(() => {
+        $auth.logout();
+        $state.go('home');
+        $uibModalInstance.close();
+      });
+  }
   vm.deleteUser = deleteUser;
-
-
 
 }
 

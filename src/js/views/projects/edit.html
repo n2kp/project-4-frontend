@@ -68,13 +68,17 @@
 </div>
 
 
-
-<label for="is_priority">
-  <input type="checkbox" id="is_priority" name="is_priority" ng-model="projectsEdit.project.is_priority">
-  Is Priority</label>
-
-  <button ng-click="projectsEdit.update()" >Update</button>
-
+<div class="form-group">
+  <p>
+    <input type="checkbox" id="is_priority" name="is_priority" ng-model="projectEdit.project.is_priority"/>
+    <label for="is_priority">Priority Advertisment</label> - If this is selected your project will appear on the priority panel
+  </p>
+</div>
+<button ng-click="projectsEdit.update()" class="button primary">Update</button>
+<button ng-click="projectsEdit.delete()" class="button danger">Delete</button>
 </form>
-<button ng-click="projectsEdit.delete()">Delete</button>
+
+</div>
+</div>
+</div>
 </div>

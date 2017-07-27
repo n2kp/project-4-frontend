@@ -20,15 +20,10 @@ function MainCtrl($rootScope, $scope, $state, API_URL, $auth, $transitions, User
 
   // Chat notifications
   vm.conversations = Conversation.query();
-  // vm.unreadMessages = 0;
-  // console.log('VM', vm);
-
 
   function getUnread(currentUserId) {
-
     // vm.unreadMessages = 0;
     let count = 0;
-
     Conversation
     .query()
     .$promise
@@ -65,8 +60,6 @@ function MainCtrl($rootScope, $scope, $state, API_URL, $auth, $transitions, User
   const protectedStates = ['projectsNew', 'projectsEdit', 'projectsShow', 'conversations'];
 
   $transitions.onSuccess({}, (transition) => {
-
-    // console.log($rootScope);
 
     if($auth.getPayload()) {
       vm.currentUserPayload = $auth.getPayload();

@@ -29,8 +29,12 @@
         <h6 ng-if="profile.user.github_url"><a href="{{ profile.user.github_url }}" target="_blank">{{profile.user.github_url}}</a></h6>
       </div>
 
-      <a ng-if="main.currentUser.id !== profile.user.id" ui-sref="conversations"  class="messageUser"> <i class="material-icons chatIconProfile">message</i> Message {{profile.user.firstname}}</a>
-    </div>
+      <!-- {{ profile.user }} -->
+      <div ng-click="profile.contactCreator(main.currentUser.id, profile.user.id)" class="messageUser">
+      <i class="material-icons chatIconProfile">message</i>  Message {{ profile.user.username}}</div>
+
+
+
   </div>
 </div>
 

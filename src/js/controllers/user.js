@@ -5,8 +5,8 @@ angular
 .controller('ProfileDeleteCtrl', ProfileDeleteCtrl)
 .controller('ConversationCtrl', ConversationCtrl);
 
-ProfileCtrl.$inject = ['$auth', 'User', '$state', 'Review', 'Project'];
-function ProfileCtrl($auth, User, $state, Review, Project) {
+ProfileCtrl.$inject = ['$auth', 'User', '$state', 'Review', 'Project', 'Conversation'];
+function ProfileCtrl($auth, User, $state, Review, Project, Conversation) {
   const vm = this;
 
   vm.reviews = Review.query();
@@ -19,6 +19,17 @@ function ProfileCtrl($auth, User, $state, Review, Project) {
     // console.log(projects);
     vm.projects = projects;
   });
+
+  function contactCreator(sender_id, receiver_id) {
+    Conversation
+    .save({ sender_id, receiver_id })
+    .$promise
+    .then(() => {
+      $state.go('conversations');
+    });
+  }
+
+  vm.contactCreator = contactCreator;
 
 
   function findTender(tender) {

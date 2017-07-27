@@ -84,7 +84,7 @@
 
               <button ng-if="main.currentUser.id === tender.user.id"  ng-click="projectsShow.show = 1" class=" button primary marginTopMd">Alter your bid</button>
 
-              <button ng-if="main.currentUser.id === tender.user.id" ng-click="projectsShow.delete(tender)" class="button danger marginBottomMd" >Retract your bid</button>
+              <button ng-if="main.currentUser.id === tender.user.id" ng-click="projectsShow.open(tender)" class="button danger marginBottomMd" >Retract your bid</button>
 
               <div ng-show="projectsShow.show == 1">
                 <form ng-submit="projectsShow.tenderUpdate()">
@@ -118,7 +118,7 @@
                 <h4 class="text-center">Accept this bid</h4>
               </div>
 
-              <div ng-if="main.currentUser.id === projectsShow.project.user.id && tender.status !== 'accepted' && tender.status !== 'rejected'" ng-click="projectsShow.delete(tender)" class="cursor acceptBox">
+              <div ng-if="main.currentUser.id === projectsShow.project.user.id && tender.status !== 'accepted' && tender.status !== 'rejected'" class="cursor acceptBox">
 
 
                 <div class="bidReject">
@@ -126,11 +126,9 @@
                 </div>
                 <h4  class="text-center">Reject this bid</h4>
               </div>
-              <h4 class="text-center">Reject this bid</h4>
 
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>

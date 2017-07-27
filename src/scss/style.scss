@@ -568,12 +568,12 @@ nav ul li a{
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
-.NavProfileImageChat
+
 .chatInput{
   background-color: white;
   position: absolute;
   bottom: 0;
-  padding: 0px;
+
   margin: 0p;
 }
 
@@ -616,7 +616,7 @@ nav ul li a{
   display: inline-block;
 }
 .chatPadding{
-  padding: 16px;
+  padding: 16px 0px 30px 40px;
 }
 
 .marginZero{
@@ -676,6 +676,9 @@ nav ul li a{
 .iconLarge{
   margin-top:8px;
   font-size: 32px;
+  position: relative;
+top: 10px;
+
 }
 
 

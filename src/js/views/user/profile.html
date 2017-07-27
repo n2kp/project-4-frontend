@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+
 <div class="row justify-content-md-center">
   <div class="profileGreen col-10 justify-content-md-center">
 
@@ -43,27 +45,27 @@
       <div ng-repeat="tender in profile.user.tenders" class="profileCards shadow-1" ng-class="
       { 'bidRejected': tender.status === 'rejected', 'bidAccepted': tender.status === 'accepted',
       'bidPending': tender.status === 'pending' }">
-        <h2>{{ profile.projects[tender.project_id].title }}</h2>
-        <p>Bid made: {{ tender.bid | currency : '£' : 0 }}</p>
-        <p>Your pitch: {{ tender.pitch }}</p>
-        <p>Current Status: {{ tender.status }}</p>
-        <a ui-sref="projectsShow({ id: tender.project_id })">View project</a>
-      </div>
+      <h2>{{ profile.projects[tender.project_id].title }}</h2>
+      <p>Bid made: {{ tender.bid | currency : '£' : 0 }}</p>
+      <p>Your pitch: {{ tender.pitch }}</p>
+      <p>Current Status: {{ tender.status }}</p>
+      <a ui-sref="projectsShow({ id: tender.project_id })">View project</a>
     </div>
+  </div>
 
-    <div ng-if="!main.currentUser.is_dev">
-      <h2>Current Project <em ng-if="profile.user.projects.length > 1">'s</em> listed</h2>
-      <div ng-repeat="project in profile.user.projects" class="profileCards shadow-1">
-        <h3>{{ project.title }}</h3>
-        <p>{{ project.description }}</p>
-        <p>{{ project.project_deadline | date }}</p>
-        <p>{{ project.bid_deadline | amDifference : null : 'days' }} days </p>
-        <p>{{ project.tech_stack }}</p>
-        <p>{{ project.budget | currency : '£' : 0}}</p>
-        <h5>You currently have {{ project.tenders.length }} bids on this project</h5>
-          <a ui-sref="projectsShow({ id: project.id })" class="button primary">view project </a>
-      </div>
+  <div ng-if="!main.currentUser.is_dev">
+    <h2>Current Project <em ng-if="profile.user.projects.length > 1">'s</em> listed</h2>
+    <div ng-repeat="project in profile.user.projects" class="profileCards shadow-1">
+      <h3>{{ project.title }}</h3>
+      <p>{{ project.description }}</p>
+      <p>{{ project.project_deadline | date }}</p>
+      <p>{{ project.bid_deadline | amDifference : null : 'days' }} days </p>
+      <p>{{ project.tech_stack }}</p>
+      <p>{{ project.budget | currency : '£' : 0}}</p>
+      <h5>You currently have {{ project.tenders.length }} bids on this project</h5>
+      <a ui-sref="projectsShow({ id: project.id })" class="button primary">view project </a>
     </div>
+  </div>
 
   </div>
 
@@ -79,28 +81,31 @@
 
     <div ng-repeat="review in profile.user.reviews_received" class="profileCards shadow-1">
       <p>{{ review.body }}</p>
-      <p>Rating: {{ review.rating }}</p>
+      <span uib-rating ng-if="review.rating > 0" ng-model="review.rating" max="10" read-only="!isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></span>
       <p>{{ review.creator.username }}</p>
-
-        <button ng-if="main.currentUser.id === review.user.id" ng-click="profile.deleteReview(review)" >Remove your review of this user</button>
-
+      <!-- current User id{{main.currentUser.id}}
+      Username{{main.currentUser.username}} -->
+      review {{review}}
+      <button ng-if="main.currentUser.id === review.user.id" ng-click="profile.deleteReview(review)" >Remove your review of this user</button>
     </div>
 
 
 
-  <div ng-if="main.currentUser.id !== profile.user.id" >
+    <div ng-if="main.currentUser.id !== profile.user.id" >
 
-
-    <form ng-submit="profile.addReview()">
-      <div class="form-group">
-        <textarea placeholder="Write a user review" ng-model="profile.newReview.body" class="form-control"></textarea>
+      <div class="profileCards shadow-1">
+        <form ng-submit="profile.addReview()">
+          <div class="form-group">
+            <textarea placeholder="Write a user review" ng-model="profile.newReview.body" class="form-control"></textarea>
+          </div>
+          <div>
+            <!-- <input type="number" name="rating" ng-model="profile.newReview.rating" class="form-control"> -->
+            <div uib-rating ng-model="profile.newReview.rating" max="10" read-only="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></div>
+            <button class="button primary marginTopMd">Post Review</button>
+          </div>
+        </form>
       </div>
 
-      <div class="form-group">
-        <input type="number" name="rating" ng-model="profile.newReview.rating" class="form-control">
-        <button class="button primary marginTopMd">Post Review</button>
-      </div>
-    </form>
-   </div>
+    </div>
   </div>
 </div>

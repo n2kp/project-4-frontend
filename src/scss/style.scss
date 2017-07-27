@@ -1,6 +1,7 @@
 @import 'reset-css/reset';
 @import 'bootstrap/bootstrap';
 @import 'partials/modal';
+@import 'partials/glyphicon';
 
 // SASS COLOUR SCHEME
 $error: red;
@@ -952,3 +953,11 @@ $range-label-width: 60px !default;
   // border: 1px solid grey;
   width: 50%;
 }
+
+.rating_text {
+  font-size: 14px;
+}
+
+// .reviewer {
+//   font-size: 10px;
+// }

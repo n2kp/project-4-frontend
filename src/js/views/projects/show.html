@@ -4,10 +4,10 @@
   <div class="row marginTopMd">
     <div class="col-10 offset-md-1">
 
-
+      <p ng-if="main.currentUser.id === projectsShow.project.user.id" class="marginBottomMd"><span>You </span> posted</p>
       <h1 class="projectShowTitle"> {{ projectsShow.project.title }}</h1>
       <p ng-if="main.currentUser.id !== projectsShow.project.user.id" >Posted by <span> <a ui-sref="profile({ id: projectsShow.project.user.id })" class="marginBottomMd"> {{ projectsShow.project.user.username }} </a></span></p>
-      <p ng-if="main.currentUser.id === projectsShow.project.user.id" class="marginBottomMd"><span>You </span> posted</p>
+
     </div>
   </div>
 
@@ -41,7 +41,6 @@
         </div>
 
         <div class="col-5 marginTopLg">
-          <h2> bids </h2>
           <div ng-if="!projectsShow.findUsersTender(main.currentUser.id) && main.currentUser.is_dev" class="projectCards">
 
             <form ng-submit="projectsShow.tenderCreate()">
@@ -61,12 +60,10 @@
           </div>
 
 
-
-
-          <h2 ng-if="main.currentUser.id !== tender.user.id ">Your current bid</h2>
-          <h2 ng-if="main.currentUser.id === tender.user.id ">Current bids</h2>
+          <h3 ng-if="main.currentUser.id === project.user.id || main.currentUser.is_dev === false">There are currently {{ projectsShow.project.tenders.length }} bids on this project.</h3>
 
           <div ng-repeat="tender in projectsShow.project.tenders"  id="noPaddingBottom">
+            <h2 ng-if="main.currentUser.id === tender.user.id ">Your current bid</h2>
 
             <div ng-if="main.currentUser.id === tender.user.id || main.currentUser.id === projectsShow.project.user.id || !main.currentUser.is_dev">
 

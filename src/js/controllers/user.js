@@ -19,7 +19,11 @@ function ProfileCtrl($auth, User, $state, Review, Project) {
     vm.projects = projects;
   });
 
+  function findTender(tender) {
+    return tender.status = 'accepted';
+  }
 
+  vm.findTender = findTender;
   // Trying to prepend the url with http
   // function checkUrl(url) {
   //   if (!/^https?:\/\//i.test(url)) {

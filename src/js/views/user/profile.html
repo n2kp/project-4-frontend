@@ -59,7 +59,9 @@
         <p>{{ project.bid_deadline | amDifference : null : 'days' }} days </p>
         <p>{{ project.tech_stack }}</p>
         <p>{{ project.budget | currency : '£' : 0}}</p>
-        <h5>You currently have {{ project.tenders.length }} bids on this project</h5>
+        <h5 ng-if="project.is_active === true">You currently have {{ project.tenders.length }} bids on this project</h5>
+        <h5 ng-if="project.is_active === false">You have accepted a bid on this project</h5>
+
           <a ui-sref="projectsShow({ id: project.id })" class="button primary">view project </a>
       </div>
     </div>

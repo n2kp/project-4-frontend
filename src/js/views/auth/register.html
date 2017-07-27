@@ -29,7 +29,6 @@
 
           <div class="row justify-content-center">
             <a ng-if="!auth.user.is_dev === false" class="col-sm-2 button primary cursor" ng-click="auth.show = 2" >Next</a>
-            <p ng-if="!auth.user.is_dev !== false"> please fill in all the fields to progress</p>
 
             <a ng-if="auth.user.is_dev === false" class="col-sm-2 button primary cursor" ng-click="auth.show = 2" >Next</a>
 
@@ -87,11 +86,11 @@
           <div ng-message="required" class="errorMessage">Password confirmation is required</div>
         </div>
         <!-- PASSWORD CONFIRMATION & PASSWORD VALIDATION/MESSAGES -->
-        <div ng-show="auth.user.password !== auth.user.password_confirmation" class="errorMessage">Passwords do not match</div>
+        <div ng-if="auth.user.password !== auth.user.password_confirmation" class="errorMessage">Passwords do not match</div>
 
         <button class="col-sm-2 button primary cursor" ng-if="(auth.user.email && auth.user.username  && auth.user.password && auth.user.password_confirmation)" ng-click="auth.show = 3">Next</button>
 
-          <p>please fill in all the fields to progress</p>
+          <p ng-if="!(auth.user.email && auth.user.username  && auth.user.password && auth.user.password_confirmation)">please fill in all the fields to progress</p>
       </div>
 
 <!-- //////////   FORM 3   ///////////////////////////////////////////////// -->

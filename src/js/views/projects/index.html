@@ -65,17 +65,20 @@
     <div class="col-sm-3">
       <div ng-if="project.is_priority && project.is_active " ng-repeat="project in projectsIndex.all" class=" projectCards cursor" ui-sref="projectsShow({ id: project.id })">
 
+        <p class=" marginBottomSm paidPost">Advertisment</p>
+
         <img ng-src="{{ project.user.image }}" alt="profile.user.imageSRC" class="paidImage">
 
-          <h2>{{project.title }}</h2>
-          <p>{{project.description }}</p>
+          <h2 class="marginBottomMd marginTopMd">{{project.title }}</h2>
+          <p class="marginBottomMd">{{project.description }}</p>
+          <p class="marginBottomMd"><span> Budget – </span> {{project.budget | currency : '£' : 0 }}</p>
           <p class="marginBottomSm"> <span>Tech Stack Needed</span></p>
-          <p><span class="tech-tag" ng-repeat="tech in project.tech_stack.split(', ')"> {{ tech }}</span></p>
-          <p>{{project.budget }}</p>
+          <p class="marginBottomMd"><span class="tech-tag" ng-repeat="tech in project.tech_stack.split(', ')"> {{ tech }}</span></p>
 
-        <div class="paidPost">
-          <p class="marginBottomLg">Paid Post</p>
-        </div>
+
+
+
+
         <!-- <button ng-if="main.isAuthenticated()" ui-sref="projectsShow({ id: project.id })" class="button primary">View</button> -->
       </div>
     </div>

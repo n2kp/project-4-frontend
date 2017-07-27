@@ -450,7 +450,8 @@ nav ul li a{
 
 .paidPost{
   float: right;
-
+  display: block;
+  color: $highlight;
 }
 
 .sticky{

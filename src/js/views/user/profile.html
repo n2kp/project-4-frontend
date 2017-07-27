@@ -52,7 +52,8 @@
     </div>
 
     <div ng-if="!main.currentUser.is_dev">
-      <h2>Current Project <em ng-if="profile.user.projects.length > 1">'s</em> listed</h2>
+      <h2 ng-if="main.currentUser.id !== profile.user.id">This user has {{profile.user.projects.length}} Project<em ng-if="profile.user.projects.length > 1">'s</em> listed</h2>
+      <h2 ng-if="main.currentUser.id === profile.user.id">Current Project <em ng-if="profile.user.projects.length > 1">'s</em> listed</h2>
       <div ng-repeat="project in profile.user.projects" class="profileCards shadow-1">
         <h3>{{ project.title }}</h3>
         <p>{{ project.description }}</p>

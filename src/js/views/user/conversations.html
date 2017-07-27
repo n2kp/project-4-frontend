@@ -54,8 +54,16 @@
             <div ng-class="{true:'speech-bubble-sent', false:'speech-bubble-received'}[main.currentUser.id === message.user_id]">
               <div class="body">
                 <p>  {{ message.body }} </p>
-                <p><strong>{{ message.read }}</strong></p>
-              </div><div class="small">{{ message.created_at | date : 'shortTime' }} </div>
+
+                <div ng-if="main.currentUser.id === message.user_id">
+                  <div ng-class="{true:'read', false:'notRead'}[message.read]"></div>
+                </div>
+
+
+
+
+              </div>
+              <div class="small" >{{ message.created_at | date : 'shortTime' }} </div>
             </div>
           </div>
         </div>

@@ -46,7 +46,7 @@
 
             <form ng-submit="projectsShow.tenderCreate()">
 
-              <h3>There are currently {{ projectsShow.project.tenders.length }} bids on this project, make your offer here...</h3>
+              <h3 ng-if="main.currentUser.id === tender.user.id ">There are currently {{ projectsShow.project.tenders.length }} bids on this project, make your offer here...</h3>
 
               <div class="form-group">
                 <label for="bid">Bid</label>
@@ -61,14 +61,14 @@
           </div>
 
 
+          <div ng-if="main.currentUser.id === tender.user.id || main.currentUser.id === projectsShow.project.user.id || !main.currentUser.is_dev">
+
+            <h2 ng-if="main.currentUser.id !== tender.user.id ">Your current bid</h2>
+            <h2 ng-if="main.currentUser.id === tender.user.id ">Current bids</h2>
+
+            <div ng-repeat="tender in projectsShow.project.tenders"  id="noPaddingBottom">
 
 
-          <h2 ng-if="main.currentUser.id !== tender.user.id ">Your current bid</h2>
-          <h2 ng-if="main.currentUser.id === tender.user.id ">Current bids</h2>
-
-          <div ng-repeat="tender in projectsShow.project.tenders"  id="noPaddingBottom">
-
-            <div ng-if="main.currentUser.id === tender.user.id || main.currentUser.id === projectsShow.project.user.id || !main.currentUser.is_dev">
 
               <div class="tenderInfo projectCards">
 
@@ -107,8 +107,6 @@
                   </form>
                 </div>
               </div>
-
-
 
 
               <div class="row justify-content-center">

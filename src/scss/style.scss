@@ -6,7 +6,7 @@ $error: red;
 $textColor: #4b5961;
 $highlight: #8AEC75;
 $borderColor: #ececec;
-
+$danger: red;
 //OVERALL STYLES
 *{
   font-family: 'Raleway', sans-serif;
@@ -19,8 +19,8 @@ $borderColor: #ececec;
   background-color: blue;
 }
 
-.yellow{
-  background-color: yellow;
+.green{
+  background-color: green;
 }
 
 #greyText{
@@ -34,7 +34,8 @@ $borderColor: #ececec;
 
 .main{
   margin-top: 64px;
-  background-color: #fafafa ;
+  background-color: #fafafa;
+  height: 93vh;
 }
 
 
@@ -225,6 +226,16 @@ p{
   }
 }
 
+.secondary {
+  background-color: $danger;
+  color: white;
+  &.secondary:hover {
+    background-color: darken($danger, 10%);
+    text-decoration: none;
+    color: white;
+  }
+}
+
 .facebook{
   background-color: #3b5998;
   color: white;
@@ -337,8 +348,8 @@ nav ul li a{
   height: 100vh;
   float: right;
   background-color: dodgerblue;
-  // background-image: url("https://image.ibb.co/ezztFQ/homepage1.gif");
-  background-image: url("https://image.ibb.co/kpMgpk/nimesh_boom.jpg");
+  background-image: url("https://image.ibb.co/ezztFQ/homepage1.gif");
+  // background-image: url("https://image.ibb.co/kpMgpk/nimesh_boom.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -368,6 +379,9 @@ nav ul li a{
   width: 15%;
   top: 48px;
 }
+.bidAccepted {
+  background-color: green;
+}
 
 .projectCards{
   margin: 16px 0px;
@@ -375,6 +389,9 @@ nav ul li a{
   word-wrap: break-word;
   background-color: white;
   border: 1px solid #efefef;
+
+
+
   &.projectCards:hover{
   }
 }
@@ -688,4 +705,159 @@ input[type=radio]:checked + label {
 .profileCards{
   padding: 16px;
   margin: 16px 0px;
+}
+
+.bidRejected {
+  background: red;
+}
+
+
+// FILTER STYLES
+
+// Base Colors
+$shade-10: #2c3e50 !default;
+$shade-1: #d7dcdf !default;
+$shade-0: #fff !default;
+$teal: #1abc9c !default;
+
+
+// Reset
+.search{
+  background-color: white;
+  width: 100%;
+  border: none;
+  border-radius: 4px;
+  opacity: 0.5;
+  height: 32px;
+  padding-left: 32px;
+  outline: 0;
+  // color: orange;
+}
+
+.searchIcon{
+  position: relative;
+    top: 27px;
+    z-index: 12;
+    left: 6px;
+}
+
+.range-slider {
+  margin: 20px 0 0 0%;
+}
+
+
+// Range Slider
+$range-width: 100% !default;
+
+$range-handle-color: lightgrey;
+$range-handle-size: 20px !default;
+
+$range-track-color: $shade-1 !default;
+$range-track-height: 5px !default;
+
+$range-label-color: $shade-10 !default;
+$range-label-width: 60px !default;
+
+.range-slider {
+  width: $range-width;
+}
+
+.range-slider__range {
+  -webkit-appearance: none;
+  width: 100%;
+  height: $range-track-height;
+  border-radius: 5px;
+  background: white;
+  outline: none;
+  padding: 0;
+  margin: 0;
+
+  // Range Handle
+  &::-webkit-slider-thumb {
+    appearance: none;
+    width: $range-handle-size;
+    height: $range-handle-size;
+    border-radius: 50%;
+    background: $range-handle-color;
+    cursor: pointer;
+    transition: background .15s ease-in-out;
+
+    &:hover {
+      background: $highlight;
+    }
+  }
+
+  &:active::-webkit-slider-thumb {
+    background: $highlight;
+  }
+
+  &::-moz-range-thumb {
+    width: $range-handle-size;
+    height: $range-handle-size;
+    border: 0;
+    border-radius: 50%;
+    background: $range-handle-color;
+    cursor: pointer;
+    transition: background .15s ease-in-out;
+
+    &:hover {
+      background: $highlight;
+    }
+  }
+
+  &:active::-moz-range-thumb {
+    background: $highlight;
+  }
+}
+
+// BIDDING
+
+#noPaddingBottom{
+  padding-bottom: 0px;
+}
+
+.bidAccept{
+  text-align: center;
+  margin: 8px auto;
+  background-color: white;
+  border: 2px solid $highlight;
+  color: $highlight;
+  padding: 10px;
+  border-radius: 100px;
+  width: 48px;
+  height: 48px;
+  font-size: 14px;
+  &.bidAccept:hover{
+    color: white;
+    background-color: $highlight;
+  }
+}
+
+.tenderInfo{
+  border-bottom: 1px solid $borderColor;
+}
+
+.bidReject{
+  margin: 8px auto;
+  background-color: white;
+  border: 2px solid red;
+  padding: 10px;
+  border-radius: 100px;
+  color: red;
+  width: 48px;
+  height: 48px;
+  font-size: 14px;
+  &.bidReject:hover{
+    color: white;
+    background-color: red;
+  }
+}
+
+.bidButton{
+  display: inline;
+}
+
+.acceptBox{
+  // border: 1px solid grey;
+  width: 50%;
 }

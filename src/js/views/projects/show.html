@@ -2,28 +2,35 @@
 <div class="main">
 
 
-  <div class="row">
-    <div class="col offset-s1 s5">
-      <div class="projectInfo">
+  <div class="row justify-content-center">
+    <div class="col-5 marginTopLg ">
 
-        <h1> {{ projectsShow.project.title }}</h1>
-        <p>{{ projectsShow.project.description }}</p>
-        <p>{{ projectsShow.project.project_deadline | date }}</p>
-        <p>{{ projectsShow.project.bid_deadline | amDifference : null : 'days' }} days </p>
-        <p>{{ projectsShow.project.tech_stack }}</p>
-        <p>{{ projectsShow.project.budget | currency : '£' : 0}}</p>
+
+      <h2 ng-if="main.currentUser.id !== projectsShow.project.user.id" >Posted by <a ui-sref="profile({ id: projectsShow.project.user.id })"> {{ projectsShow.project.user.username }} </a></h2>
+      <h2 ng-if="main.currentUser.id === projectsShow.project.user.id" >You posted</h2>
+
+      <div class="projectInfo  projectCards">
+
+
+
+        <h2 class="marginBottomMd"> {{ projectsShow.project.title }}</h2>
+        <p class="marginBottomMd">{{ projectsShow.project.description }}</p><p><span> Tech Stack </span>{{ projectsShow.project.tech_stack }}</p>
+
+        <p><span> Project deadline: </span> {{ projectsShow.project.project_deadline | date }}</p>
+        <p><span> Time left to bid: </span>{{ projectsShow.project.bid_deadline | amDifference : null : 'days' }} days </p>
+
+        <p><span> Budget: </span>{{ projectsShow.project.budget | currency : '£' : 0}}</p>
         <br>
-        <button ng-click="projectsShow.contactCreator(main.currentUser.id, projectsShow.project.user.id)" class="button primary">
+
+        <button ng-click="projectsShow.contactCreator(main.currentUser.id, projectsShow.project.user.id)" class="button primary" ng-if="main.currentUser.id !== projectsShow.project.user.id" >
           Message {{ projectsShow.project.user.username}}</button>
 
-          <button ng-click="profile({ id: projectsShow.project.user.id })" class="button primary">Posted by {{ projectsShow.project.user.username }}</button>
-
-          <button ui-sref="projectsEdit({ id: projectsShow.project.id})" ng-if="main.currentUser.id === projectsShow.project.user.id">Edit</button>
-
+          <button class="button primary" ui-sref="projectsEdit({ id: projectsShow.project.id})" ng-if="main.currentUser.id === projectsShow.project.user.id">Edit Post</button>
+    
         </div>
       </div>
 
-      <div class="col s5 marginTopLg">
+      <div class="col-5 marginTopLg">
         <form ng-if="!projectsShow.findUsersTender(main.currentUser.id) && main.currentUser.is_dev" ng-submit="projectsShow.tenderCreate()">
 
           <h3>There are currently {{ projectsShow.project.tenders.length }} bids on this project, make your offer here...</h3>
@@ -42,20 +49,40 @@
         </form>
 
 
-        <h1>Current Bids</h1>
-        <div  ng-repeat="tender in projectsShow.project.tenders">
 
-          <div ng-if="main.currentUser.id === tender.user.id || main.currentUser.id === projectsShow.project.user.id">
+        <h2>Current Bids</h2>
 
-            <h1 ng-if="main.currentUser.id === tender.user.id ">Your current bid</h1>
-            <h5>{{ tender.bid }}</h5>
-            <h5>{{ tender.pitch }}</h5>
-            <h5>{{ tender.status }}</h5>
-            <h5>{{ tender.user.username }}</h5>
-            <h5>{{ tender.user.status }}</h5>
-            <img ng-src="{{ tender.image_src }}">
+        <div ng-repeat="tender in projectsShow.project.tenders" class="projectCards" id="noPaddingBottom">
 
-            <div>
+
+
+
+
+          <div ng-if="main.currentUser.id === tender.user.id || main.currentUser.id === projectsShow.project.user.id || !main.currentUser.is_dev">
+
+
+            <div class="tenderInfo">
+
+
+
+              <h1 ng-if="main.currentUser.id === tender.user.id ">Your current bid</h1>
+              <h2 class="marginBottomMd">{{ tender.user.firstname }}'s offer</h2>
+              <h5>{{ tender.bid  | currency : '£' : 0 }}</h5>
+              <h5>{{ tender.pitch }}</h5>
+
+
+
+              <div ng-class="{blue:tender.status === 'pending', red:tender.status === 'rejected', green:tender.status === 'accepted'}"> {{ tender.status }} </div>
+
+              <h5>{{ tender.user.status }}</h5>
+              <!-- <p> {{ tender }}</p> -->
+              <div ng-if="tender.image_src !== null">
+                <img ng-src="{{ tender.image_src }}">
+              </div>
+            </div>
+
+
+
 
 
               <button ng-if="main.currentUser.id === tender.user.id"  ng-click="projectsShow.show = 1">Alter your bid</button>
@@ -81,14 +108,35 @@
             </div>
 
 
+            <div class="row justify-content-center">
 
-            <button ng-if="main.currentUser.id === projectsShow.project.user.id" ng-click="projectsShow.acceptBid(tender.id) ; contactCreator(main.currentUser.id, projectsShow.tender.user.id)">Accept this bid</button>
 
-            <button ng-if="main.currentUser.id === tender.user.id" ng-click="projectsShow.delete(tender)" >Retract your bid</button>
+              <div ng-if="main.currentUser.id === projectsShow.project.user.id" ng-click="projectsShow.acceptBid(tender.id) ; contactCreator(main.currentUser.id, projectsShow.tender.user.id)" class="cursor justify-content-center acceptBox">
 
-            <button ng-if="main.currentUser.id === projectsShow.project.user.id" ng-click="projectsShow.delete(tender)">Reject this bid</button>
+
+                <div class="bidAccept">
+                  <i class="material-icons">done</i>
+                </div>
+                <h4 class="text-center">Accept this bid</h4>
+              </div>
+
+
+
+              <h4 ng-if="main.currentUser.id === tender.user.id" ng-click="projectsShow.delete(tender)">Retract your bid</h4>
+
+
+              <div ng-if="main.currentUser.id === projectsShow.project.user.id" ng-click="projectsShow.delete(tender)" class="cursor acceptBox">
+
+
+                <div class="bidReject">
+                  <i class="material-icons">clear</i>
+                </div>
+                <h4 class="text-center">Reject this bid</h4>
+
+
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>

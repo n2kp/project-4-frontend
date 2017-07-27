@@ -28,7 +28,7 @@
     </div>
 
     <div class="col-sm-6">
-      <div ng-if="project.is_priority && project.is_active" ng-repeat="project in projectsIndex.filtered
+      <div ng-if="!project.is_priority && project.is_active" ng-repeat="project in projectsIndex.filtered
       | filter: projectsIndex.lowerThan('budget', projectsIndex.budget)
       | filter: projectsIndex.dateFilter('bid_deadline', projectsIndex.bid_deadline)"
       class="projectCards z-depth-1 cursor" ui-sref="projectsShow({ id: project.id })">

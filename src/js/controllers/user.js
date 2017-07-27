@@ -82,21 +82,21 @@ function ProfileEditCtrl($auth, User, $state, $scope, $rootScope, API_URL, $http
   // });
 
   function userUpdate() {
-    if (vm.editprofileForm.$valid){
-      User
-      .update($state.params, vm.user)
-      .$promise
-      .then(() => {
+    // if (vm.editprofileForm.$valid){
+    User
+    .update($state.params, vm.user)
+    .$promise
+    .then(() => {
 
-        $http.get(`${API_URL}/refresh`)
-        .then((response) => {
-          console.log(response);
-          var refreshToken = response.data.token;
-          $auth.setToken(refreshToken);
-          $state.go('profile', $state.params);
-        });
+      $http.get(`${API_URL}/refresh`)
+      .then((response) => {
+        console.log(response);
+        var refreshToken = response.data.token;
+        $auth.setToken(refreshToken);
+        $state.go('profile', $state.params);
       });
-    }
+    });
+    // }
   }
 
   function deleteUser() {

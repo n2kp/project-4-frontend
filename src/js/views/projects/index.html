@@ -28,7 +28,7 @@
   </div>
 
     <div class="col-sm-6">
-      <div ng-if="project.is_priority && project.is_active" ng-repeat="project in projectsIndex.filtered
+      <div ng-if="!project.is_priority && project.is_active" ng-repeat="project in projectsIndex.filtered
       | filter: projectsIndex.lowerThan('budget', projectsIndex.budget)
       | filter: projectsIndex.dateFilter('bid_deadline', projectsIndex.bid_deadline)"
       class="projectCards z-depth-1 cursor" ui-sref="projectsShow({ id: project.id })">
@@ -60,9 +60,9 @@
 
 
       <div class="col-sm-3">
-        <div ng-if="!project.is_priority && project.is_active " ng-repeat="project in projectsIndex.all" class=" projectCards cursor" ui-sref="projectsShow({ id: project.id })">
+        <div ng-if="project.is_priority && project.is_active " ng-repeat="project in projectsIndex.all" class=" projectCards cursor" ui-sref="projectsShow({ id: project.id })">
 
-          <img ng-src="{{ project.user.image }}" alt="profile.user.imageSRC" class="paidImage">
+          <img ng-src="{{ project.user.image_src }}" alt="profile.user.imageSRC" class="paidImage">
 
           <h2> {{project.title }}</h2>
           <p> {{project.description }}</p>

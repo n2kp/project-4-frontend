@@ -2,67 +2,70 @@
 <div class="main">
 
 
-<h1>Edit Page</h1>
-<form ng-submit="projectsEdit.update()" name="projectsEdit.projectForm" novalidate autocomplete="off">
+  <h1>Edit Page</h1>
+  <form ng-submit="projectsEdit.update()" name="projectsEdit.projectForm" novalidate autocomplete="off">
 
-  <!--TITLE INPUT  -->
-  <label for="title">Title</label>
-  <input type="text" id="title" name="title" ng-model="projectsEdit.project.title" ng-maxlength="30" required>
-  <!-- TITLE VALIDATION/MESSAGES -->
-  <!-- <div ng-messages="projectsEdit.projectForm.title.$error" ng-show="projectsEdit.projectForm.$submitted || projectsEdit.projectForm.title.$touched">
-  <div ng-message="required" class="errorMessage">A title is required to post a project</div>
-  <div ng-message="maxlength" class="errorMessage">Cannot exceed 30 characters</div>
-</div> -->
-
-
-<!--DESCRIPTION INPUT  -->
-<label for="description">Description</label>
-<input type="textarea" id="description" name="description" ng-model="projectsEdit.project.description" ng-maxlength="250" required>
-<!-- DESCRIPTION VALIDATION/MESSAGES -->
-<!-- <div ng-messages="projectsEdit.projectForm.description.$error" ng-show="projectsEdit.projectForm.$submitted || projectsEdit.projectForm.description.$touched">
-<div ng-message="required" class="errorMessage">A description is required to post a project</div>
-<div ng-message="maxlength" class="errorMessage">Cannot exceed 250 characters</div>
-</div> -->
+    <!--TITLE INPUT  -->
+    <label for="title">Title</label>
+    <input type="text" id="title" name="title" ng-model="projectsEdit.project.title" ng-maxlength="40" ng-minlength="5" required>
+    <!-- TITLE VALIDATION/MESSAGES -->
+    <div ng-messages="projectsEdit.projectForm.title.$error" ng-show="projectsEdit.projectForm.$submitted || projectsEdit.projectForm.title.$touched">
+      <div ng-message="required" class="errorMessage">A title is required to post a project</div>
+      <div ng-message="maxlength" class="errorMessage">Cannot exceed 30 characters</div>
+      <div ng-message="minlength" class="errorMessage">Title must be longer than 5 characters</div>
+    </div>
 
 
-<!--PROJECT DEADLINE INPUT  -->
-<label for="project_deadline">Deadline</label>
-<input type="date" id="project_deadline" name="project_deadline" ng-model="projectsEdit.project.project_deadline" required>
-<!-- PROJECT DEADLINE VALIDATION/MESSAGES -->
-<!-- <div ng-messages="projectsEdit.projectForm.project_deadline.$error" ng-show="projectsEdit.projectForm.$submitted || projectsEdit.projectForm.project_deadline.$touched">
-<div ng-message="required" class="errorMessage">You need to give a date in which you want your project completed</div>
-<div ng-message="min" class="errorMessage">Projects cannot have a deadline date for today or earlier</div>
-</div> -->
+    <!--DESCRIPTION INPUT  -->
+    <label for="description">Description</label>
+    <input type="textarea" id="description" name="description" ng-model="projectsEdit.project.description" max="250" min="25" required>
+    <!-- DESCRIPTION VALIDATION/MESSAGES -->
+    <div ng-messages="projectsEdit.projectForm.description.$error" ng-show="projectsEdit.projectForm.$submitted || projectsEdit.projectForm.description.$touched">
+      <div ng-message="required" class="errorMessage">A description is required to post a project</div>
+      <div ng-message="max" class="errorMessage">Cannot exceed 250 characters</div>
+      <div ng-message="min" class="errorMessage">Description must be longer than 25 characters</div>
+    </div>
+
+
+    <!--PROJECT DEADLINE INPUT  -->
+    <label for="project_deadline">Deadline</label>
+    <input type="date" id="project_deadline" name="project_deadline" ng-model="projectsEdit.project.project_deadline" min="{{projectsEdit.today}}" required>
+    <!-- PROJECT DEADLINE VALIDATION/MESSAGES -->
+    <div ng-messages="projectsEdit.projectForm.project_deadline.$error" ng-show="projectsEdit.projectForm.$submitted || projectsEdit.projectForm.project_deadline.$touched">
+      <div ng-message="required" class="errorMessage">You need to give a date in which you want your project completed</div>
+      <div ng-message="min" class="errorMessage">Projects cannot have a deadline date for today or earlier</div>
+    </div>
 
 
 
 
-<!--BID DEADLINE INPUT  -->
-<label for="bid_deadline">Bid Deadline</label>
-<input type="date" id="bid_deadline" name="bid_deadline" ng-model="projectsEdit.project.bid_deadline" required>
-<!-- BID DEADLINE VALIDATION/MESSAGES -->
-<!-- <div ng-messages="projectsEdit.projectForm.bid_deadline.$error" ng-show="projectsEdit.projectForm.$submitted || projectsEdit.projectForm.bid_deadline.$touched">
-<div ng-message="required" class="errorMessage">You need to give a date for when the final bids can be submitted</div>
-<div ng-message="min" class="errorMessage"> The bidding deadline cannot</div>
-</div> -->
+    <!--BID DEADLINE INPUT  -->
+    <label for="bid_deadline">Bid Deadline</label>
+    <input type="date" id="bid_deadline" name="bid_deadline" ng-model="projectsEdit.project.bid_deadline" max="{{projectsEdit.project.project_deadline}}" required>
+    <!-- BID DEADLINE VALIDATION/MESSAGES -->
+    <div ng-messages="projectsEdit.projectForm.bid_deadline.$error" ng-show="projectsEdit.projectForm.$submitted || projectsEdit.projectForm.bid_deadline.$touched">
+      <div ng-message="required" class="errorMessage">You need to give a date for when the final bids can be submitted</div>
+      <div ng-message="min" class="errorMessage"> The bidding deadline cannot</div>
+      <div ng-message="max" class="errorMessage"> The bidding deadline cannot come after the project deadline</div>
+    </div>
 
 
-<!--TECH STACK INPUT  -->
-<label for="tech_stack">Tech Stack</label>
-<input type="text" id="tech_stack" name="tech_stack" ng-model="projectsEdit.project.tech_stack" required>
-<!-- TECH STACK VALIDATION/MESSAGES -->
-<!-- <div ng-messages="projectsEdit.projectForm.tech_stack.$error" ng-show="projectsEdit.projectForm.$submitted || projectsEdit.projectForm.tech_stack.$touched">
-<div ng-message="required" class="errorMessage">Please supply at least one technology that you wish to be used in your project</div>
-</div> -->
+    <!--TECH STACK INPUT  -->
+    <label for="tech_stack">Tech Stack</label>
+    <input type="text" id="tech_stack" name="tech_stack" ng-model="projectsEdit.project.tech_stack" required>
+    <!-- TECH STACK VALIDATION/MESSAGES -->
+    <div ng-messages="projectsEdit.projectForm.tech_stack.$error" ng-show="projectsEdit.projectForm.$submitted || projectsEdit.projectForm.tech_stack.$touched">
+    <div ng-message="required" class="errorMessage">Please supply at least one technology that you wish to be used in your project</div>
+  </div>
 
 
-<!--BUDGET INPUT  -->
-<label for="budget">Budget</label>
-<input type="text" id="budget" name="budget" ng-model="projectsEdit.project.budget" required>
-<!-- BUDGET VALIDATION/MESSAGES -->
-<!-- <div ng-messages="projectsEdit.projectForm.budget.$error" ng-show="projectsEdit.projectForm.$submitted || projectsEdit.projectForm.budget.$touched">
-<div ng-message="required" class="errorMessage">A maximum budget is required</div>
-</div> -->
+  <!--BUDGET INPUT  -->
+  <label for="budget">Budget</label>
+  <input type="text" id="budget" name="budget" ng-model="projectsEdit.project.budget" required>
+  <!-- BUDGET VALIDATION/MESSAGES -->
+  <div ng-messages="projectsEdit.projectForm.budget.$error" ng-show="projectsEdit.projectForm.$submitted || projectsEdit.projectForm.budget.$touched">
+  <div ng-message="required" class="errorMessage">A maximum budget is required</div>
+</div>
 
 
 

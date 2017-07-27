@@ -87,7 +87,8 @@
 
       <p>Rated by: <a ui-sref="profile({ id: review.creator.id })" class="marginBottomMd"> {{ review.creator.username }}</p></a>
 
-        <button ng-if="main.currentUser.id === review.user.id" ng-click="profile.deleteReview(review)" >Remove your review of this user</button>
+
+        <button ng-if="main.currentUser.id === review.creator.id" ng-click="profile.deleteReview(review)" >Remove your review of this user</button>
 
     </div>
 

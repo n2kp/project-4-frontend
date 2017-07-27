@@ -40,8 +40,9 @@
 
     <div ng-if="main.currentUser.is_dev">
       <h2>Current Bid <em ng-if="profile.user.tenders.length > 1">'s</em> made</h2>
-      <div ng-repeat="tender in profile.user.tenders" class="profileCards shadow-1" ng-class="'bidRejected': tender.status === 'rejected', 'bidAccepted': tender.status === 'accepted',
-      'bidPending': tender.status === 'pending' ">
+      <div ng-repeat="tender in profile.user.tenders" class="profileCards shadow-1" ng-class="
+      { 'bidRejected': tender.status === 'rejected', 'bidAccepted': tender.status === 'accepted',
+      'bidPending': tender.status === 'pending' }">
         <h2>{{ profile.projects[tender.project_id].title }}</h2>
         <p>Bid made: {{ tender.bid | currency : '£' : 0 }}</p>
         <p>Your pitch: {{ tender.pitch }}</p>

@@ -19,7 +19,7 @@ function MainCtrl($rootScope, $scope, $state, API_URL, $auth, $transitions, User
   });
 
   // Chat notifications
-  vm.conversations = Conversation.query();
+  // vm.conversations = Conversation.query();
 
   function getUnread(currentUserId) {
     // vm.unreadMessages = 0;
@@ -31,19 +31,15 @@ function MainCtrl($rootScope, $scope, $state, API_URL, $auth, $transitions, User
       vm.unreadMessages = 0;
       conversations.forEach((conversation) => {
         conversation.messages.forEach((message) => {
-
           if (message.user_id !== currentUserId && !message.read) {
             return count += 1;
           }
-
         });
-
         vm.unreadMessages += count;
         count = 0;
         console.log('vm message', vm.unreadMessages);
       });
       return vm.unreadMessages;
-
     });
   }
 
@@ -71,7 +67,6 @@ function MainCtrl($rootScope, $scope, $state, API_URL, $auth, $transitions, User
          vm.currentUser = payload;
          // Always 0
          vm.unreadMessages = getUnread(id);
-        //  console.log('VM Messages', vm.unreadMessages);
        });
 
 

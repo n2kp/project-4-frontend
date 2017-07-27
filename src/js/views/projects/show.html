@@ -26,9 +26,6 @@
 
           <p class="marginBottomMd">{{ projectsShow.project.description }}</p>
 
-        <h2 class="marginBottomMd"> {{ projectsShow.project.title }}</h2>
-        <p class="marginBottomMd">{{ projectsShow.project.description }}</p>
-        <p><span class="tech-tag" ng-repeat="tech in projectsShow.project.tech_stack.split(', ')">{{ tech }}</span></p>
 
           <p><span> Project deadline: </span> {{ projectsShow.project.project_deadline | date }}</p>
           <p><span> Time left to bid: </span>{{ projectsShow.project.bid_deadline | amDifference : null : 'days' }} days </p>
@@ -48,7 +45,7 @@
 
             <form ng-submit="projectsShow.tenderCreate()">
 
-              <h3>There are currently {{ projectsShow.project.tenders.length }} bids on this project, make your offer here...</h3>
+              <h3 ng-if="main.currentUser.id === tender.user.id ">There are currently {{ projectsShow.project.tenders.length }} bids on this project, make your offer here...</h3>
 
               <div class="form-group">
                 <label for="bid">Bid</label>
@@ -68,7 +65,6 @@
           <div ng-repeat="tender in projectsShow.project.tenders"  id="noPaddingBottom">
             <h2 ng-if="main.currentUser.id === tender.user.id ">Your current bid</h2>
 
-            <div ng-if="main.currentUser.id === tender.user.id || main.currentUser.id === projectsShow.project.user.id || !main.currentUser.is_dev">
 
               <div class="tenderInfo projectCards">
 
@@ -107,8 +103,6 @@
                   </form>
                 </div>
               </div>
-
-
 
 
               <div class="row justify-content-center">

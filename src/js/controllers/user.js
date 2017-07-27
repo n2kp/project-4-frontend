@@ -18,7 +18,6 @@ function ProfileCtrl($auth, User, $state, Review, Project, Conversation) {
   Project.query()
   .$promise
   .then((projects) =>{
-    // console.log(projects);
     vm.projects = projects;
   });
 
@@ -32,13 +31,6 @@ function ProfileCtrl($auth, User, $state, Review, Project, Conversation) {
   }
 
   vm.contactCreator = contactCreator;
-
-
-  function findTender(tender) {
-    return tender.status = 'accepted';
-  }
-
-  vm.findTender = findTender;
 
   // Trying to prepend the url with http
   // function checkUrl(url) {
@@ -68,7 +60,7 @@ function ProfileCtrl($auth, User, $state, Review, Project, Conversation) {
     });
   }
   vm.addReview = addReview;
-  
+
 
   function deleteReview(review) {
     Review

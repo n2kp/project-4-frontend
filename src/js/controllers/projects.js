@@ -72,9 +72,9 @@ function ProjectNewCtrl (Project, User, $stateParams, $state ){
   // console.log(vm.today);
 
   function compareTime(bid_deadline, project_deadline) {
-    if ( new Date(bid_deadline) > new Date(project_deadline))
-    return true;
-    else {
+    if (new Date(bid_deadline) > new Date(project_deadline)) {
+      return true;
+    } else {
       return false;
     }
   }
@@ -212,25 +212,19 @@ function TendersDeleteCtrl($uibModalInstance, tender, Tender, Project, $statePar
   const vm = this;
   vm.tender = tender;
   vm.project = Project.get($stateParams);
-  console.log(vm.project);
   const tenderToDelete = Tender.get({ id: vm.tender.id });
-  console.log(tenderToDelete);
 
   function closeModal() {
     $uibModalInstance.close();
   }
 
   vm.close = closeModal;
-
-
   function tendersDelete() {
-    console.log('HEre');
 
     tenderToDelete
       .$remove()
-      .then((tender) => {
-        console.log('Deleted!');
-        $state.go('projectsIndex')
+      .then(() => {
+        $state.go('projectsIndex');
         $uibModalInstance.close();
       });
   }

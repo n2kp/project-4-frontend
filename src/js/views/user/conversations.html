@@ -54,7 +54,6 @@
             <div ng-class="{true:'speech-bubble-sent', false:'speech-bubble-received'}[main.currentUser.id === message.user_id]">
               <div class="body">
                 <p>  {{ message.body }} </p>
-                <p><strong>{{ message.read }}</strong></p>
               </div><div class="small">{{ message.created_at | date : 'shortTime' }} </div>
             </div>
           </div>

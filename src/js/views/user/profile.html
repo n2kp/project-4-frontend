@@ -18,6 +18,9 @@
       </div>
       <div class="col-4 profileName">
         <h1 class="marginBottomMd">{{ profile.user.firstname }} {{ profile.user.lastname }}</h1>
+
+        <span uib-rating ng-model="profile.user.average_rating" max="10" read-only="!isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></span>
+
         <h6 ng-if="profile.user.is_dev">Skills:
           <span class="tech-tag" ng-repeat="tech in profile.user.tech_stack.split(', ')">{{ tech }}</span>
         </h6>
@@ -82,15 +85,13 @@
     <!-- REVIEWS SEEN BY ALL -->
     <div class="col-5">
 
-      <h2 ng-if="main.currentUser.id === profile.user.id" >You have recieved {{profile.user.reviews_received.length}} reviews </h2>
+      <h2 ng-if="main.currentUser.id === profile.user.id" >You have received {{profile.user.reviews_received.length}} review<em ng-if="profile.user.reviews_received.length !== 1">'s</em></h2>
 
-
-      <h2 ng-if="main.currentUser.id !== profile.user.id" >This user has received {{ profile.user.reviews_received.length }} reviews</h2>
-
+      <h2 ng-if="main.currentUser.id !== profile.user.id" >This user has received {{ profile.user.reviews_received.length }} review<em ng-if="profile.user.reviews_received.length !== 1">'s</em></h2>
 
       <div ng-repeat="review in profile.user.reviews_received" class="profileCards shadow-1">
         <p>{{ review.body }}</p>
-        <span uib-rating ng-if="review.rating > 0" ng-model="review.rating" max="10" read-only="!isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></span>
+        <span uib-rating ng-model="review.rating" max="10" read-only="!isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></span>
         <p>Rated by: <a ui-sref="profile({ id: review.creator.id })" class="marginBottomMd"> {{ review.creator.username }}</a></p>
         <button ng-if="main.currentUser.id === review.creator.id" ng-click="profile.deleteReview(review)" class="danger button" >Remove your review of this user</button>
       </div>

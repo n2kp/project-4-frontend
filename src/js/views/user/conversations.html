@@ -49,7 +49,7 @@
       <div class="col-9 messageside">
         <div scroll-glue ng-show="conversations.index !== null" class="col-12 messageScroll">
 
-          <div ng-repeat="message in conversations.conversations[conversations.index].messages" class="speech-bubble-row">
+          <div ng-repeat="message in conversations.conversations[conversations.index].messages | orderBy: 'created_at'" class="speech-bubble-row">
 
             <div ng-class="{true:'speech-bubble-sent', false:'speech-bubble-received'}[main.currentUser.id === message.user_id]">
               <div class="body">
@@ -61,10 +61,6 @@
         </div>
 
         <!-- WRITE A MESSAGE SECTION -->
-
-
-
-
           <form autocomplete="off" ng-show="conversations.index !== null" ng-submit="conversations.addMessage(conversations.message)" name="conversations.messageForm">
 
             <div class="col-12 chatInput">

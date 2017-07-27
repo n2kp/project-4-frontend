@@ -6,7 +6,7 @@ $error: red;
 $textColor: #4b5961;
 $highlight: #8AEC75;
 $borderColor: #ececec;
-
+$danger: red;
 //OVERALL STYLES
 *{
   font-family: 'Raleway', sans-serif;
@@ -221,6 +221,16 @@ p{
   color: white;
   &.primary:hover {
     background-color: darken($highlight, 20%);
+    text-decoration: none;
+    color: white;
+  }
+}
+
+.secondary {
+  background-color: $danger;
+  color: white;
+  &.secondary:hover {
+    background-color: darken($danger, 10%);
     text-decoration: none;
     color: white;
   }

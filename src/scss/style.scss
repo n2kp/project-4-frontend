@@ -79,7 +79,6 @@ main {
 // SNAZZY LINIKS
 
 .nav-button a {
-  background-image: linear-gradient(180deg,transparent 65%, $highlight 0);
   background-size: 0 100%;
   background-repeat: no-repeat;
   text-decoration: none;
@@ -91,7 +90,7 @@ main {
 .nav-button a:hover {
   background-size: 100% 100%;
   cursor: pointer;
-  color: #000;
+  color: $highlight;
 }
 
 .MessageNumber{
@@ -333,6 +332,17 @@ nav ul li a{
   height: 24px;
   width: 24px;
   border-radius: 24px;
+  margin-bottom: 16px;
+}
+
+.NavProfileImageChat{
+  background-color: $borderColor;
+  height: 32px;
+  width: 32px;
+  border-radius: 24px;
+  display: inline-block;
+  margin-right: 16px;
+
 }
 //HOME PAGE STUFF
 
@@ -410,9 +420,9 @@ nav ul li a{
   background-color: white;
   border: 1px solid #efefef;
 
-.projectShowTitle{
-  text-align: left;
-}
+  .projectShowTitle{
+    text-align: left;
+  }
 
 
   &.projectCards:hover{
@@ -557,7 +567,7 @@ nav ul li a{
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
-
+.NavProfileImageChat
 .chatInput{
   background-color: white;
   position: absolute;
@@ -575,8 +585,20 @@ nav ul li a{
 }
 
 .chatHeading{
-  padding: 24px 16px;
+  padding: 16px 16px 8px 16px;
   background-color: $highlight;
+  color: white;
+  text-decoration: none;
+
+}
+.chatName{
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  &.chatName:hover{
+    text-decoration: none;
+    color: white;
+  }
 }
 
 #chatSidebarMessages{
@@ -736,8 +758,8 @@ input[type=radio]:checked + label {
   padding: 4px 16px;
   border-radius: 4px;
   position: relative;
-  left: 84%;
-  top: 60px;
+  right: -85%;
+  top: 84px;
   color: white;
   text-decoration: none;
   &.updateProfileButton:hover{
@@ -796,9 +818,9 @@ $teal: #1abc9c !default;
 
 .searchIcon{
   position: relative;
-    top: 27px;
-    z-index: 12;
-    left: 6px;
+  top: 27px;
+  z-index: 12;
+  left: 6px;
 }
 
 .range-slider {

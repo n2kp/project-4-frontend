@@ -7,7 +7,7 @@
 
       <div class="col-3 chatList">
         <div class="chatHeading">
-          <img ng-src="{{ main.currentUser.image_src }}" alt="profile.user.image" class="NavProfileImage">
+          <h4><img ng-src="{{ main.currentUser.image_src }}" alt="profile.user.image" class="NavProfileImageChat"> <a class="chatName" ui-sref="profile({ id: main.currentUser.id })">  {{ main.currentUser.firstname }} {{ main.currentUser.lastname}}</a></h4>
         </div>
         <div ng-repeat="conversation in conversations.conversations track by $index">
 

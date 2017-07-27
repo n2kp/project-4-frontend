@@ -1,5 +1,6 @@
 @import 'reset-css/reset';
 @import 'bootstrap/bootstrap';
+@import 'partials/modal';
 
 // SASS COLOUR SCHEME
 $error: red;
@@ -79,7 +80,6 @@ main {
 // SNAZZY LINIKS
 
 .nav-button a {
-  background-image: linear-gradient(180deg,transparent 65%, $highlight 0);
   background-size: 0 100%;
   background-repeat: no-repeat;
   text-decoration: none;
@@ -91,7 +91,7 @@ main {
 .nav-button a:hover {
   background-size: 100% 100%;
   cursor: pointer;
-  color: #000;
+  color: $highlight;
 }
 
 .MessageNumber{
@@ -333,6 +333,17 @@ nav ul li a{
   height: 24px;
   width: 24px;
   border-radius: 24px;
+  margin-bottom: 16px;
+}
+
+.NavProfileImageChat{
+  background-color: $borderColor;
+  height: 32px;
+  width: 32px;
+  border-radius: 24px;
+  display: inline-block;
+  margin-right: 16px;
+
 }
 //HOME PAGE STUFF
 
@@ -410,9 +421,9 @@ nav ul li a{
   background-color: white;
   border: 1px solid #efefef;
 
-.projectShowTitle{
-  text-align: left;
-}
+  .projectShowTitle{
+    text-align: left;
+  }
 
 
   &.projectCards:hover{
@@ -492,7 +503,7 @@ nav ul li a{
   margin-left: 8px;
   height: 16px;
   width: 16px;
-  background-color: red;
+  // background-color: red;
   float: right;
   background-image: url("https://image.ibb.co/nR09AQ/ic_done_all_white_18dp_2x.png");
   background-position: center;
@@ -510,9 +521,6 @@ nav ul li a{
   background-size: contain;
   background-repeat: no-repeat;
 }
-
-// <a href="https://imgbb.com/"><img src="https://image.ibb.co/nR09AQ/ic_done_all_white_18dp_2x.png" alt="ic_done_all_white_18dp_2x" border="0"></a>
-// <a href="https://imgbb.com/"><img src="https://image.ibb.co/inSBPk/ic_done_white_18dp_2x.png" alt="ic_done_white_18dp_2x" border="0"></a>
 
 .center{
   text-align: center;
@@ -565,7 +573,7 @@ nav ul li a{
   background-color: white;
   position: absolute;
   bottom: 0;
-  padding: 0px;
+
   margin: 0p;
 }
 
@@ -578,8 +586,20 @@ nav ul li a{
 }
 
 .chatHeading{
-  padding: 24px 16px;
+  padding: 16px 16px 8px 16px;
   background-color: $highlight;
+  color: white;
+  text-decoration: none;
+
+}
+.chatName{
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  &.chatName:hover{
+    text-decoration: none;
+    color: white;
+  }
 }
 
 #chatSidebarMessages{
@@ -591,9 +611,12 @@ nav ul li a{
     background-color: #f9f9f9;
   }
 }
-
+.newMessage{
+  color: $highlight;
+  display: inline-block;
+}
 .chatPadding{
-  padding: 16px;
+  padding: 16px 0px 30px 40px;
 }
 
 .marginZero{
@@ -653,6 +676,9 @@ nav ul li a{
 .iconLarge{
   margin-top:8px;
   font-size: 32px;
+  position: relative;
+top: 10px;
+
 }
 
 
@@ -736,8 +762,8 @@ input[type=radio]:checked + label {
   padding: 4px 16px;
   border-radius: 4px;
   position: relative;
-  left: 84%;
-  top: 60px;
+  right: -85%;
+  top: 84px;
   color: white;
   text-decoration: none;
   &.updateProfileButton:hover{
@@ -796,9 +822,9 @@ $teal: #1abc9c !default;
 
 .searchIcon{
   position: relative;
-    top: 27px;
-    z-index: 12;
-    left: 6px;
+  top: 27px;
+  z-index: 12;
+  left: 6px;
 }
 
 .range-slider {

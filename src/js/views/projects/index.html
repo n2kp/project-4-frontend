@@ -27,6 +27,7 @@
       </div>
     </div>
 
+<!-- NORMAL PROJECTS -->
     <div class="col-sm-6">
       <div ng-if="!project.is_priority && project.is_active" ng-repeat="project in projectsIndex.filtered
       | filter: projectsIndex.lowerThan('budget', projectsIndex.budget)
@@ -61,7 +62,7 @@
       </div>
     </div>
 
-
+<!-- PRIORITY PROJECTS -->
     <div class="col-sm-3">
       <div ng-if="project.is_priority && project.is_active " ng-repeat="project in projectsIndex.all" class=" projectCards cursor" ui-sref="projectsShow({ id: project.id })">
 

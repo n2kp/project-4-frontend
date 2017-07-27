@@ -57,13 +57,12 @@
         <!--EMAIL INPUT  -->
         <div class="form-group">
           <label for="email">Email</label>
-          <input class="form-control" type="text" ng-model="auth.user.email" name="email" id="email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
+          <input pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"  class="form-control" type="email" ng-model="auth.user.email" name="email" id="email"   required>
         </div>
         <!-- EMAIL VALIDATION/MESSAGES -->
         <div ng-messages="auth.registerForm.email.$error" ng-show="auth.registerForm.$submitted || auth.registerForm.email.$touched">
           <div ng-message="required" class="errorMessage">An email address is required</div>
-          <div ng-message="pattern" ng-show="auth.registerForm.$submitted || auth.registerForm.email.$touched" class="errorMessage"></div>
-          <!-- <div ng-message="pattern" class="errorMessage" >This is not a valid email address</div> -->
+          <div ng-message="pattern" class="errorMessage" >This is not a valid email address</div>
         </div>
 
         <!--PASSWORD INPUT  -->
@@ -128,4 +127,5 @@
     </form>
 
   </div>
+  {{auth.user}}
 </div>

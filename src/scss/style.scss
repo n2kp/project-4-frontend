@@ -25,7 +25,7 @@ $danger: red;
 }
 
 #greyText{
-  color: $borderColor;
+  color: grey;
 }
 
 #zero{
@@ -35,13 +35,13 @@ $danger: red;
 
 .main{
   margin-top: 64px;
+  padding-top: 8px;
   background-color: #fafafa;
   height: 93vh;
 }
 
 
 main {
-
   .errorMessage {
     padding:-10px;
     color: $error;
@@ -227,7 +227,17 @@ p{
   }
 }
 
-.secondary {
+.secondary{
+  background-color: $borderColor;
+  color: $textColor;
+  &.secondary:hover {
+    background-color: darken($borderColor, 20%);
+    text-decoration: none;
+    color: $textColor;
+  }
+}
+
+.danger {
   background-color: $danger;
   color: white;
   &.secondary:hover {
@@ -369,6 +379,16 @@ nav ul li a{
 
 //INDEX STYLES
 
+.tech-tag{
+  background-color: $highlight;
+  font-size: 12px;
+  border-radius: 20px;
+  font-weight: 400;
+  padding: 4px 8px;
+  margin-right: 8px;
+  color: white;
+}
+
 .filter{
   position: fixed;
   margin: 16px 0px;
@@ -391,6 +411,9 @@ nav ul li a{
   background-color: white;
   border: 1px solid #efefef;
 
+.projectShowTitle{
+  text-align: left;
+}
 
 
   &.projectCards:hover{
@@ -423,6 +446,16 @@ nav ul li a{
 
 //PROJECT SHOW
 
+.pending {
+  color: lightblue
+}
+.accepted {
+  color: $highlight
+}
+.rejected {
+  color: $danger
+}
+
 .conversationsList{
   border-bottom: 1px solid $borderColor;
   padding: 16px;
@@ -454,6 +487,29 @@ nav ul li a{
   height: 87vh;
   overflow: hidden;
   padding: 0px;
+  margin-top: 22  px;
+}
+.read{
+  margin-left: 8px;
+  height: 16px;
+  width: 16px;
+  // background-color: red;
+  float: right;
+  background-image: url("https://image.ibb.co/nR09AQ/ic_done_all_white_18dp_2x.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.notRead{
+  margin-left: 8px;
+  height: 16px;
+  width: 16px;
+  // background-color: blue
+  float: right;
+  background-image: url("https://image.ibb.co/inSBPk/ic_done_white_18dp_2x.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .center{
@@ -525,14 +581,18 @@ nav ul li a{
 }
 
 #chatSidebarMessages{
+  height: 100px;
   padding: 16px 0px;
   background-color: white;
   word-wrap: break-word;
   &#chatSidebarMessages:hover {
-    background-color: #efefef;
+    background-color: #f9f9f9;
   }
 }
-
+.newMessage{
+  color: $highlight;
+  display: inline-block;
+}
 .chatPadding{
   padding: 16px;
 }
@@ -836,6 +896,14 @@ $range-label-width: 60px !default;
 
 .tenderInfo{
   border-bottom: 1px solid $borderColor;
+}
+
+.tenderThumbNails{
+  background-color: $borderColor;
+  height: 58px;
+  width: 56px;
+  border-radius: 24px;
+  display: inline
 }
 
 .bidReject{

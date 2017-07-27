@@ -10,13 +10,14 @@ function MainCtrl($rootScope, $scope, $state, API_URL, $auth, $transitions, User
 
   $rootScope.$on('error', (e, err) => {
     vm.message = err.data.errors.join('; ');
-    // console.log(vm.message);
+    console.log(err);
 
-    if(err.status === 401 && vm.pageName !== 'login') {
+    if(err.status === 401) {
       vm.stateHasChanged = false;
       $state.go('login');
     }
   });
+
 
   // Chat notifications
   // vm.conversations = Conversation.query();
@@ -45,12 +46,10 @@ function MainCtrl($rootScope, $scope, $state, API_URL, $auth, $transitions, User
 
   vm.getUnread = getUnread;
 
-
   /////////////////////////
 
-
   $scope.$on('child', (event, data) => {
-    // console.log('received this', data); // 'Some data'
+    console.log('received this', data); // 'Some data'
   });
 
   const protectedStates = ['projectsNew', 'projectsEdit', 'projectsShow', 'conversations'];
@@ -65,7 +64,6 @@ function MainCtrl($rootScope, $scope, $state, API_URL, $auth, $transitions, User
        .$promise
        .then((payload) => {
          vm.currentUser = payload;
-         // Always 0
          vm.unreadMessages = getUnread(id);
        });
 
@@ -77,6 +75,7 @@ function MainCtrl($rootScope, $scope, $state, API_URL, $auth, $transitions, User
     }
 
     if((!$auth.isAuthenticated() && protectedStates.includes(transition.$to().name))) {
+      vm.stateHasChanged = false;
       vm.message = 'You must be logged in to access this page.';
       return $state.go('login');
     }

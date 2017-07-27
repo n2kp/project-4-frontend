@@ -2,10 +2,10 @@
 <div class="main">
 
   <div class="container">
-
-
     <div class="row justify-content-md-center">
       <div class="col-6">
+        <p ng-show="main.message" class="alert alert-danger">{{ main.message }}</p>
+        {{ main }}
         <form ng-submit="auth.login()">
 
           <div class="form-group">
@@ -22,7 +22,6 @@
         </form>
       </div>
     </div>
-
     <div class="row justify-content-md-center">
 
     <button ng-click="auth.authenticate('github')" class="marginRightSm button github"><i class="fa fa-github-square marginRightXSm" aria-hidden="true"></i>

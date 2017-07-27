@@ -51,7 +51,6 @@
         <div ng-messages="auth.registerForm.username.$error" ng-show="auth.registerForm.$submitted || auth.registerForm.username.$touched">
           <div ng-message="required" class="errorMessage">A username is required</div>
           <div ng-message="unique" class="errorMessage">Please choose a different username, this one was already been taken</div>
-          <div ng-message="unique" class="errorMessage">Please choose a different username, this one was already been taken</div>
         </div>
 
         <!--EMAIL INPUT  -->
@@ -83,8 +82,9 @@
         <!-- PASSWORD CONFIRMATION VALIDATION/MESSAGES -->
         <div ng-messages="auth.registerForm.password.$error" ng-show="auth.registerForm.$submitted || auth.registerForm.password.$touched">
           <div ng-message="required" class="errorMessage">Password confirmation is required</div>
-          <div ng-message="match-password" class="errorMessage">Password's do not match</div>
         </div>
+        <!-- PASSWORD CONFIRMATION & PASSWORD VALIDATION/MESSAGES -->
+        <div ng-show="auth.user.password !== auth.user.password_confirmation" class="errorMessage">Passwords do not match</div>
 
         <button class="col-sm-2 button primary cursor" ng-if="(auth.user.email && auth.user.username  && auth.user.password && auth.user.password_confirmation)" ng-click="auth.show = 3">Next</button>
 
@@ -127,5 +127,4 @@
     </form>
 
   </div>
-  {{auth.user}}
 </div>

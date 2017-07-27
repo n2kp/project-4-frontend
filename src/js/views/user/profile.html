@@ -85,7 +85,8 @@
       <p>Rating: {{ review.rating }}</p>
       <p>{{ review.creator.username }}</p>
 
-        <button ng-if="main.currentUser.id === review.user.id" ng-click="profile.deleteReview(review)" >Remove your review of this user</button>
+
+        <button ng-if="main.currentUser.id === review.creator.id" ng-click="profile.deleteReview(review)" >Remove your review of this user</button>
 
     </div>
 

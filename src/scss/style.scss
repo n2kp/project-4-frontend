@@ -492,7 +492,7 @@ nav ul li a{
   margin-left: 8px;
   height: 16px;
   width: 16px;
-  background-color: red;
+  // background-color: red;
   float: right;
   background-image: url("https://image.ibb.co/nR09AQ/ic_done_all_white_18dp_2x.png");
   background-position: center;
@@ -510,9 +510,6 @@ nav ul li a{
   background-size: contain;
   background-repeat: no-repeat;
 }
-
-// <a href="https://imgbb.com/"><img src="https://image.ibb.co/nR09AQ/ic_done_all_white_18dp_2x.png" alt="ic_done_all_white_18dp_2x" border="0"></a>
-// <a href="https://imgbb.com/"><img src="https://image.ibb.co/inSBPk/ic_done_white_18dp_2x.png" alt="ic_done_white_18dp_2x" border="0"></a>
 
 .center{
   text-align: center;
@@ -591,7 +588,10 @@ nav ul li a{
     background-color: #f9f9f9;
   }
 }
-
+.newMessage{
+  color: $highlight;
+  display: inline-block;
+}
 .chatPadding{
   padding: 16px;
 }

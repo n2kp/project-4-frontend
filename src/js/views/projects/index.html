@@ -44,13 +44,10 @@
         <span>Project Deadline</span> – {{project.project_deadline | date}}
       </p>
 
-      <p class="marginBottomSm">
-        <span>Tech Stack</span>
-        <span class="tech-tag" ng-repeat="tech in project.tech_stack.split(', ')">{{ tech }}</span>
-      </p>
 
-      <p class="marginBottomXSm">
-        <span>Budget</span> {{ project.budget | currency : '£' : 0 }}</p>
+
+      <p class="marginBottomSm">
+        <span>Budget</span> – {{ project.budget | currency : '£' : 0 }}</p>
 
         <p class="marginBottomSm">
           <span>Time left to submit a bid</span> – {{ project.bid_deadline | amDifference : null : 'days' }} days</p>

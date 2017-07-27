@@ -11,7 +11,7 @@
         </div>
         <div ng-repeat="conversation in conversations.conversations track by $index">
 
-          <div class="col-sm-12" id="chatSidebarMessages">
+          <div class="col-sm-12 " id="chatSidebarMessages">
             <div ng-click="conversations.selectConversation(conversation, $index)" class="cursor">
               <div class="row" id="zero">
 
@@ -26,6 +26,9 @@
                     <div ng-if="(conversation.messages.length-1) === $index">
                       <p id="greyText"> {{ message.body | limitTo: 25 }}... </p>
                       <small> {{ message.created_at | date : 'shortTime' }} </small>
+                      <div class="newMessage" ng-if="main.isAuthenticated() && main.unreadMessages">
+                        – New message
+                      </div>
                     </div>
                   </div>
                 </div>

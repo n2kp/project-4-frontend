@@ -33,7 +33,7 @@
           <p><span> Budget: </span>{{ projectsShow.project.budget | currency : '£' : 0}}</p>
           <br>
 
-          <button ng-click="projectsShow.contactCreator(main.currentUser.id, projectsShow.project.user.id)" class="button primary" ng-if="main.currentUser.id !== projectsShow.project.user.id" >
+          <button ng-click="projectsShow.contactCreator(main.currentUser.id, projectsShow.project.user.id)" class="button primary" ng-if="main.currentUser.id !== projectsShow.project.user.id">
             Message {{ projectsShow.project.user.username}}</button>
 
             <button class="button primary" ui-sref="projectsEdit({ id: projectsShow.project.id})" ng-if="main.currentUser.id === projectsShow.project.user.id">Edit Post</button>

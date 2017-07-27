@@ -753,12 +753,11 @@ input[type=radio]:checked + label {
 }
 .messageUser{
   position: absolute;
-  top: -20px;
-  right: 1px;
   top: -39px;
   right: 15px;
   color: white;
   text-decoration: none;
+  cursor: pointer;
   &.messageUser:hover{
     color: darken(white, 2%);
     text-decoration: none;

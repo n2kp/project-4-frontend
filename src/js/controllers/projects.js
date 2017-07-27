@@ -68,7 +68,7 @@ function ProjectNewCtrl (Project, User, $stateParams, $state ){
 
   const today = new Date();
   vm.today = today.toISOString();
-  console.log(vm.today);
+  // console.log(vm.today);
 
   function compareTime(bid_deadline, project_deadline) {
     if ( new Date(bid_deadline) > new Date(project_deadline))

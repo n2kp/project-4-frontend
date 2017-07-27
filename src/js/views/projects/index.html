@@ -46,7 +46,7 @@
 
       <p class="marginBottomSm">
         <span>Tech Stack</span>
-        <span class="tech-tag" ng-repeat="tech in project.tech_stack.split(',')">{{ tech }}</span>
+        <span class="tech-tag" ng-repeat="tech in project.tech_stack.split(', ')">{{ tech }}</span>
       </p>
 
       <p class="marginBottomXSm">
@@ -66,7 +66,7 @@
 
           <h2>{{project.title }}</h2>
           <p>{{project.description }}</p>
-          <p><span class="tech-tag" ng-repeat="tech in project.tech_stack.split(',')">{{ tech }}</span></p>
+          <p><span class="tech-tag" ng-repeat="tech in project.tech_stack.split(', ')">{{ tech }}</span></p>
           <p>{{project.budget }}</p>
 
           <div class="paidPost">

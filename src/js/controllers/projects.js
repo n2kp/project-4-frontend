@@ -15,6 +15,7 @@ function ProjectIndexCtrl (Project, moment, filterFilter, $scope) {
   .$promise
   .then((projects) => {
     vm.all = projects;
+    console.log(projects);
     filterProjects();
   });
 

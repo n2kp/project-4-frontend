@@ -23,7 +23,7 @@
 
 <body ng-controller="MainCtrl as main">
 
-  <nav ng-if="!main.isHome" >
+  <nav ng-if="!main.isHome" class="shadow-1" >
 
     <a ui-sref="projectsIndex" class="nav-logo"></a>
 
@@ -33,7 +33,7 @@
 
       <li ng-if="main.isAuthenticated()"><a ui-sref="projectsNew">Add a Job</a></li>
 
-      <li ng-if="main.isAuthenticated()"><a ui-sref="conversations"><i class="material-icons">chat</i></a></li>
+      <li ng-if="main.isAuthenticated()"><a ui-sref="conversations"><i class="material-icons chatIcon">chat</i></a></li>
 
       <li ng-model="main.unreadMessages" ng-if="main.isAuthenticated() && main.unreadMessages" class="MessageNumber">{{ main.unreadMessages }}</li>
 

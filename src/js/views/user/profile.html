@@ -29,7 +29,7 @@
         <h6 ng-if="profile.user.github_url"><a href="{{ profile.user.github_url }}" target="_blank">{{profile.user.github_url}}</a></h6>
       </div>
 
-      <a ng-if="main.currentUser.id !== profile.user.id" ui-sref="conversations">Message {{profile.user.firstname}}</a>
+      <a ng-if="main.currentUser.id !== profile.user.id" ui-sref="conversations"  class="messageUser"> <i class="material-icons chatIconProfile">message</i> Message {{profile.user.firstname}}</a>
     </div>
   </div>
 </div>
@@ -47,7 +47,7 @@
         <p>Bid made: {{ tender.bid | currency : '£' : 0 }}</p>
         <p>Your pitch: {{ tender.pitch }}</p>
         <p>Current Status: {{ tender.status }}</p>
-        <a ui-sref="projectsShow({ id: tender.project_id })">View project</a>
+        <a ui-sref="projectsShow({ id: tender.project_id })" class="button primary marginTopMd">View project</a>
       </div>
     </div>
 
@@ -71,19 +71,17 @@
   </div>
 
   <div class="col-5">
-    <h2>Reviews</h2>
-    <div class="profileCards shadow-1">
+    <h2 ng-if="main.currentUser.id === profile.user.id" >You have recieved {{profile.user.reviews_received.length}} reviews </h2>
 
-      <h1 ng-if="main.currentUser.id === profile.user.id" >You have recieved {{profile.user.reviews_received.length}} reviews </h1>
 
       <h1 ng-if="main.currentUser.id !== profile.user.id" >This user has received {{ profile.user.reviews_received.length }}  reviews</h1>
 
-    </div>
 
     <div ng-repeat="review in profile.user.reviews_received" class="profileCards shadow-1">
       <p>{{ review.body }}</p>
       <p>Rating: {{ review.rating }}</p>
-      <p>{{ review.creator.username }}</p>
+
+      <p>Rated by: <a ui-sref="profile({ id: review.creator.id })" class="marginBottomMd"> {{ review.creator.username }}</p></a>
 
 
         <button ng-if="main.currentUser.id === review.creator.id" ng-click="profile.deleteReview(review)" >Remove your review of this user</button>

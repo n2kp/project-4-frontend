@@ -15,7 +15,7 @@ function ProfileCtrl($auth, User, $state, Review, Project) {
   Project.query()
   .$promise
   .then((projects) =>{
-    console.log(projects);
+    // console.log(projects);
     vm.projects = projects;
   });
 
@@ -90,7 +90,7 @@ function ProfileEditCtrl($auth, User, $state, $scope, $rootScope, API_URL, $http
 
       $http.get(`${API_URL}/refresh`)
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         var refreshToken = response.data.token;
         $auth.setToken(refreshToken);
         $state.go('profile', $state.params);
@@ -131,14 +131,14 @@ function ConversationCtrl(Conversation, Message, $scope) {
     .save({ id: vm.conversationId }, vm.message)
     .$promise
     .then((response) => {
-      console.log('Message saved', response);
+      // console.log('Message saved', response);
       function findMessage(message) {
         return message.body === response.body;
       }
 
       const newMessage = response.conversation.messages.find(findMessage);
       vm.conversations[vm.index].messages.push(newMessage);
-      console.log(newMessage);
+      // console.log(newMessage);
       vm.message = {};
     });
   }
@@ -151,7 +151,7 @@ function ConversationCtrl(Conversation, Message, $scope) {
           return count += 1;
         }
       });
-      console.log('Count: ', count);
+      // console.log('Count: ', count);
       count = 0;
     });
   }
@@ -167,12 +167,12 @@ function ConversationCtrl(Conversation, Message, $scope) {
     //   }
     // });
 
-    console.log(conversation.messages);
+    // console.log(conversation.messages);
     Conversation
     .get({ id: conversation.id })
     .$promise
     .then((conversation) => {
-      console.log('Backend', conversation);
+      // console.log('Backend', conversation);
       $scope.conversations.getUnread(currentUserId);
       vm.conversationId = conversation.id;
       vm.index = index;
@@ -180,7 +180,7 @@ function ConversationCtrl(Conversation, Message, $scope) {
       .get({ id: vm.conversationId })
       .$promise
       .then((response) => {
-        console.log('From index messages', response);
+        // console.log('From index messages', response);
         // .. update Angular
       });
 

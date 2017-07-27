@@ -6,11 +6,11 @@ MainCtrl.$inject = ['$rootScope', '$scope', '$state', 'API_URL', '$auth', '$tran
 function MainCtrl($rootScope, $scope, $state, API_URL, $auth, $transitions, User, Conversation) {
   const vm = this;
   vm.isAuthenticated = $auth.isAuthenticated;
-  console.log(vm);
+  // console.log(vm);
 
   $rootScope.$on('error', (e, err) => {
     vm.message = err.data.errors.join('; ');
-    console.log(vm.message);
+    // console.log(vm.message);
 
     if(err.status === 401 && vm.pageName !== 'login') {
       vm.stateHasChanged = false;
@@ -54,7 +54,7 @@ function MainCtrl($rootScope, $scope, $state, API_URL, $auth, $transitions, User
 
 
   $scope.$on('child', (event, data) => {
-    console.log('received this', data); // 'Some data'
+    // console.log('received this', data); // 'Some data'
   });
 
   const protectedStates = ['projectsNew', 'projectsEdit', 'projectsShow', 'conversations'];
@@ -71,7 +71,7 @@ function MainCtrl($rootScope, $scope, $state, API_URL, $auth, $transitions, User
          vm.currentUser = payload;
          // Always 0
          vm.unreadMessages = getUnread(id);
-         console.log('VM Messages', vm.unreadMessages);
+        //  console.log('VM Messages', vm.unreadMessages);
        });
 
 

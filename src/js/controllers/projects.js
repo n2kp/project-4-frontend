@@ -3,7 +3,8 @@ angular
 .controller('ProjectIndexCtrl', ProjectIndexCtrl)
 .controller('ProjectNewCtrl', ProjectNewCtrl)
 .controller('ProjectShowCtrl', ProjectShowCtrl)
-.controller('ProjectEditCtrl', ProjectEditCtrl);
+.controller('ProjectEditCtrl', ProjectEditCtrl)
+.controller('TendersDeleteCtrl', TendersDeleteCtrl);
 
 ProjectIndexCtrl.$inject = ['Project', 'moment', 'filterFilter', '$scope', 'orderByFilter'];
 function ProjectIndexCtrl (Project, moment, filterFilter, $scope) {
@@ -72,7 +73,7 @@ function ProjectNewCtrl (Project, User, $stateParams, $state ){
 
   function compareTime(bid_deadline, project_deadline) {
     if ( new Date(bid_deadline) > new Date(project_deadline))
-      return true;
+    return true;
     else {
       return false;
     }
@@ -93,8 +94,8 @@ function ProjectNewCtrl (Project, User, $stateParams, $state ){
 }
 
 
-ProjectShowCtrl.$inject = ['Project', 'User', '$stateParams', '$state', 'Conversation', 'Tender', 'moment'];
-function ProjectShowCtrl (Project, User, $stateParams, $state, Conversation, Tender, moment) {
+ProjectShowCtrl.$inject = ['Project', 'User', '$stateParams', '$state', 'Conversation', 'Tender', 'moment', '$uibModal'];
+function ProjectShowCtrl (Project, User, $stateParams, $state, Conversation, Tender, moment, $uibModal) {
   const vm = this;
   moment().hour(0).minute(0).second(0).toDate();
 
@@ -186,6 +187,55 @@ function ProjectShowCtrl (Project, User, $stateParams, $state, Conversation, Ten
   }
 
   vm.contactCreator = contactCreator;
+
+
+
+  function openModal(tender) {
+    $uibModal.open({
+      templateUrl: 'js/views/partials/tenderDeleteModal.html',
+      controller: 'TendersDeleteCtrl as tenderDelete',
+      resolve: {
+        tender: () => {
+          return tender;
+        }
+      }
+    });
+  }
+
+  vm.open = openModal;
+}
+
+
+
+TendersDeleteCtrl.$inject = ['$uibModalInstance', 'tender', 'Tender', 'Project', '$stateParams', '$state'];
+function TendersDeleteCtrl($uibModalInstance, tender, Tender, Project, $stateParams, $state) {
+  const vm = this;
+  vm.tender = tender;
+  vm.project = Project.get($stateParams);
+  console.log(vm.project);
+  const tenderToDelete = Tender.get({ id: vm.tender.id });
+  console.log(tenderToDelete);
+
+  function closeModal() {
+    $uibModalInstance.close();
+  }
+
+  vm.close = closeModal;
+
+
+  function tendersDelete() {
+    console.log('HEre');
+
+    tenderToDelete
+      .$remove()
+      .then((tender) => {
+        console.log('Deleted!');
+        $state.go('projectsIndex')
+        $uibModalInstance.close();
+      });
+  }
+  vm.delete = tendersDelete;
+
 }
 
 

@@ -62,7 +62,7 @@
 
           <h3 ng-if="main.currentUser.id === project.user.id || main.currentUser.is_dev === false">There are currently {{ projectsShow.project.tenders.length }} bids on this project.</h3>
 
-          <div ng-repeat="tender in projectsShow.project.tenders"  id="noPaddingBottom">
+          <div ng-repeat="tender in projectsShow.project.tenders"  id="noPaddingBottom" ng-model="projectsShow.project.tenders">
             <h2 ng-if="main.currentUser.id === tender.user.id ">Your current bid</h2>
 
 
@@ -122,13 +122,15 @@
 
 
                 <div class="bidReject">
-                  <i class="material-icons">clear</i>
+                  <i ng-click="projectsShow.open(tender)" class="material-icons">clear</i>
                 </div>
-                <h4 class="text-center">Reject this bid</h4>
-
+                <h4  class="text-center">Reject this bid</h4>
               </div>
+              <h4 class="text-center">Reject this bid</h4>
+
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>

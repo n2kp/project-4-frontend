@@ -98,7 +98,7 @@ main {
 .MessageNumber{
   position: absolute;
   right: 63px;
-  top: 12px;
+  top: 17px;
   background-color: red;
   color: white;
   height: 13px;
@@ -328,13 +328,24 @@ nav ul li{
 nav ul li a{
   color: $textColor;
 }
-
+.chatIcon{
+  position: relative;
+  top: 5px;
+}
+.whoChat{
+  width: 100%;
+  background-color: $highlight;
+  height: 64px;
+  color: white;
+}
 .NavProfileImage{
   background-color: $borderColor;
   height: 24px;
   width: 24px;
   border-radius: 24px;
   margin-bottom: 16px;
+  position: relative;
+  top: 5px;
 }
 
 .NavProfileImageChat{
@@ -440,7 +451,8 @@ nav ul li a{
 
 .paidPost{
   float: right;
-
+  display: block;
+  color: $highlight;
 }
 
 .sticky{
@@ -569,12 +581,12 @@ nav ul li a{
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
-.NavProfileImageChat
+
 .chatInput{
   background-color: white;
   position: absolute;
   bottom: 0;
-  padding: 0px;
+
   margin: 0p;
 }
 
@@ -617,7 +629,7 @@ nav ul li a{
   display: inline-block;
 }
 .chatPadding{
-  padding: 16px;
+  padding: 16px 0px 30px 40px;
 }
 
 .marginZero{
@@ -677,6 +689,9 @@ nav ul li a{
 .iconLarge{
   margin-top:8px;
   font-size: 32px;
+  position: relative;
+  top: 10px;
+
 }
 
 
@@ -730,6 +745,25 @@ input[type=radio]:checked + label {
 }
 
 //Profile Page
+.chatIconProfile{
+  position: absolute;
+  top: 10px;
+  top: 2px;
+    left: -32px;
+}
+.messageUser{
+  position: absolute;
+  top: -20px;
+  right: 1px;
+  top: -39px;
+  right: 15px;
+  color: white;
+  text-decoration: none;
+  &.messageUser:hover{
+    color: darken(white, 2%);
+    text-decoration: none;
+  }
+}
 
 .profilePageImage{
   width: 200px;
@@ -751,7 +785,7 @@ input[type=radio]:checked + label {
 
 .profileName{
   position: relative;
-  left: 50px;
+  left: 10%;
   top: -50px;
 }
 

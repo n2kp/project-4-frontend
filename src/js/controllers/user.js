@@ -10,7 +10,9 @@ function ProfileCtrl($auth, User, $state, Review, Project) {
   const vm = this;
 
   vm.reviews = Review.query();
+  console.log(vm.reviews);
   vm.user = User.get($state.params);
+  console.log(vm.user);
   vm.projects = Project.query();
 
   Project.query()
@@ -19,6 +21,13 @@ function ProfileCtrl($auth, User, $state, Review, Project) {
     // console.log(projects);
     vm.projects = projects;
   });
+
+
+  function findTender(tender) {
+    return tender.status = 'accepted';
+  }
+
+  vm.findTender = findTender;
 
   // Trying to prepend the url with http
   // function checkUrl(url) {
@@ -48,14 +57,16 @@ function ProfileCtrl($auth, User, $state, Review, Project) {
     });
   }
   vm.addReview = addReview;
+  
 
   function deleteReview(review) {
     Review
     .delete({ user_id: vm.user.id, id: review.id })
     .$promise
-    .then(() => {
-      const index = vm.user.reviews.indexOf(review);
-      vm.user.reviews.splice(index, 1);
+    .then((response) => {
+      console.log(response);
+      const index = vm.user.reviews_received.indexOf(response);
+      vm.user.reviews_received.splice(index, 1);
     });
   }
   vm.deleteReview = deleteReview;

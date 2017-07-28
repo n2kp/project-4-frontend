@@ -61,15 +61,16 @@
       <!-- IF THE PROFILE OF THE USER IS NOT A DEV -->
       <div ng-if="!profile.is_dev">
         <h2 ng-if="main.currentUser.id !== profile.user.id && !profile.user.is_dev">This user has {{profile.user.projects.length}} Project's listed</h2>
-        <h2 ng-if="main.currentUser.id === profile.user.id">Current Project <em ng-if="profile.user.projects.length > 1">'s</em> listed</h2>
+        <h2 ng-if="main.currentUser.id === profile.user.id">Current Project<em ng-if="profile.user.projects.length > 1">s</em> listed</h2>
 
         <div ng-repeat="project in profile.user.projects" class="profileCards shadow-1">
           <h3>{{ project.title }}</h3>
+          <p class="marginBottomMd"><span class="tech-tag" ng-repeat="tech in project.tech_stack.split(', ')"> {{ tech }}</span></p>
           <p>{{ project.description }}</p>
-          <p>{{ project.project_deadline | date }}</p>
-          <p>{{ project.bid_deadline | amDifference : null : 'days' }} days </p>
-          <p>{{ project.tech_stack }}</p>
-          <p>{{ project.budget | currency : '£' : 0}}</p>
+          <p><strong>Project Deadline - </strong>{{ project.project_deadline | date }}</p>
+          <p><strong>Bid Deadline in </strong>{{ project.bid_deadline | amDifference : null : 'days' }} days </p>
+
+          <p class="marginBottomMd"><span> Budget – </span> {{project.budget | currency : '£' : 0 }}</p>
 
           <h5 ng-if="project.is_active === true">You currently have {{ project.tenders.length }} bids on this project</h5>
 
@@ -80,14 +81,12 @@
       </div>
     </div>
 
-
-
     <!-- REVIEWS SEEN BY ALL -->
     <div class="col-5">
 
-      <h2 ng-if="main.currentUser.id === profile.user.id" >You have received {{profile.user.reviews_received.length}} review<em ng-if="profile.user.reviews_received.length !== 1">'s</em></h2>
+      <h2 ng-if="main.currentUser.id === profile.user.id" >You have received {{profile.user.reviews_received.length}} review<em ng-if="profile.user.reviews_received.length !== 1">s</em></h2>
 
-      <h2 ng-if="main.currentUser.id !== profile.user.id" >This user has received {{ profile.user.reviews_received.length }} review<em ng-if="profile.user.reviews_received.length !== 1">'s</em></h2>
+      <h2 ng-if="main.currentUser.id !== profile.user.id" >This user has received {{ profile.user.reviews_received.length }} review<em ng-if="profile.user.reviews_received.length !== 1">s</em></h2>
 
       <div ng-repeat="review in profile.user.reviews_received" class="profileCards shadow-1">
         <p>{{ review.body }}</p>

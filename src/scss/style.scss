@@ -38,7 +38,7 @@ $danger: red;
   margin-top: 64px;
   padding-top: 8px;
   background-color: #fafafa;
-  height: 93vh;
+  height: 100vh;
 }
 
 button{
@@ -52,7 +52,9 @@ main {
     color: $error;
   }
 }
-
+body{
+  background-color: #fafafa;
+}
 #center{
   margin: 0 auto;
 }

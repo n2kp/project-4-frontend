@@ -69,7 +69,7 @@
             <div class="tenderInfo projectCards">
               <h2 ng-if="main.currentUser.id === tender.user.id ">Your current bid</h2>
 
-              <a ui-sref="profile({ id: tender.user.id })"><h2  ng-if="main.currentUser.id !== tender.user.id " class="marginBottomMd">{{ tender.user.firstname }}'s<a/> offer</h2>
+              <a ui-sref="profile({ id: tender.user.id })"><h2  ng-if="main.currentUser.id !== tender.user.id " class="marginBottomMd">{{ tender.user.firstname }}'sd </a> offer
 
 
 
@@ -85,6 +85,24 @@
               <button ng-if="main.currentUser.id === tender.user.id"  ng-click="projectsShow.show = 1" class=" button primary marginTopMd">Alter your bid</button>
 
               <button ng-if="main.currentUser.id === tender.user.id" ng-click="projectsShow.open(tender)" class="button danger marginBottomMd" >Retract your bid</button>
+
+              <div class="row justify-content-center">
+                <div ng-if="main.currentUser.id === projectsShow.project.user.id && tender.status === 'pending'" ng-click="projectsShow.acceptBid(tender.id) ; contactCreator(main.currentUser.id, projectsShow.tender.user.id)" class="cursor justify-content-center acceptBox">
+
+                <div class="bidAccept">
+                    <i class="material-icons">done</i>
+                </div>
+                  <h4 class="text-center">Accept this bid</h4>
+                </div>
+
+                <div ng-if="main.currentUser.id === projectsShow.project.user.id && tender.status !== 'accepted' && tender.status !== 'rejected'" class="cursor acceptBox">
+
+
+                  <div class="bidReject">
+                    <i ng-click="projectsShow.open(tender)" class="material-icons">clear</i>
+                  </div>
+                  <h4  class="text-center">Reject this bid</h4>
+                </div>
 
               <div ng-show="projectsShow.show == 1">
                 <form ng-submit="projectsShow.tenderUpdate()">
@@ -107,25 +125,7 @@
             </div>
 
 
-            <div class="row justify-content-center">
 
-
-              <div ng-if="main.currentUser.id === projectsShow.project.user.id && tender.status === 'pending'" ng-click="projectsShow.acceptBid(tender.id) ; contactCreator(main.currentUser.id, projectsShow.tender.user.id)" class="cursor justify-content-center acceptBox">
-
-                <div class="bidAccept">
-                  <i class="material-icons">done</i>
-                </div>
-                <h4 class="text-center">Accept this bid</h4>
-              </div>
-
-              <div ng-if="main.currentUser.id === projectsShow.project.user.id && tender.status !== 'accepted' && tender.status !== 'rejected'" class="cursor acceptBox">
-
-
-                <div class="bidReject">
-                  <i ng-click="projectsShow.open(tender)" class="material-icons">clear</i>
-                </div>
-                <h4  class="text-center">Reject this bid</h4>
-              </div>
 
             </div>
           </div>

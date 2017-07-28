@@ -20,7 +20,7 @@
         <h1 class="marginBottomMd">{{ profile.user.firstname }} {{ profile.user.lastname }}</h1>
 
         <span uib-rating ng-model="profile.user.average_rating" max="10" read-only="!isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></span>
-        <p> {{ profile.user }}</p>
+        
         <h6 ng-if="profile.user.is_dev">Skills:
           <span class="tech-tag" ng-repeat="tech in profile.user.tech_stack.split(', ')">{{ tech }}</span>
         </h6>

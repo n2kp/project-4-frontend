@@ -16,7 +16,7 @@
               <div class="row" id="zero">
 
                 <div class="col-2 marginRightSm">
-                  <img ng-src="{{ conversation.receiver.username  === main.currentUser.username ? conversation.sender.username : conversation.receiver.username }}" alt="profile.user.imageSRC" class=" chatProfileImage">
+                  <img ng-src="{{ conversation.receiver.username === main.currentUser.username ? conversation.sender.image.url : conversation.receiver.image.url }}" alt="profile.user.image_src" class=" chatProfileImage">
                 </div>
 
                 <div class="col-sm-8">
@@ -55,7 +55,7 @@
 
           <div ng-repeat="message in conversations.conversations[conversations.index].messages | orderBy: 'created_at'" class="speech-bubble-row">
 
-          
+
 
             <div ng-class="{true:'speech-bubble-sent', false:'speech-bubble-received'}[main.currentUser.id === message.user_id]">
               <div class="body">

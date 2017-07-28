@@ -10,9 +10,7 @@ function ProfileCtrl($auth, User, $state, Review, Project, Conversation) {
   const vm = this;
 
   vm.reviews = Review.query();
-  console.log(vm.reviews);
   vm.user = User.get($state.params);
-  console.log(vm.user);
   vm.projects = Project.query();
 
   Project.query()
@@ -202,14 +200,6 @@ function ConversationCtrl(Conversation, Message, $scope) {
   vm.getUnread = getUnread;
 
   function selectConversation(conversation, index, currentUserId) {
-
-    // Set messages to read in Angular
-    // conversation.messages.forEach((message) => {
-    //   if (message.user_id !== currentUserId) {
-    //     message.read = true;
-    //   }
-    // });
-
     // console.log(conversation.messages);
     Conversation
     .get({ id: conversation.id })

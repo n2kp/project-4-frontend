@@ -20,13 +20,14 @@
         <h1 class="marginBottomMd">{{ profile.user.firstname }} {{ profile.user.lastname }}</h1>
 
         <span uib-rating ng-model="profile.user.average_rating" max="10" read-only="!isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></span>
-
+        
         <h6 ng-if="profile.user.is_dev">Skills:
           <span class="tech-tag" ng-repeat="tech in profile.user.tech_stack.split(', ')">{{ tech }}</span>
         </h6>
+
         <h6 ng-if="profile.user.portfolio_url"><a href="{{ profile.user.portfolio_url }}" target="_blank">{{profile.user.portfolio_url}}</a></h6>
 
-        <h6 ng-if="profile.user.facebook_url"><a href="{{ profile.user.facebook_url }}" target="_blank">{{profile.user.facebook_url}}</a></h6>
+        <h6 ng-if="profile.user.linkedin_url"><a href="{{ profile.user.linkedin_url }}" target="_blank">{{profile.user.linkedin_url}}</a></h6>
 
         <h6 ng-if="profile.user.github_url"><a href="{{ profile.user.github_url }}" target="_blank">{{profile.user.github_url}}</a></h6>
       </div>
@@ -61,7 +62,8 @@
       <!-- IF THE PROFILE OF THE USER IS NOT A DEV -->
       <div ng-if="!profile.is_dev">
         <h2 ng-if="main.currentUser.id !== profile.user.id && !profile.user.is_dev">This user has {{profile.user.projects.length}} Project's listed</h2>
-        <h2 ng-if="main.currentUser.id === profile.user.id">Current Project<em ng-if="profile.user.projects.length > 1">s</em> listed</h2>
+
+        <h2 ng-if="main.currentUser.id === profile.user.id && !profile.user.is_dev">Current Project<em ng-if="profile.user.projects.length > 1">s</em> listed</h2>
 
         <div ng-repeat="project in profile.user.projects" class="profileCards shadow-1">
           <h3>{{ project.title }}</h3>

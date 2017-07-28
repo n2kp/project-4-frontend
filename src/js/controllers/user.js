@@ -55,6 +55,7 @@ function ProfileCtrl($auth, User, $state, Review, Project, Conversation) {
     .$promise
     .then((newReview) => {
       vm.user.reviews_received.push(newReview);
+      vm.newReview = {};
     });
   }
   vm.addReview = addReview;

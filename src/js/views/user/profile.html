@@ -50,9 +50,9 @@
           { 'bidRejected': tender.status === 'rejected', 'bidAccepted': tender.status === 'accepted',
           'bidPending': tender.status === 'pending' }">
           <h2>{{ profile.projects[tender.project_id].title }}</h2>
-          <p>Bid made: {{ tender.bid | currency : '£' : 0 }}</p>
+          <p class=" marginTopMd marginBottomSm"><span> Bid made </span> – {{ tender.bid | currency : '£' : 0 }}</p>
           <p>Your pitch: {{ tender.pitch }}</p>
-          <p>Current Status: {{ tender.status }}</p>
+          <p class=" marginTopMd"><span> Current Status</span> – {{ tender.status }}</p>
           <a ui-sref="projectsShow({ id: tender.project_id })" class="button primary marginTopMd">View project</a>
         </div>
       </div>
@@ -92,7 +92,7 @@
         <p>{{ review.body }}</p>
         <span uib-rating ng-model="review.rating" max="10" read-only="!isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></span>
         <p>Rated by: <a ui-sref="profile({ id: review.creator.id })" class="marginBottomMd"> {{ review.creator.username }}</a></p>
-        <button ng-if="main.currentUser.id === review.creator.id" ng-click="profile.deleteReview(review)" class="danger button" >Remove your review of this user</button>
+        <button ng-if="main.currentUser.id === review.creator.id" ng-click="profile.deleteReview(review)" class="danger button marginTopMd" >Remove your review of this user</button>
       </div>
 
 

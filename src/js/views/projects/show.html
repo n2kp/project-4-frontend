@@ -5,7 +5,10 @@
     <div class="col-10 offset-md-1">
 
       <p ng-if="main.currentUser.id === projectsShow.project.user.id" class="marginBottomMd"><span>You </span> posted</p>
-      <h1 class="projectShowTitle"> {{ projectsShow.project.title }}</h1>
+
+
+
+      <h1 class="projectShowTitle">   <img src=" {{projectsShow.project.user.image.url}} " alt="profile.user.image_src" class="projectShowImage"> {{ projectsShow.project.title }} </h1>
       <p ng-if="main.currentUser.id !== projectsShow.project.user.id" >Posted by <span> <a ui-sref="profile({ id: projectsShow.project.user.id })" class="marginBottomMd"> {{ projectsShow.project.user.username }} </a></span></p>
 
     </div>
@@ -69,7 +72,7 @@
             <div class="tenderInfo projectCards">
               <h2 ng-if="main.currentUser.id === tender.user.id ">Your current bid</h2>
 
-              <h2 ng-if="main.currentUser.id !== tender.user.id" class="marginBottomMd"><a ui-sref="profile({ id: tender.user.id })">{{ tender.user.firstname }}'s offer</a></h2>
+              <h2 ng-if="main.currentUser.id !== tender.user.id" class="marginBottomMd"><a ui-sref="profile({ id: tender.user.id })"> <img src=" {{tender.user.image_src}} " alt="profile.user.image_src" class="tenderShowImage"> {{ tender.user.firstname }}'s offer</a></h2>
 
               <h5><span> Bid </span> - {{ tender.bid  | currency : '£' : 0 }}</h5>
               <p class="marginBottomMd">{{ tender.pitch }}</p>
@@ -88,6 +91,7 @@
               <button ng-if="main.currentUser.id === tender.user.id" ng-click="projectsShow.open(tender)" class="button danger marginBottomMd" >Retract your bid</button>
 
               <div class="row justify-content-center">
+                
                 <div ng-if="main.currentUser.id === projectsShow.project.user.id && tender.status === 'pending'" ng-click="projectsShow.acceptBid(tender.id) ; contactCreator(main.currentUser.id, projectsShow.tender.user.id)" class="cursor justify-content-center acceptBox">
 
                   <div class="bidAccept">

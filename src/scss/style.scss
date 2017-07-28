@@ -14,16 +14,7 @@ $danger: red;
   font-family: 'Raleway', sans-serif;
 }
 
-.red{
-  background-color: red;
-}
-.blue{
-  background-color: blue;
-}
 
-.green{
-  background-color: green;
-}
 
 #greyText{
   color: grey;
@@ -33,6 +24,10 @@ h3{
   color: $textColor
 }
 
+textarea{
+  font-family: 'Raleway', sans-serif;
+}
+  
 #zero{
   margin: 0px;
   padding: 0px;
@@ -447,7 +442,7 @@ nav ul li a{
   top: 48px;
 }
 .bidAccepted {
-  background-color: green;
+  border: 1px solid $highlight;
 }
 
 .projectCards{
@@ -470,6 +465,24 @@ nav ul li a{
   width: 100%;
   height: 100px;
   object-fit: cover;
+}
+
+.projectShowImage{
+  width: 48px;
+  height: 48px;
+  border-radius: 48px;
+  object-fit: cover;
+  display: inline-block;
+}
+
+.tenderShowImage{
+  position: relative;
+  top: -3px;
+  width: 24px;
+  height: 24px;
+  border-radius: 48px;
+  object-fit: cover;
+  display: inline-block;
 }
 
 
@@ -850,7 +863,7 @@ input[type=radio]:checked + label {
 }
 
 .bidRejected {
-  background: red;
+  border: 1px solid $danger;
 }
 
 

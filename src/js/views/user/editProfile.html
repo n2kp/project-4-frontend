@@ -95,11 +95,11 @@
 
             <!--LINKEDIN INPUT  -->
             <div class="form-group">
-              <label for="facebook_url">Facebook URL</label>
-              <input class="form-control" type="text" ng-model="profileEdit.user.facebook_url" name="facebook_url" id="facebook_url" pattern="(@'^(http|https)://.*$')">
+              <label for="linkedin_url">LinkedIn URL</label>
+              <input class="form-control" type="text" ng-model="profileEdit.user.linkedin_url" name="linkedin_url" id="linkedin_url" pattern="(@'^(http|https)://.*$')">
             </div>
             <!-- LINKED IN VALIDATION/MESSAGES -->
-            <div ng-messages="profileEdit.editProfileForm.facebook_url.$error" ng-show="profileEdit.editProfileForm.$submitted || profileEdit.editProfileForm.facebook_url.$touched">
+            <div ng-messages="profileEdit.editProfileForm.linkedin_url.$error" ng-show="profileEdit.editProfileForm.$submitted || profileEdit.editProfileForm.linkedin_url.$touched">
               <div ng-message="pattern" class="errorMessage">The URL must start with 'http://' or 'https://'</div>
             </div>
 

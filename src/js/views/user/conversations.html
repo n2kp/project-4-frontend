@@ -24,9 +24,10 @@
                   <div ng-repeat="message in conversation.messages track by $index">
 
                     <div ng-if="(conversation.messages.length-1) === $index">
-                      <p id="greyText"> {{ message.body | limitTo: 25 }}... </p>
+                      <p id="greyText"> {{ message.body | limitTo: 20 }}... </p>
                       <small> {{ message.created_at | date : 'shortTime' }} </small>
-                      <div class="newMessage" ng-if="main.isAuthenticated() && main.unreadMessages">
+
+                      <div class="newMessage" ng-if="!message.read && message.user_id !== main.currentUser.id">
                         – New message
                       </div>
                     </div>

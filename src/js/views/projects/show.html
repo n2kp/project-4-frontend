@@ -5,7 +5,10 @@
     <div class="col-10 offset-md-1">
 
       <p ng-if="main.currentUser.id === projectsShow.project.user.id" class="marginBottomMd"><span>You </span> posted</p>
-      <h1 class="projectShowTitle"> {{ projectsShow.project.title }}</h1>
+
+
+
+      <h1 class="projectShowTitle">   <img src=" {{projectsShow.project.user.image.url}} " alt="profile.user.image_src" class="projectShowImage"> {{ projectsShow.project.title }} </h1>
       <p ng-if="main.currentUser.id !== projectsShow.project.user.id" >Posted by <span> <a ui-sref="profile({ id: projectsShow.project.user.id })" class="marginBottomMd"> {{ projectsShow.project.user.username }} </a></span></p>
 
     </div>
@@ -61,24 +64,25 @@
 
 
           <h3 ng-if="main.currentUser.id === project.user.id || main.currentUser.is_dev === false">There are currently {{ projectsShow.project.tenders.length }} bids on this project.</h3>
-
+          <!-- <h2>Bids</h2> -->
           <div ng-repeat="tender in projectsShow.project.tenders"  id="noPaddingBottom" ng-model="projectsShow.project.tenders">
-            <h2 ng-if="main.currentUser.id === tender.user.id ">Your current bid</h2>
+
 
 
             <div class="tenderInfo projectCards">
+              <h2 ng-if="main.currentUser.id === tender.user.id ">Your current bid</h2>
 
+              <h2 ng-if="main.currentUser.id !== tender.user.id" class="marginBottomMd"><a ui-sref="profile({ id: tender.user.id })"> <img src=" {{tender.user.image_src}} " alt="profile.user.image_src" class="tenderShowImage"> {{ tender.user.firstname }}'s offer</a></h2>
 
-              <a ui-sref="profile({ id: tender.user.id })"><h2 ng-if="main.currentUser.id !== tender.user.id" class="marginBottomMd">{{ tender.user.firstname }}'s offer</h2></a>
-
+              <h5><span> Bid </span> - {{ tender.bid  | currency : '£' : 0 }}</h5>
+              <p class="marginBottomMd">{{ tender.pitch }}</p>
 
 
               <p class="rating_text">Developer's Average Rating:</p>
-              <p ng-if="tender.user.average_rating === null">This user has no current rating</p>
+              <p ng-if="tender.user.average_rating === null" class="marginBottomMd"><span>This user has no current rating</span></p>
               <span uib-rating ng-if="tender.user.average_rating > 0" ng-model="tender.user.average_rating" max="10" read-only="!isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></span>
 
-              <h5>{{ tender.bid  | currency : '£' : 0 }}</h5>
-              <p class="marginBottomMd">{{ tender.pitch }}</p>
+
               <hr>
               <div ng-class="{pending:tender.status === 'pending', rejected:tender.status === 'rejected', accepted:tender.status === 'accepted'}" class="marginBottomMd"> Status – {{ tender.status }} </div>
 
@@ -86,46 +90,47 @@
 
               <button ng-if="main.currentUser.id === tender.user.id" ng-click="projectsShow.open(tender)" class="button danger marginBottomMd" >Retract your bid</button>
 
-              <div ng-show="projectsShow.show == 1">
-                <form ng-submit="projectsShow.tenderUpdate()">
+              <div class="row justify-content-center">
+                
+                <div ng-if="main.currentUser.id === projectsShow.project.user.id && tender.status === 'pending'" ng-click="projectsShow.acceptBid(tender.id) ; contactCreator(main.currentUser.id, projectsShow.tender.user.id)" class="cursor justify-content-center acceptBox">
 
-                  <div class="form-group">
-                    <label for="bid">Bid</label>
-                    <input type="number" id="bid" name="bid" class=
-                    "form-control" ng-model="tender.bid">
+                  <div class="bidAccept">
+                    <i class="material-icons">done</i>
                   </div>
+                  <h4 class="text-center">Accept this bid</h4>
+                </div>
 
-                  <div class="form-group">
-                    <label for="pitch">Pitch</label>
-                    <textarea type="text" id="pitch" class="form-control" name="pitch" ng-model="tender.pitch"></textarea>
+                <div ng-if="main.currentUser.id === projectsShow.project.user.id && tender.status !== 'accepted' && tender.status !== 'rejected'" class="cursor acceptBox">
+
+
+                  <div class="bidReject">
+                    <i ng-click="projectsShow.open(tender)" class="material-icons">clear</i>
                   </div>
-
-                  <button class="button primary">Submit Offer</button>
-                  <button ng-click="projectsShow.show = 0" class="button secondary">Cancel</button>
-                </form>
-              </div>
-            </div>
-
-
-            <div class="row justify-content-center">
-
-
-              <div ng-if="main.currentUser.id === projectsShow.project.user.id && tender.status === 'pending'" ng-click="projectsShow.acceptBid(tender.id) ; contactCreator(main.currentUser.id, projectsShow.tender.user.id)" class="cursor justify-content-center acceptBox">
-
-                <div class="bidAccept">
-                  <i class="material-icons">done</i>
+                  <h4  class="text-center">Reject this bid</h4>
                 </div>
-                <h4 class="text-center">Accept this bid</h4>
-              </div>
 
-              <div ng-if="main.currentUser.id === projectsShow.project.user.id && tender.status !== 'accepted' && tender.status !== 'rejected'" class="cursor acceptBox">
+                <div ng-show="projectsShow.show == 1">
+                  <form ng-submit="projectsShow.tenderUpdate()">
 
+                    <div class="form-group">
+                      <label for="bid">Bid</label>
+                      <input type="number" id="bid" name="bid" class=
+                      "form-control" ng-model="tender.bid">
+                    </div>
 
-                <div class="bidReject">
-                  <i ng-click="projectsShow.open(tender)" class="material-icons">clear</i>
+                    <div class="form-group">
+                      <label for="pitch">Pitch</label>
+                      <textarea type="text" id="pitch" class="form-control" name="pitch" ng-model="tender.pitch"></textarea>
+                    </div>
+
+                    <button class="button primary">Submit Offer</button>
+                    <button ng-click="projectsShow.show = 0" class="button secondary">Cancel</button>
+                  </form>
                 </div>
-                <h4  class="text-center">Reject this bid</h4>
               </div>
+
+
+
 
             </div>
           </div>

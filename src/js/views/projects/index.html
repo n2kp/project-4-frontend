@@ -27,6 +27,7 @@
       </div>
     </div>
 
+<!-- NORMAL PROJECTS -->
     <div class="col-sm-6">
       <div ng-if="!project.is_priority && project.is_active" ng-repeat="project in projectsIndex.filtered
       | filter: projectsIndex.lowerThan('budget', projectsIndex.budget)
@@ -61,13 +62,11 @@
       </div>
     </div>
 
-
+<!-- PRIORITY PROJECTS -->
     <div class="col-sm-3">
       <div ng-if="project.is_priority && project.is_active " ng-repeat="project in projectsIndex.all" class=" projectCards cursor" ui-sref="projectsShow({ id: project.id })">
 
         <p class=" marginBottomSm paidPost">Advertisment</p>
-
-        <img ng-src="{{ project.user.image }}" alt="profile.user.imageSRC" class="paidImage">
 
           <h2 class="marginBottomMd marginTopMd">{{project.title }}</h2>
           <p class="marginBottomMd">{{project.description }}</p>
@@ -76,10 +75,6 @@
           <p class="marginBottomMd"><span class="tech-tag" ng-repeat="tech in project.tech_stack.split(', ')"> {{ tech }}</span></p>
 
 
-
-
-
-        <!-- <button ng-if="main.isAuthenticated()" ui-sref="projectsShow({ id: project.id })" class="button primary">View</button> -->
       </div>
     </div>
   </div>

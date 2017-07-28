@@ -29,6 +29,10 @@ $danger: red;
   color: grey;
 }
 
+h3{
+  color: $textColor
+}
+
 #zero{
   margin: 0px;
   padding: 0px;
@@ -43,6 +47,16 @@ $danger: red;
 
 button{
   font-family: 'Raleway', sans-serif;
+}
+
+a{
+  text-decoration: none;
+  color: $textColor;
+}
+
+a:hover{
+  text-decoration: none;
+  color: $highlight;
 }
 
 

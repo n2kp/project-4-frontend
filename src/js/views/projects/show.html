@@ -61,13 +61,13 @@
 
 
           <h3 ng-if="main.currentUser.id === project.user.id || main.currentUser.is_dev === false">There are currently {{ projectsShow.project.tenders.length }} bids on this project.</h3>
-
+          <h2>Bids</h2>
           <div ng-repeat="tender in projectsShow.project.tenders"  id="noPaddingBottom" ng-model="projectsShow.project.tenders">
-            <h2 ng-if="main.currentUser.id === tender.user.id ">Your current bid</h2>
+
 
 
             <div class="tenderInfo projectCards">
-
+              <h2 ng-if="main.currentUser.id === tender.user.id ">Your current bid</h2>
 
               <h2 ng-if="main.currentUser.id !== tender.user.id " class="marginBottomMd">{{ tender.user.firstname }}'s offer</h2>
 

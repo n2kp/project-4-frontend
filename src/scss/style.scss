@@ -41,6 +41,10 @@ $danger: red;
   height: 93vh;
 }
 
+button{
+  font-family: 'Raleway', sans-serif;
+}
+
 
 main {
   .errorMessage {
@@ -156,6 +160,9 @@ p{
 .marginTopXXLg{
   margin-top: 100px;
 }
+.marginTopXLg{
+  margin-top: 62px;
+}
 
 .marginTopLg{
   margin-top: 48px;
@@ -206,6 +213,7 @@ p{
 }
 
 .button{
+  font-family: 'Raleway', sans-serif;
   background-color: white;
   padding: 4px 32px;
   border-radius: 4px;
@@ -620,6 +628,7 @@ nav ul li a{
   padding: 16px 0px;
   background-color: white;
   word-wrap: break-word;
+  border-bottom: 1px solid #f2f2f2;
   &#chatSidebarMessages:hover {
     background-color: #f9f9f9;
   }

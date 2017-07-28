@@ -1,9 +1,10 @@
 <!DOCTYPE html >
 <div class="main">
 
-  <div class="container">
+  <div class="container marginTopXLg">
     <div class="row justify-content-md-center">
       <div class="col-6">
+        <h1> Log in </h1>
         <p ng-show="main.message" class="alert alert-danger">{{ main.message }}</p>
         <form ng-submit="auth.login()">
 
@@ -29,7 +30,8 @@
     <button ng-click="auth.authenticate('facebook')" class=" button facebook"><i class="fa fa-facebook-official marginRightXSm" aria-hidden="true"></i> Login with Facebook</button>
   </div>
 
-    <div class="row justify-content-md-center">
+    <div class="row justify-content-md-center marginTopMd
+    ">
     <p class="col-3"> Dont have an account? <a ui-sref="register">Sign up here</a></p>
   </div>
 

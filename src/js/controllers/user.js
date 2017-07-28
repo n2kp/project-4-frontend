@@ -10,15 +10,12 @@ function ProfileCtrl($auth, User, $state, Review, Project, Conversation) {
   const vm = this;
 
   vm.reviews = Review.query();
-  console.log(vm.reviews);
   vm.user = User.get($state.params);
-  console.log(vm.user);
   vm.projects = Project.query();
 
   Project.query()
   .$promise
   .then((projects) =>{
-    // console.log(projects);
     vm.projects = projects;
   });
 
@@ -32,13 +29,6 @@ function ProfileCtrl($auth, User, $state, Review, Project, Conversation) {
   }
 
   vm.contactCreator = contactCreator;
-
-
-  function findTender(tender) {
-    return tender.status = 'accepted';
-  }
-
-  vm.findTender = findTender;
 
   // Trying to prepend the url with http
   // function checkUrl(url) {
@@ -68,7 +58,7 @@ function ProfileCtrl($auth, User, $state, Review, Project, Conversation) {
     });
   }
   vm.addReview = addReview;
-  
+
 
   function deleteReview(review) {
     Review
@@ -210,14 +200,6 @@ function ConversationCtrl(Conversation, Message, $scope) {
   vm.getUnread = getUnread;
 
   function selectConversation(conversation, index, currentUserId) {
-
-    // Set messages to read in Angular
-    // conversation.messages.forEach((message) => {
-    //   if (message.user_id !== currentUserId) {
-    //     message.read = true;
-    //   }
-    // });
-
     // console.log(conversation.messages);
     Conversation
     .get({ id: conversation.id })

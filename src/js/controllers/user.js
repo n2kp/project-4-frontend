@@ -173,27 +173,33 @@ function ConversationCtrl(Conversation, Message, $scope) {
     .save({ id: vm.conversationId }, vm.message)
     .$promise
     .then((response) => {
-      // console.log('Message saved', response);
+
+      // Find message within the returned conversation.messages array
       function findMessage(message) {
         return message.body === response.body;
       }
 
+      // Update view with the newly created message
       const newMessage = response.conversation.messages.find(findMessage);
       vm.conversations[vm.index].messages.push(newMessage);
-      // console.log(newMessage);
+
+      // set newMessage to empty
       vm.message = {};
     });
   }
 
   function getUnread(currentUserId) {
     let count = 0;
+    // loop through conversations
     vm.conversations.forEach((conversation) => {
+      // loop through messages within the conversation
       conversation.messages.forEach((message) => {
+        // count if message is not read and not sent from the current user
         if (message.user_id !== currentUserId && !message.read) {
           return count += 1;
         }
       });
-      // console.log('Count: ', count);
+      // Reset count to 0 ready for next conversation iteration
       count = 0;
     });
   }
@@ -201,7 +207,7 @@ function ConversationCtrl(Conversation, Message, $scope) {
   vm.getUnread = getUnread;
 
   function selectConversation(conversation, index, currentUserId) {
-    // console.log(conversation.messages);
+    // get the conversation thread from the clicked on conversation
     Conversation
     .get({ id: conversation.id })
     .$promise
@@ -210,13 +216,13 @@ function ConversationCtrl(Conversation, Message, $scope) {
       $scope.conversations.getUnread(currentUserId);
       vm.conversationId = conversation.id;
       vm.index = index;
-      Message
-      .get({ id: vm.conversationId })
-      .$promise
-      .then((response) => {
-        // console.log('From index messages', response);
-        // .. update Angular
-      });
+      // Message
+      // .get({ id: vm.conversationId })
+      // .$promise
+      // .then((response) => {
+      //   // console.log('From index messages', response);
+      //   // .. update Angular
+      // });
 
     });
   }

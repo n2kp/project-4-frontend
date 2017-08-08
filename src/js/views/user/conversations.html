@@ -20,9 +20,10 @@
                 </div>
 
                 <div class="col-sm-8">
+                  <!-- Find the user's name, who is not the currentUser - regardless of whether they are a sender or receiver -->
                   <h4> {{ conversation.receiver.username  === main.currentUser.username ? conversation.sender.username : conversation.receiver.username }}</h4>
                   <div ng-repeat="message in conversation.messages track by $index">
-
+                    <!-- Get the most recent message and preview it below username -->
                     <div ng-if="(conversation.messages.length-1) === $index">
                       <p id="greyText"> {{ message.body | limitTo: 20 }}... </p>
                       <small> {{ message.created_at | date : 'shortTime' }} </small>
@@ -33,7 +34,6 @@
                     </div>
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
@@ -51,13 +51,10 @@
 
       <!-- CONVERSATION -->
       <div class="col-9 messageside">
-
+        <!-- Scroll glue attribute makes conversation thread stick to the bottom even when new messages are added -->
         <div scroll-glue ng-show="conversations.index !== null" class="col-12 messageScroll">
-
+          <!-- Sort messages by created_at to show in order of time -->
           <div ng-repeat="message in conversations.conversations[conversations.index].messages | orderBy: 'created_at'" class="speech-bubble-row">
-
-
-
             <div ng-class="{true:'speech-bubble-sent', false:'speech-bubble-received'}[main.currentUser.id === message.user_id]">
               <div class="body">
                 <p>  {{ message.body }} </p>
@@ -75,8 +72,6 @@
 
             <div class="col-12 chatInput">
               <div class="chatPadding">
-
-
                 <input type="text" ng-model="conversations.message.body" name="body" id="body" placeholder="Write a message..." class="col-10 chatTextBox" required>
                 <button class=" col-1 chatSubmit cursor"> <i class=" material-icons iconLarge">message</i> </button>
               </div>

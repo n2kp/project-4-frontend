@@ -7,7 +7,6 @@ function Auth($authProvider, API_URL) {
   $authProvider.signupUrl = `${API_URL}/register`;
   $authProvider.loginUrl = `${API_URL}/login`;
 
-
   $authProvider.github({
     clientId: 'c68d6e6c5ebea060f449',
     url: `${API_URL}/oauth/github`
